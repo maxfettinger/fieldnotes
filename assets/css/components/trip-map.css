@@ -58,3 +58,36 @@
     border-top-color: var(--color-surface);
     border-bottom-color: var(--color-surface);
 }
+
+.trip-map .maplibregl-popup-close-button {
+    color: var(--color-secondary);
+}
+
+/* The map's own labels, credits and scale, in the page's colours: since MapTiler's CSS sits in a lower layer, the
+   theme's link colour would reach the credits, on MapTiler's pale background */
+.trip-map :is(.maplibregl-ctrl-attrib, .maplibregl-ctrl-scale) {
+    background: color-mix(in srgb, var(--color-surface) 85%, transparent);
+    color: var(--color-secondary);
+    font-family: var(--font-body);
+}
+
+.trip-map .maplibregl-ctrl-attrib a {
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (hover: hover) {
+    .trip-map .maplibregl-ctrl-attrib a:hover {
+        color: var(--color-text);
+        text-decoration: underline;
+    }
+}
+
+.trip-map .maplibregl-ctrl-scale {
+    border-color: var(--color-secondary);
+}
+
+/* The credits' (i) button on narrow maps is a dark icon: light on the dark surface */
+[data-theme="dark"] .trip-map .maplibregl-ctrl-attrib-button {
+    filter: invert(1);
+}
