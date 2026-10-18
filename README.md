@@ -5,7 +5,7 @@ a blackboard in dark mode, and it comes with trip maps, photo galleries with a v
 build step: Hugo does everything.
 
 - Seven presets for how the site is drawn (fieldnotes with tape, minimal, editorial, cinematic, brutalist,
-  terminal, riced) and sixteen colour schemes with light and dark versions, any with any; your own as plugins
+  terminal, cyberpunk) and sixteen colour schemes with light and dark versions, any with any; your own as plugins
 - Light-only, dark-only or both, following the visitor's system or a toggle
 - Fonts from Google Fonts, backgrounds including your own SVG tile
 - Hooks for your own CSS, HTML and scripts
@@ -98,7 +98,7 @@ of its own, and its theme generator tries them all live and writes the settings.
 
 ```toml
 [params.style]
-  preset = "riced"        # fieldnotes, minimal, editorial, cinematic, brutalist, terminal, riced
+  preset = "cyberpunk"    # fieldnotes, minimal, editorial, cinematic, brutalist, terminal, cyberpunk
   scheme = "catppuccin"   # optional, else the preset's own
 ```
 
@@ -110,7 +110,7 @@ of its own, and its theme generator tries them all live and writes the settings.
 | `cinematic` | for photographs: Inter Tight in light weights, hairlines, sharp corners, tall galleries | cinema |
 | `brutalist` | IBM Plex Mono, thick borders, hard offset shadows, square corners | ink |
 | `terminal` | Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, a blinking cursor | omarchy |
-| `riced` | an anime desktop: a pastel dusk wallpaper, frosted panels with HUD labels, soft glows | sakura |
+| `cyberpunk` | a 90s anime heads-up display: steel-blue panels with thin cyan frames, mono labels, a red signal light | hud |
 
 Colour schemes, calm ones first: fieldnotes, newsprint, ink, cinema, forest, ocean, nord, gruvbox, everforest,
 rose-pine, catppuccin, tokyo-night, omarchy, sakura, hud, neon. Each has a light and a dark version, with all text at

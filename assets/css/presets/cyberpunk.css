@@ -1,0 +1,105 @@
+/*
+ * Cyberpunk: a heads-up display from a 90s anime. Steel-blue see-through panels with thin frames in the scheme's
+ * primary colour, a label over each in spaced mono capitals ("LOG // 01") above a hairline, a small red signal light in
+ * the corner, IBM Plex Sans text and Chakra Petch headings, a faint grid behind.
+ */
+:root[data-preset="cyberpunk"] {
+    --pattern: var(--pattern-grid);
+    --pattern-strength: 12%;
+    --font-body: "IBM Plex Sans", system-ui, sans-serif;
+    --font-heading: "Chakra Petch", "IBM Plex Sans", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --heading-spacing: 0.02em;
+    --radius-s: 2px;
+    --radius-m: 2px;
+    --shadow: none;
+    --shadow-raised: 0 0 0 1px var(--color-primary);
+    --card-bg: color-mix(in srgb, var(--color-surface) 82%, transparent);
+    --card-border: 1px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+
+/* Panels: see-through over the grid */
+[data-preset="cyberpunk"] :is(.card, .display-card, .site-header) {
+    backdrop-filter: blur(6px);
+}
+
+[data-preset="cyberpunk"] .site-header {
+    border-block-end: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+}
+
+[data-preset="cyberpunk"] :is(.site-title, .site-nav) {
+    font-family: var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+[data-preset="cyberpunk"] .site-title {
+    font-size: var(--step-0);
+}
+
+[data-preset="cyberpunk"] .site-nav a[aria-current] {
+    color: var(--color-primary);
+    text-decoration-color: var(--color-primary);
+}
+
+/* The label over each panel, numbered, above a hairline */
+[data-preset="cyberpunk"] .card-list {
+    counter-reset: panel;
+}
+
+[data-preset="cyberpunk"] .card {
+    counter-increment: panel;
+}
+
+[data-preset="cyberpunk"] :is(.card, .display-card)::before {
+    content: "LOG // " counter(panel, decimal-leading-zero);
+    padding-block-end: var(--space-2xs);
+    border-block-end: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+    color: var(--color-secondary);
+    font: 500 var(--step--2) / 1 var(--font-mono);
+    letter-spacing: 0.2em;
+}
+
+[data-preset="cyberpunk"] .display-card::before {
+    content: "SYS // NOW";
+}
+
+/* The signal light */
+[data-preset="cyberpunk"] :is(.card, .display-card)::after {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(var(--space-s) + 0.15em);
+    inset-inline-end: var(--space-m);
+    inline-size: 5px;
+    block-size: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+}
+
+[data-preset="cyberpunk"] :is(.card:hover, .card:focus-within) {
+    translate: none;
+    border-color: var(--color-primary);
+}
+
+[data-preset="cyberpunk"] .card-title a,
+[data-preset="cyberpunk"] .intro h1 {
+    color: var(--color-primary);
+}
+
+[data-preset="cyberpunk"] :is(.meta, .breadcrumbs) {
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+[data-preset="cyberpunk"] .intro-photo img {
+    border: 1px solid var(--color-primary);
+    border-radius: 2px;
+    box-shadow: none;
+}
+
+[data-preset="cyberpunk"] :is(.trip-map-canvas, pre) {
+    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+    box-shadow: none;
+}

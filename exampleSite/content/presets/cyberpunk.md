@@ -1,16 +1,16 @@
 ---
-title: "Riced"
+title: "Cyberpunk"
 weight: 70
-summary: "An anime desktop: a pastel dusk wallpaper, frosted panels with HUD labels, soft glows, Nunito and Chakra Petch."
+summary: "A heads-up display from a 90s anime: steel-blue panels with thin cyan frames, mono labels and a red signal light."
 style:
-  preset: riced
+  preset: cyberpunk
 ---
 
-An anime desktop: a pastel dusk wallpaper, frosted panels with HUD labels, soft glows, Nunito and Chakra Petch. In your `hugo.toml`:
+A heads-up display from a 90s anime: steel-blue panels with thin cyan frames, mono labels and a red signal light. In your `hugo.toml`:
 
 ```toml
 [params.style]
-  preset = "riced"
+  preset = "cyberpunk"
 ```
 
 ## A heading
@@ -33,5 +33,5 @@ def trapezoid(f, a, b, n):
 
 | Setting | Value |
 |---|---|
-| preset | `riced` |
-| scheme | `sakura` |
+| preset | `cyberpunk` |
+| scheme | `hud` |

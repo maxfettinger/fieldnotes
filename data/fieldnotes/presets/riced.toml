@@ -1,5 +1,0 @@
-name = "Riced"
-weight = 70
-description = "An anime desktop: a pastel dusk wallpaper, frosted panels with HUD labels, soft glows, Nunito and Chakra Petch."
-scheme = "sakura"
-fonts = ["Nunito:ital,wght@0,400;0,700;1,400", "Chakra Petch:wght@500;700", "JetBrains Mono:wght@400"]
