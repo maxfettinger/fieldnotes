@@ -1,0 +1,24 @@
+/* Catppuccin: Catppuccin Latte and Mocha. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="catppuccin"]:not([data-theme="dark"]) {
+    --color-bg: #eff1f5;
+    --color-surface: #e6e9ef;
+    --color-text: #4c4f69;
+    --color-primary: #7c3aed;
+    --color-secondary: #5c5f77;
+    --color-tertiary: #ccd0da;
+    --color-accent: #c11c3d;
+    --color-border: #ccd0da;
+    --pattern-color: #7287fd;
+}
+
+:root[data-theme="dark"][data-dark="catppuccin"] {
+    --color-bg: #1e1e2e;
+    --color-surface: #181825;
+    --color-text: #cdd6f4;
+    --color-primary: #cba6f7;
+    --color-secondary: #a6adc8;
+    --color-tertiary: #313244;
+    --color-accent: #f5c2e7;
+    --color-border: #45475a;
+    --pattern-color: #89b4fa;
+}

@@ -1,0 +1,6 @@
+name = "Brutalist"
+weight = 50
+description = "IBM Plex Mono throughout, thick borders, hard offset shadows, square corners."
+light = "ink"
+dark = "ink"
+fonts = ["IBM Plex Mono:ital,wght@0,400;0,700;1,400;1,700"]

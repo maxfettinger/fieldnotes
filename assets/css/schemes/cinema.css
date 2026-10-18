@@ -1,0 +1,24 @@
+/* Cinema: neutral white and black with a muted gold, for photographs. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="cinema"]:not([data-theme="dark"]) {
+    --color-bg: #fafafa;
+    --color-surface: #ffffff;
+    --color-text: #161616;
+    --color-primary: #0a0a0a;
+    --color-secondary: #5c5c5c;
+    --color-tertiary: #ececec;
+    --color-accent: #7d5f26;
+    --color-border: #dedede;
+    --pattern-color: #bdbdbd;
+}
+
+:root[data-theme="dark"][data-dark="cinema"] {
+    --color-bg: #0b0b0c;
+    --color-surface: #111113;
+    --color-text: #e6e4e1;
+    --color-primary: #f5f3f0;
+    --color-secondary: #9a9894;
+    --color-tertiary: #1d1d20;
+    --color-accent: #d9b77a;
+    --color-border: #26262a;
+    --pattern-color: #555555;
+}

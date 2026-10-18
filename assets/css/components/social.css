@@ -1,0 +1,9 @@
+/* Social links (social.html): a row of icons from params.socialIcons */
+.social {
+    --cluster-gap: var(--space-s);
+}
+
+.social a {
+    display: block;
+    font-size: 1.5rem;
+}

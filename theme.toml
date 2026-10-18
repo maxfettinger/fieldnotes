@@ -1,0 +1,12 @@
+name = "Fieldnotes"
+license = "MIT"
+licenselink = "https://github.com/maxfettinger/fieldnotes/blob/main/LICENSE"
+description = "A calm theme for people who write about their trips and their research: graph paper, dark mode, trip maps, photo galleries, maths."
+homepage = "https://github.com/maxfettinger/fieldnotes"
+tags = ["blog", "personal", "portfolio", "dark mode", "maps", "gallery", "math", "minimal"]
+features = ["dark mode", "six style presets", "eleven colour schemes", "trip maps (MapTiler)", "photo galleries with a viewer", "MathJax", "SEO", "Google Fonts"]
+min_version = "0.158.0"
+
+[author]
+  name = "Maximilian Fettinger"
+  homepage = "https://maxfettinger.com"

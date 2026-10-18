@@ -1,0 +1,67 @@
+{{- /* Hook: the end of <head> on every page. The example site uses it for the style playground:
+       - all presets and schemes in one extra stylesheet, so any of them can be tried live (a site of your own only
+         loads the ones it uses; this bundle is the theme's mechanism turned up: head/css.html)
+       - the visitor's saved choices, applied before the page is drawn, so the look doesn't flash back on every page.
+         assets/js/playground.js uses the same functions. */ -}}
+{{- $imports := slice }}
+{{- range resources.Match "css/presets/*.css" }}{{ $imports = $imports | append (printf `@import "../presets/%s" layer(presets);` (path.Base .Name)) }}{{ end }}
+{{- range resources.Match "css/schemes/*.css" }}{{ $imports = $imports | append (printf `@import "../schemes/%s" layer(schemes);` (path.Base .Name)) }}{{ end }}
+{{- with resources.FromString "css/playground/all.css" (delimit $imports "\n") | css.Build (dict "minify" true) }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- end }}
+<script>
+  window.playground = {
+    key: "fieldnotes-playground",
+    presets: {{ hugo.Data.fieldnotes.presets }},
+    patterns: { grid: "var(--pattern-grid)", dots: "var(--pattern-dots)", none: "none" },
+    colours: ["bg", "surface", "text", "primary", "secondary", "tertiary", "accent", "border"],
+    load() {
+      try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch { return {}; }
+    },
+    save(choices) {
+      try { localStorage.setItem(this.key, JSON.stringify(choices)); } catch {}
+    },
+    // Google Fonts for these specs ("Inter:wght@400;700") or plain family names (regular and bold, both italics)
+    loadFonts(specs) {
+      const families = [...new Set(specs.filter(Boolean))]
+        .map((s) => "family=" + (s.includes(":") ? s : `${s}:ital,wght@0,400;0,700;1,400;1,700`).replaceAll(" ", "+"));
+      if (!families.length) return;
+      let link = document.getElementById("playground-fonts");
+      if (!link) {
+        link = Object.assign(document.createElement("link"), { id: "playground-fonts", rel: "stylesheet" });
+        document.head.append(link);
+      }
+      link.href = `https://fonts.googleapis.com/css2?${families.join("&")}&display=swap`;
+    },
+    // Your own colours, in the "site" layer like the theme's params.colors
+    paint(colours = {}) {
+      let style = document.getElementById("playground-colours");
+      if (!style) {
+        style = Object.assign(document.createElement("style"), { id: "playground-colours" });
+        document.head.append(style);
+      }
+      const block = (values) => Object.entries(values || {}).map(([k, v]) => `--color-${k}: ${v};`).join(" ");
+      style.textContent = `@layer site { :root:not([data-theme="dark"]) { ${block(colours.light)} } :root[data-theme="dark"] { ${block(colours.dark)} } }`;
+    },
+    apply({ preset, light, dark, font, background, colours }) {
+      const root = document.documentElement;
+      const p = this.presets[preset];
+      if (!p) return;
+      root.dataset.preset = preset;
+      root.dataset.light = light || p.light;
+      root.dataset.dark = dark || p.dark;
+      if (background) root.style.setProperty("--pattern", this.patterns[background]);
+      else root.style.removeProperty("--pattern");
+      for (const role of ["body", "heading"]) {
+        if (font) root.style.setProperty(`--font-${role}`, `"${font}", serif`);
+        else root.style.removeProperty(`--font-${role}`);
+      }
+      this.loadFonts(font ? [...(p.fonts || []), font] : p.fonts || []);
+      this.paint(colours);
+    },
+  };
+  {{- /* Not on pages that set their own look (the preset pages) */}}
+  {{- if not .Params.style }}
+  playground.apply(playground.load());
+  {{- end }}
+</script>

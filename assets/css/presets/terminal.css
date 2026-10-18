@@ -1,0 +1,93 @@
+/*
+ * Terminal: Omarchy's website (omarchy.org) in 8 bit. Geist for text and JetBrains Mono for everything that names
+ * things, a field of dots, square boxes with pixel-cut corners, headings like Markdown (## ), cards as prompts (> ),
+ * the menu's current item as a green tag, and a blinking cursor after the site's name.
+ */
+:root[data-preset="terminal"] {
+    --pattern: var(--pattern-dots);
+    --pattern-strength: 30%;
+    --font-body: "Geist", system-ui, sans-serif;
+    --font-heading: "JetBrains Mono", ui-monospace, monospace;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --radius-s: 0;
+    --radius-m: 0;
+    --shadow: none;
+    --shadow-raised: none;
+    --heading-spacing: -0.01em;
+    /* Pixel-cut corners: two 4px steps */
+    --px: 4px;
+    --pixel-corners: polygon(0 calc(2 * var(--px)), var(--px) calc(2 * var(--px)), var(--px) var(--px), calc(2 * var(--px)) var(--px), calc(2 * var(--px)) 0,
+        calc(100% - 2 * var(--px)) 0, calc(100% - 2 * var(--px)) var(--px), calc(100% - var(--px)) var(--px), calc(100% - var(--px)) calc(2 * var(--px)), 100% calc(2 * var(--px)),
+        100% calc(100% - 2 * var(--px)), calc(100% - var(--px)) calc(100% - 2 * var(--px)), calc(100% - var(--px)) calc(100% - var(--px)), calc(100% - 2 * var(--px)) calc(100% - var(--px)), calc(100% - 2 * var(--px)) 100%,
+        calc(2 * var(--px)) 100%, calc(2 * var(--px)) calc(100% - var(--px)), var(--px) calc(100% - var(--px)), var(--px) calc(100% - 2 * var(--px)), 0 calc(100% - 2 * var(--px)));
+}
+
+[data-preset="terminal"] :is(.card, .display-card, .intro-photo img, .trip-map-canvas, .trip-map-missing, pre) {
+    clip-path: var(--pixel-corners);
+}
+
+/* The header as Omarchy's top bar: a surface strip, a mono name with a blinking cursor, the current item tagged */
+[data-preset="terminal"] .site-header {
+    border-block-end: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+[data-preset="terminal"] :is(.site-title, .site-nav) {
+    font-family: var(--font-mono);
+}
+
+[data-preset="terminal"] .site-title {
+    font-size: var(--step-1);
+}
+
+[data-preset="terminal"] .site-title::after {
+    content: "_";
+    color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    [data-preset="terminal"] .site-title::after {
+        animation: terminal-cursor 1s steps(1) infinite;
+    }
+}
+
+@keyframes terminal-cursor {
+    50% {
+        opacity: 0;
+    }
+}
+
+[data-preset="terminal"] .site-nav a[aria-current] {
+    padding-inline: 0.5em;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    text-decoration: none;
+}
+
+/* Headings like Markdown, card titles like a prompt */
+[data-preset="terminal"] .prose :is(h2, h3)::before {
+    content: "## ";
+    color: var(--color-accent);
+}
+
+[data-preset="terminal"] .prose h3::before {
+    content: "### ";
+}
+
+[data-preset="terminal"] .card-title a::before {
+    content: "> ";
+    color: var(--color-accent);
+}
+
+[data-preset="terminal"] .card-title {
+    font-size: var(--step-1);
+}
+
+[data-preset="terminal"] :is(.card:hover, .card:focus-within) {
+    translate: none;
+    border-color: var(--color-accent);
+}
+
+[data-preset="terminal"] .meta {
+    font-family: var(--font-mono);
+}

@@ -1,0 +1,24 @@
+/* Ink: white paper and black ink with one blue; a GitHub-like night. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="ink"]:not([data-theme="dark"]) {
+    --color-bg: #ffffff;
+    --color-surface: #ffffff;
+    --color-text: #1f2328;
+    --color-primary: #0f1115;
+    --color-secondary: #59636e;
+    --color-tertiary: #e8eaee;
+    --color-accent: #1d4ed8;
+    --color-border: #e2e5e9;
+    --pattern-color: #9aa1a9;
+}
+
+:root[data-theme="dark"][data-dark="ink"] {
+    --color-bg: #0d1117;
+    --color-surface: #151b23;
+    --color-text: #d1d7e0;
+    --color-primary: #f0f3f6;
+    --color-secondary: #9198a1;
+    --color-tertiary: #262c36;
+    --color-accent: #6ea8fe;
+    --color-border: #262c36;
+    --pattern-color: #6e7681;
+}

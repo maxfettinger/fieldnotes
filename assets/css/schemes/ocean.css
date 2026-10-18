@@ -1,0 +1,24 @@
+/* Ocean: grey-blue paper, navy ink and coral; the deep sea. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="ocean"]:not([data-theme="dark"]) {
+    --color-bg: #eef3f7;
+    --color-surface: #f9fbfd;
+    --color-text: #22303c;
+    --color-primary: #12355b;
+    --color-secondary: #526170;
+    --color-tertiary: #d6e1ea;
+    --color-accent: #b83d31;
+    --color-border: #dbe5ee;
+    --pattern-color: #8fb3d1;
+}
+
+:root[data-theme="dark"][data-dark="ocean"] {
+    --color-bg: #0f1d2b;
+    --color-surface: #162738;
+    --color-text: #d3dde6;
+    --color-primary: #eef4fa;
+    --color-secondary: #9fb1c2;
+    --color-tertiary: #2a3f53;
+    --color-accent: #ff8a73;
+    --color-border: #223649;
+    --pattern-color: #c9dbea;
+}

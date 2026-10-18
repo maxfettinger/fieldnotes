@@ -1,0 +1,5 @@
+/* Date line (meta.html) under titles and on cards */
+.meta {
+    color: var(--color-secondary);
+    font-size: var(--step--1);
+}

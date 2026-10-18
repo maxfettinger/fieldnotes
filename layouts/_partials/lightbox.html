@@ -1,0 +1,34 @@
+{{- /* The photo viewer of the galleries: one <dialog> for every gallery on the page. dialog-lightbox (loaded from
+       jsDelivr in the version params.gallery.lightbox, see data-module) finds its parts by their data-dlb-*
+       attributes and adds the behaviour (assets/js/gallery.js); everything you see is components/lightbox.css.
+       Included by baseof.html on pages with a gallery. Laid out like Instagram's story viewer: counter and close in the window's corners,
+       and on videos an overlay inside the video itself (the template, which the library copies into every video
+       slide, so it moves, swipes and shrinks with the video): play and sound at the top left over a soft fade,
+       fullscreen at the top right, the progress bar on the bottom edge. */ -}}
+<dialog class="lightbox" aria-label="Photo viewer" data-module="https://cdn.jsdelivr.net/npm/dialog-lightbox@{{ site.Params.gallery.lightbox }}/dist/dialog-lightbox.js">
+  <div data-dlb-viewport></div>
+  <div class="lightbox-bar lightbox-top">
+    <span class="lightbox-counter"><span data-dlb-counter></span> / <span data-dlb-total></span></span>
+    <button class="icon-button lightbox-icon lightbox-close" type="button" data-dlb-close aria-label="Close">{{ partial "icon.html" "x" }}</button>
+  </div>
+  <button class="icon-button lightbox-icon lightbox-side" type="button" data-dlb-prev aria-label="Previous photo">{{ partial "icon.html" "chevron-left" }}</button>
+  <button class="icon-button lightbox-icon lightbox-side" type="button" data-dlb-next aria-label="Next photo">{{ partial "icon.html" "chevron-right" }}</button>
+  <template data-dlb-overlay="video">
+    <div class="lightbox-overlay-top">
+      <button class="icon-button lightbox-icon" type="button" data-dlb-play aria-label="Play">
+        {{- partial "icon.html" "play" }}{{ partial "icon.html" "pause" -}}
+      </button>
+      <button class="icon-button lightbox-icon" type="button" data-dlb-mute aria-label="Sound">
+        {{- partial "icon.html" "volume-x" }}{{ partial "icon.html" "volume-2" -}}
+      </button>
+      {{- /* The browser's own player in fullscreen (on iPhone Apple's player), for wide videos on a phone */}}
+      <button class="icon-button lightbox-icon lightbox-fullscreen" type="button" data-dlb-fullscreen aria-label="Fullscreen">
+        {{- partial "icon.html" "maximize" -}}
+      </button>
+    </div>
+    <span class="lightbox-progress" data-dlb-progress></span>
+  </template>
+  <div class="lightbox-bar lightbox-bottom">
+    <p class="lightbox-caption"><span class="lightbox-text"></span><span class="lightbox-place"></span></p>
+  </div>
+</dialog>

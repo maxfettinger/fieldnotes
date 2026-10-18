@@ -1,0 +1,99 @@
+/*
+ * Card (card.html): a page in a list, on a surface with a thin border. The title's link stretches over the whole
+ * card, so the card is one link for the pointer and one stop for the keyboard; hovered or focused, it lifts a
+ * little. A page with params.link links out (a project kept elsewhere) and shows the external icon.
+ * The display card on the home page (home/display-card.html) is the same surface without a link.
+ */
+.card,
+.display-card {
+    position: relative;
+    display: grid;
+    gap: var(--space-2xs);
+    padding: var(--space-s) var(--card-padding-inline);
+    border: var(--card-border);
+    border-block-start: var(--card-border-top);
+    border-radius: var(--radius-m);
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+}
+
+.card {
+    transition: translate 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:focus-within {
+    box-shadow: var(--shadow-raised);
+    translate: 0 -2px;
+}
+
+/* Hover only where there's a real pointer: touch screens keep :hover after a tap */
+@media (hover: hover) {
+    .card:hover {
+        box-shadow: var(--shadow-raised);
+        translate: 0 -2px;
+    }
+
+    .card:hover .card-title a {
+        color: var(--color-accent);
+    }
+}
+
+.card-title {
+    font-size: var(--step-2);
+}
+
+.card-title a {
+    text-decoration: none;
+}
+
+.card-title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+/* A link card's external icon, small and raised like in the menu */
+.card-title .icon-external-link {
+    margin-inline-start: 0.25em;
+    font-size: 0.6em;
+    vertical-align: 0.6em;
+}
+
+.card:focus-within .card-title a {
+    color: var(--color-accent);
+}
+
+/* The focus ring goes round the card, not the title (where browsers support :has) */
+@supports selector(:has(*)) {
+    .card-title a:focus-visible {
+        outline: none;
+    }
+
+    .card:has(:focus-visible) {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+    }
+}
+
+/* Summary: at most two lines */
+.card-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    color: var(--color-secondary);
+    font-size: var(--step--1);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.card .meta {
+    font-size: var(--step--2);
+}
+
+.card-list {
+    --stack-gap: var(--space-s-m);
+}
+
+/* The display card holds the site's own HTML: give it the prose rhythm for text */
+.display-card > * + * {
+    margin-block-start: var(--space-xs);
+}

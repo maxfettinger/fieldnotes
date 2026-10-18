@@ -1,0 +1,85 @@
+/*
+ * Editorial: a newspaper. A centred masthead over a double rule, Playfair Display headlines over Source Serif text,
+ * articles between rules in two columns on wide screens, datelines in small capitals, a drop cap at the start of a
+ * page.
+ */
+:root[data-preset="editorial"] {
+    --pattern: none;
+    --font-body: "Source Serif 4", Georgia, serif;
+    --font-heading: "Playfair Display", Georgia, serif;
+    --heading-weight: 900;
+    --radius-s: 0;
+    --radius-m: 0;
+    --shadow: none;
+    --shadow-raised: none;
+    --card-bg: transparent;
+    --card-border: 0 none;
+    --card-border-top: 1px solid var(--color-primary);
+    --card-padding-inline: 0;
+}
+
+/* The masthead: the paper's name large and centred, the sections below it, a double rule under both */
+[data-preset="editorial"] .site-header {
+    border-block-end: 4px double var(--color-primary);
+}
+
+[data-preset="editorial"] .site-header-inner {
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--space-s) 0;
+}
+
+[data-preset="editorial"] .site-title {
+    font-family: var(--font-heading);
+    font-size: var(--step-4);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+}
+
+[data-preset="editorial"] .site-nav {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+}
+
+/* Articles in two columns, a hairline between them */
+@media (min-width: 52rem) {
+    [data-preset="editorial"] .card-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-m) var(--space-l);
+    }
+}
+
+[data-preset="editorial"] :is(.card:hover, .card:focus-within) {
+    translate: none;
+}
+
+[data-preset="editorial"] .display-card {
+    padding-inline: 0;
+    border-block: 1px solid var(--color-primary);
+}
+
+/* Datelines and breadcrumbs in small capitals */
+[data-preset="editorial"] :is(.meta, .breadcrumbs) {
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+}
+
+/* A page's headline centred over its dateline; the text starts with a drop cap */
+[data-preset="editorial"] .page-header {
+    justify-items: center;
+    text-align: center;
+}
+
+[data-preset="editorial"] article > .prose > p:first-child::first-letter {
+    float: left;
+    margin: 0.06em 0.08em 0 0;
+    color: var(--color-primary);
+    font: 900 3.4em / 0.8 var(--font-heading);
+}
+
+[data-preset="editorial"] .intro-photo img {
+    border-radius: 0;
+    box-shadow: none;
+    filter: grayscale(1) contrast(1.05);
+}

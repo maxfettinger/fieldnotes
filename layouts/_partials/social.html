@@ -1,0 +1,19 @@
+{{- /* Social links (params.socialIcons), like PaperMod's: a list of { name, url, title? }. The name picks the icon
+       from assets/icons/ (Feather icons; a few common names map to them: email → mail, x → twitter, website →
+       globe, cv → file-text, scholar → book-open); an unknown name gets a link icon. Web profiles open in a new tab. */ -}}
+{{- $aliases := dict "email" "mail" "x" "twitter" "website" "globe" "homepage" "globe" "cv" "file-text" "scholar" "book-open" "googlescholar" "book-open" }}
+{{- with site.Params.socialIcons }}
+<ul class="social cluster" role="list">
+  {{- range . }}
+    {{- $name := lower .name }}
+    {{- $icon := index $aliases $name | default $name }}
+    {{- if not (resources.Get (printf "icons/%s.svg" $icon)) }}
+      {{- warnf "fieldnotes: socialIcons: no icon for %q, using a link icon" .name }}
+      {{- $icon = "link" }}
+    {{- end }}
+    {{- $title := .title | default (title .name) }}
+    {{- $external := strings.HasPrefix .url "http" }}
+  <li><a href="{{ .url }}" {{- if $external }} target="_blank" rel="me noopener" aria-label="{{ $title }} (opens in a new tab)"{{ else }} rel="me" aria-label="{{ $title }}"{{ end }} title="{{ $title }}">{{ partial "icon.html" $icon }}</a></li>
+  {{- end }}
+</ul>
+{{- end }}

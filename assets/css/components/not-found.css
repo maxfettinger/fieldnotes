@@ -1,0 +1,13 @@
+/* 404 page: a big number in the middle of the page, and the way home */
+.not-found {
+    display: grid;
+    place-content: center;
+    gap: var(--space-s);
+    min-block-size: 100%;
+    text-align: center;
+}
+
+.not-found h1 {
+    font-size: clamp(5rem, 4rem + 8vw, 9rem);
+    line-height: 1;
+}

@@ -1,0 +1,5 @@
+/* Page header (page-header.html): breadcrumbs, title and date close together */
+.page-header {
+    display: grid;
+    gap: var(--space-3xs);
+}

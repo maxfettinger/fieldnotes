@@ -1,0 +1,24 @@
+/* Tokyo Night: Tokyo Night Day and Night. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="tokyo-night"]:not([data-theme="dark"]) {
+    --color-bg: #e1e2e7;
+    --color-surface: #e9e9ed;
+    --color-text: #3760bf;
+    --color-primary: #2e3c64;
+    --color-secondary: #4f5a8c;
+    --color-tertiary: #c4c8da;
+    --color-accent: #7633d6;
+    --color-border: #c4c8da;
+    --pattern-color: #6172b0;
+}
+
+:root[data-theme="dark"][data-dark="tokyo-night"] {
+    --color-bg: #1a1b26;
+    --color-surface: #1f2335;
+    --color-text: #c0caf5;
+    --color-primary: #7aa2f7;
+    --color-secondary: #9aa5ce;
+    --color-tertiary: #292e42;
+    --color-accent: #bb9af7;
+    --color-border: #3b4261;
+    --pattern-color: #565f89;
+}

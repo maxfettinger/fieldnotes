@@ -1,0 +1,24 @@
+/* Everforest: Everforest light and dark. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="everforest"]:not([data-theme="dark"]) {
+    --color-bg: #fdf6e3;
+    --color-surface: #f4f0d9;
+    --color-text: #4f5b62;
+    --color-primary: #3a6b40;
+    --color-secondary: #5d6970;
+    --color-tertiary: #e6e2cc;
+    --color-accent: #b34a2f;
+    --color-border: #e0dcc7;
+    --pattern-color: #93b259;
+}
+
+:root[data-theme="dark"][data-dark="everforest"] {
+    --color-bg: #2d353b;
+    --color-surface: #343f44;
+    --color-text: #d3c6aa;
+    --color-primary: #a7c080;
+    --color-secondary: #a9b4ab;
+    --color-tertiary: #3d484d;
+    --color-accent: #e69875;
+    --color-border: #475258;
+    --pattern-color: #7a8478;
+}

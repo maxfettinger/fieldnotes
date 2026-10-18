@@ -1,0 +1,63 @@
+# Fieldnotes: the theme's defaults. A site that uses the theme overrides any of these in its own hugo.toml
+# (exampleSite/hugo.toml shows them all). Only params and menus come from here; everything else is the site's.
+
+[module.hugoVersion]
+  min = "0.158.0"  # css.Build
+
+[params]
+  description = ""   # the site's description for search engines and link previews
+  math = false       # MathJax on every page; a page can switch it with math: true/false in its front matter
+
+  # Look: a preset is how the site is drawn (fieldnotes, minimal, editorial, cinematic, brutalist, terminal, riced:
+  # fonts, background, corners, cards, decoration), light and dark are its colour schemes (fieldnotes, newsprint, ink,
+  # cinema, forest, ocean, nord, gruvbox, everforest, rose-pine, catppuccin, tokyo-night, omarchy, sakura, hud, neon),
+  # any scheme with any preset; empty: the preset's own. A page can set the same in its front matter (style:).
+  # Your own presets and schemes: assets/css/presets/<id>.css, assets/css/schemes/<id>.css and a data file each in
+  # data/fieldnotes/presets/ or data/fieldnotes/schemes/ (README).
+  [params.style]
+    preset = "fieldnotes"
+    light = ""
+    dark = ""
+
+  # Mode: default "light", "dark" or "auto" (the visitor's system setting); toggle: the switch in the header (the
+  # visitor's choice then wins). Light only: default = "light", toggle = false; dark only: "dark" and false.
+  [params.mode]
+    default = "light"
+    toggle = true
+
+  # Fonts from Google Fonts by name, instead of the preset's; heading and mono are optional.
+  # url replaces the generated Google Fonts link (another provider, other weights); google = false loads none.
+  [params.fonts]
+    google = true
+    body = ""
+    heading = ""
+    mono = ""
+    url = ""
+
+  # Page background per mode, instead of the preset's: "grid" (graph paper), "dots", "none", or an image in assets/,
+  # for example an SVG tile ("images/tile.svg"), repeated at its own size or at size (any CSS size, "120px")
+  [params.background]
+    light = ""
+    dark = ""
+    size = ""
+
+  # Colours: any of bg, surface, text, primary, secondary, tertiary, accent, border, pattern per mode
+  # (see assets/css/theme.css for what each is for), e.g. accent = "#0b6e4f"
+  [params.colors.light]
+  [params.colors.dark]
+
+  # Favicon: files in static/ (or the theme's). svg is enough for current browsers; ico and appleTouch are optional
+  [params.favicon]
+    svg = "favicon.svg"
+    ico = ""
+    appleTouch = ""
+
+  # Trip maps: MapTiler's style (a style ID like "topo-v4" or a style.json URL). The key comes from the
+  # environment variable HUGO_MAPTILER_KEY when the site is built.
+  [params.map]
+    style = "topo-v4"
+    sdk = "4.2.0"    # the version of MapTiler's SDK, loaded from their CDN
+
+  # Galleries: the version of dialog-lightbox, the photo viewer, loaded from jsDelivr
+  [params.gallery]
+    lightbox = "0.3.1"

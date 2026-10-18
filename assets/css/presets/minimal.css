@@ -1,0 +1,35 @@
+/*
+ * Minimal: calm like a documentation site (Hextra, Docsy). Inter, thin borders, no background pattern, no shadows
+ * and no motion: cards don't lift, they only darken their border when hovered.
+ */
+:root[data-preset="minimal"] {
+    --pattern: none;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-heading: var(--font-body);
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --heading-weight: 600;
+    --radius-m: 0.375rem;
+    --shadow: none;
+    --shadow-raised: none;
+}
+
+[data-preset="minimal"] .site-header {
+    border-block-end: 1px solid var(--color-border);
+}
+
+[data-preset="minimal"] .card {
+    transition: border-color 0.15s;
+}
+
+[data-preset="minimal"] :is(.card:hover, .card:focus-within) {
+    translate: none;
+    border-color: var(--color-secondary);
+}
+
+[data-preset="minimal"] .intro-photo img {
+    border-radius: 50%;
+}
+
+[data-preset="minimal"] .trip-map-canvas {
+    box-shadow: none;
+}

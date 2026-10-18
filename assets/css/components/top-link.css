@@ -1,0 +1,27 @@
+/* Back to top: a round button in the corner, shown once the page is scrolled down (assets/js/top-link.js) */
+.top-link {
+    position: fixed;
+    z-index: 1;
+    inset-block-end: var(--space-l);
+    inset-inline-end: var(--space-m);
+    display: grid;
+    place-items: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border-radius: 50%;
+    background: var(--color-tertiary);
+    color: var(--color-primary);
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.top-link:not([data-visible]) {
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Hover only where there's a real pointer: touch screens keep :hover after a tap */
+@media (hover: hover) {
+    .top-link:hover {
+        color: var(--color-accent);
+    }
+}

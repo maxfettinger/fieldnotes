@@ -1,0 +1,75 @@
+/* Site header: name and theme toggle on the left, menu on the right; on narrow screens the menu wraps below */
+.site-header {
+    --wrapper-width: var(--width-wide);
+}
+
+.site-header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: var(--space-m);
+    padding-block: var(--space-2xs);
+}
+
+.site-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+}
+
+.site-title {
+    font-size: var(--step-2);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Theme toggle: a moon in light mode, the sun in dark mode (set before the page is drawn, see head/theme.html) */
+.theme-toggle {
+    display: grid;
+    padding: var(--space-2xs);
+    border: 0;
+    background: none;
+    color: var(--color-primary);
+}
+
+/* Hover only where there's a real pointer: touch screens keep :hover after a tap */
+@media (hover: hover) {
+    .theme-toggle:hover {
+        color: var(--color-accent);
+    }
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon,
+:root:not([data-theme="dark"]) .theme-toggle .icon-sun {
+    display: none;
+}
+
+/* Menu: the current page's entry and its section's are underlined in orange */
+.site-nav {
+    font-size: 0.9em;
+}
+
+.site-nav ul {
+    --cluster-gap: 0 var(--space-m);
+}
+
+.site-nav a {
+    display: block;
+    padding-block: var(--space-2xs);
+    text-decoration: none;
+}
+
+.site-nav a[aria-current] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+}
+
+/* External links: a small arrow, raised like an index */
+.site-nav .icon-external-link {
+    margin-inline-start: 0.25em;
+    font-size: 0.7em;
+    vertical-align: 0.5em;
+}

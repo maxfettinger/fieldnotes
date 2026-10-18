@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{{- /* data-preset, data-light, data-dark: the look in effect (fieldnotes/style.html; presets/, schemes/) */}}
+{{- $style := partialCached "fieldnotes/style.html" . (.Params.style | jsonify) }}
+<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction `ltr` }}" data-preset="{{ $style.preset }}" data-light="{{ $style.light }}" data-dark="{{ $style.dark }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    {{ partial "header.html" . }}
+  </header>
+  <main id="main" class="site-main wrapper">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="site-footer">
+    {{ partial "footer.html" . }}
+  </footer>
+  {{- if .HasShortcode "gallery" }}
+  {{ partial "lightbox.html" . }}
+  {{- end }}
+  {{ partial "hooks/body-end.html" . }}
+</body>
+</html>

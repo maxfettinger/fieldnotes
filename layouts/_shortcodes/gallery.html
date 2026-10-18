@@ -1,0 +1,98 @@
+{{- /* Gallery: a folder of photos in the page's bundle as a row that scrolls sideways (gallery.css, assets/js/gallery.js);
+       a click opens the photo whole and large in the viewer (dialog-lightbox, _partials/lightbox.html), where swiping
+       and the arrow keys go through the folder.
+
+         {{< gallery >}}            the folder "gallery" next to the page's index.md
+         {{< gallery "denmark" >}}  the folder "denmark"
+
+       The photos show in the order of their file names. JPEG, PNG, WebP and AVIF work (no HEIC: export as JPEG).
+       A video is an .mp4 with a photo of the same name as its poster, e.g. lake.mp4 and lake.jpg.
+       Alt text, a caption and a place are optional, in photos.yaml next to the folder (one file for all the page's
+       galleries; "gallery/" and "photos.yaml" both beside index.md, or "trip/denmark/" and "trip/photos.yaml"),
+       by file name; the caption and place show in the viewer:
+         lake.jpg:
+           alt: A lake at dusk, a tent on the shore
+           caption: Our first night by the lake
+           place: Lake Siljan, Sweden
+       The shortcode warns about photos without alt text. Without JavaScript each photo links to its large version. #dlb=<file name without extension> in the page's
+       address opens that photo. */ -}}
+{{- $folder := .Get 0 | default "gallery" }}
+{{- $files := .Page.Resources.Match (printf "%s/*" $folder) }}
+{{- $info := dict }}
+{{- $yaml := path.Join (path.Dir $folder) "photos.yaml" }}
+{{- with .Page.Resources.Get $yaml }}
+  {{- $info = . | transform.Unmarshal }}
+{{- end }}
+{{- $videos := dict }}
+{{- range $files }}
+  {{- if eq .MediaType.SubType "mp4" }}{{ $videos = merge $videos (dict (path.BaseName .Name) .) }}{{ end }}
+{{- end }}
+{{- $photos := slice }}
+{{- range sort $files "Name" }}
+  {{- if eq .ResourceType "image" }}
+    {{- if in (slice "jpeg" "png" "webp" "avif") .MediaType.SubType }}
+      {{- $photos = $photos | append . }}
+    {{- else }}
+      {{- warnf "%s: gallery: %s can't be processed (%s); use JPEG, PNG, WebP or AVIF" $.Page.RelPermalink .Name .MediaType.SubType }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- with $photos }}
+<div class="gallery breakout">
+  <div class="gallery-track" tabindex="0" role="region" aria-label="Photos, scroll sideways">
+  <ul class="gallery-row" role="list">
+    {{- range . }}
+      {{- $img := .Filter images.AutoOrient }}
+      {{- $id := path.BaseName .Name }}
+      {{- $about := index $info (path.Base .Name) | default dict }}
+      {{- if not $about.alt }}
+        {{- warnf "%s: gallery: no alt text for %s in %s" $.Page.RelPermalink (path.Base .Name) $yaml }}
+      {{- end }}
+      {{- /* In the row: at most 15rem high, so ratio × 15rem wide, and at least 4:5 (gallery.css crops taller
+             portraits), hence sizes. No enlarging: only widths the photo has. */}}
+      {{- $ratio := math.Max 0.8 (div (float $img.Width) $img.Height) }}
+      {{- $srcset := slice }}
+      {{- range slice 480 720 1080 }}
+        {{- if le . $img.Width }}
+          {{- $srcset = $srcset | append (printf "%s %dw" ($img.Resize (printf "%dx webp q80" .)).RelPermalink .) }}
+        {{- end }}
+      {{- end }}
+      {{- $src := $img.Resize "480x webp q80" }}
+      {{- /* Large, for the viewer: fitted into a 1600px square (Fit never enlarges) */}}
+      {{- $large := $img.Fit "1600x1600 webp q82" }}
+      {{- $video := index $videos $id }}
+    <li class="gallery-item">
+      <figure class="gallery-frame">
+        {{- with $video }}
+        <a href="{{ .RelPermalink }}" class="gallery-video" data-dlb-type="video" data-dlb-id="{{ $id }}"
+           data-dlb-width="{{ $img.Width }}" data-dlb-height="{{ $img.Height }}">
+        {{- else }}
+        <a href="{{ $large.RelPermalink }}" data-dlb-id="{{ $id }}" data-dlb-width="{{ $large.Width }}" data-dlb-height="{{ $large.Height }}">
+        {{- end }}
+          <img src="{{ $src.RelPermalink }}" srcset="{{ delimit $srcset ", " }}"
+               sizes="{{ printf "%.1f" (mul $ratio 15) }}rem" width="{{ $src.Width }}" height="{{ $src.Height }}"
+               alt="{{ $about.alt }}" loading="lazy" decoding="async">
+          {{- with $video }}{{ partial "icon.html" "play" }}{{ end }}
+        </a>
+        {{- if or $about.caption $about.place }}
+        <figcaption class="gallery-caption">
+          {{- with $about.caption }}<span data-caption>{{ . }}</span>{{ end }}
+          {{- with $about.place }}<span data-place>{{ . }}</span>{{ end -}}
+        </figcaption>
+        {{- end }}
+      </figure>
+    </li>
+    {{- end }}
+  </ul>
+  </div>
+  {{- /* How far the row is scrolled, and how much of it shows: shown by gallery.js when it's wider than the window */}}
+  <div class="gallery-progress" hidden aria-hidden="true"><span></span></div>
+  {{- /* Scroll buttons for mice: shown by gallery.js (no use without it), hidden on touch screens */}}
+  <div class="gallery-controls" hidden>
+    <button class="icon-button gallery-button" type="button" data-direction="-1" aria-label="Previous photos">{{ partial "icon.html" "chevron-left" }}</button>
+    <button class="icon-button gallery-button" type="button" data-direction="1" aria-label="Next photos">{{ partial "icon.html" "chevron-right" }}</button>
+  </div>
+</div>
+{{- else }}
+  {{- warnf "%s: gallery: no photos in the folder %q next to the page" .Page.RelPermalink $folder }}
+{{- end }}

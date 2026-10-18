@@ -1,0 +1,38 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . | plainify | htmlUnescape }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+{{- with site.Params.author.name }}
+<meta name="author" content="{{ . }}">
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ partialCached "head/favicon.html" . }}
+
+{{- /* The page's RSS feed: home and sections have one */}}
+{{- with .OutputFormats.Get "rss" }}
+{{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+{{- end }}
+
+{{- /* Link previews and search engines: Hugo's embedded templates, and JSON-LD about the site and its author */}}
+{{ partial "opengraph.html" . }}
+{{ partial "twitter_cards.html" . }}
+{{ partial "schema.html" . }}
+{{ partial "head/schema.html" . }}
+
+{{- /* The look in effect (preset and schemes), cached per combination of the page's own style settings */}}
+{{- $style := partialCached "fieldnotes/style.html" . (.Params.style | jsonify) }}
+{{ partialCached "head/theme.html" . }}
+{{ partialCached "head/fonts.html" (dict "style" $style) $style.preset }}
+{{ partialCached "head/css.html" (dict "style" $style) $style.preset $style.light $style.dark }}
+{{ partialCached "head/style.html" . }}
+{{ partial "script.html" "js/main.js" }}
+{{- if .HasShortcode "gallery" }}
+{{ partialCached "head/gallery.html" . }}
+{{- end }}
+{{- if .HasShortcode "trip-map" }}
+{{ partialCached "head/trip-map.html" . }}
+{{- end }}
+{{- if .Param "math" }}
+{{ partialCached "head/math.html" . }}
+{{- end }}
+{{ partial "hooks/head-end.html" . }}

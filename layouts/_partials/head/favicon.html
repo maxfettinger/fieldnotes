@@ -1,0 +1,14 @@
+{{- /* Favicon (params.favicon): files in the site's static/ folder, or the theme's favicon.svg. svg is enough for
+       current browsers; ico (for old ones and crawlers asking for /favicon.ico) and appleTouch (a 180×180 PNG for
+       iPhone home screens) are optional. sizes="32x32" keeps Chrome from preferring the ICO over the SVG. */ -}}
+{{- with site.Params.favicon }}
+  {{- with .ico }}
+<link rel="icon" href="{{ . | relURL }}" sizes="32x32">
+  {{- end }}
+  {{- with .svg }}
+<link rel="icon" href="{{ . | relURL }}" type="image/svg+xml">
+  {{- end }}
+  {{- with .appleTouch }}
+<link rel="apple-touch-icon" href="{{ . | relURL }}">
+  {{- end }}
+{{- end }}

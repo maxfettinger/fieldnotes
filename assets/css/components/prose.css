@@ -1,0 +1,49 @@
+/*
+ * Prose: the Markdown content of posts and pages. Its own vertical rhythm: each element keeps --flow-space
+ * from the one before (Andy Bell's flow), headings more, in their own size.
+ */
+.prose > * + * {
+    margin-block-start: var(--flow-space, 1em);
+}
+
+.prose :is(h2, h3, h4) {
+    --flow-space: 1.2em;
+}
+
+.prose :is(h2, h3, h4) + * {
+    --flow-space: 0.8em;
+}
+
+/* Markdown lists; lists with role="list" are layout (a gallery's photos) and stay unstyled, as in reset.css */
+.prose :is(ul, ol):not([role="list"]) {
+    padding-inline-start: 1.25em;
+}
+
+.prose :is(ul, ol):not([role="list"]) > li + li {
+    margin-block-start: 0.3em;
+}
+
+.prose blockquote {
+    padding-inline-start: 1em;
+    border-inline-start: 0.3em solid var(--color-accent);
+}
+
+/* Heading anchors (render-heading.html): a # beside the heading, shown on hover */
+.heading-anchor {
+    margin-inline-start: 0.4em;
+    color: var(--color-secondary);
+    font-weight: 400;
+    text-decoration: none;
+    visibility: hidden;
+}
+
+/* Hover only where there's a real pointer: touch screens keep :hover after a tap */
+@media (hover: hover) {
+    :is(h2, h3, h4):hover > .heading-anchor {
+        visibility: visible;
+    }
+
+    .heading-anchor:hover {
+        color: var(--color-accent);
+    }
+}

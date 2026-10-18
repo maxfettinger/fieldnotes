@@ -1,0 +1,18 @@
+/* Breadcrumbs: Home › Posts ›, each step followed by an arrow pointing at the title below */
+.breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    font-size: 0.9em;
+}
+
+.breadcrumbs li::after {
+    content: "›";
+    content: "›" / "";               /* not read aloud, where browsers support alternative text */
+    margin-inline-start: 0.4em;
+    color: var(--color-secondary);
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+}

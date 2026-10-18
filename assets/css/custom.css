@@ -1,0 +1,10 @@
+/*
+ * Your own CSS. Create assets/css/custom.css in your site: it replaces this empty file and is imported last, in
+ * its own cascade layer, so its rules win over the theme's whatever their selectors. Change a colour or size for
+ * the whole site by setting its custom property, e.g.
+ *
+ *   :root { --color-accent: #0b6e4f; --width-content: 40rem; }
+ *   :root[data-theme="dark"] { --color-accent: #5fd3a8; }
+ *
+ * The properties are in the theme's assets/css/tokens.css and theme.css.
+ */

@@ -1,0 +1,48 @@
+{{- /* Trip map: a GeoJSON file on a MapTiler map (trip-map.css, assets/js/trip-map.js).
+
+         {{< trip-map geojson="route.geojson" >}}
+         {{< trip-map geojson="route.geojson" style="outdoor-v4" caption="Eight days on foot" >}}
+
+       geojson: a file next to the page's index.md, or in assets/ or static/. Lines, points and areas are drawn in
+       the colours of their own properties if they have them (stroke, stroke-width, marker-color, fill: the
+       "simplestyle" names most GPX and GeoJSON tools write), else in the theme's orange; a click shows a feature's
+       name and description (or desc). style: a MapTiler style ID or a style.json URL, default params.map.style.
+       The MapTiler key comes from the environment variable HUGO_MAPTILER_KEY when the site is built (Hugo's getenv
+       may read HUGO_* variables; a browser map's key is public anyway, MapTiler's allowed origins protect it).
+       Without a key the map's place shows a note. */ -}}
+{{- $file := .Get "geojson" }}
+{{- $style := .Get "style" | default site.Params.map.style }}
+{{- $key := getenv "HUGO_MAPTILER_KEY" }}
+{{- $url := "" }}
+{{- with $file }}
+  {{- with or ($.Page.Resources.Get .) (resources.Get .) }}
+    {{- $url = .RelPermalink }}
+  {{- else }}
+    {{- if fileExists (path.Join "static" .) }}
+      {{- $url = relURL . }}
+    {{- else }}
+      {{- warnf "%s: trip-map: %q not found next to the page, in assets/ or in static/" $.Page.RelPermalink . }}
+    {{- end }}
+  {{- end }}
+{{- else }}
+  {{- warnf "%s: trip-map: no geojson given" .Page.RelPermalink }}
+{{- end }}
+{{- if not (strings.Contains $style "://") }}
+  {{- $style = printf "https://api.maptiler.com/maps/%s/style.json?key=%s" $style (urlquery $key) }}
+{{- end }}
+<figure class="trip-map breakout">
+  {{- if and $key $url }}
+  <div class="trip-map-canvas" data-geojson="{{ $url }}" data-map-style="{{ $style }}" data-key="{{ $key }}"
+       role="region" aria-label="Map of the trip"></div>
+  {{- else if not $key }}
+    {{- warnf "%s: trip-map: no MapTiler key, the map shows a note instead (set HUGO_MAPTILER_KEY)" .Page.RelPermalink }}
+  <div class="trip-map-missing">
+    <p><strong>The map needs a MapTiler key.</strong></p>
+    <p>Build the site with the environment variable <code>HUGO_MAPTILER_KEY</code> set to a free key from
+       <a href="https://cloud.maptiler.com/account/keys/" target="_blank" rel="noopener">MapTiler<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+  </div>
+  {{- end }}
+  {{- with .Get "caption" }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>

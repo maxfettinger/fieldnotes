@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="stack">
+  {{ partial "page-header.html" . }}
+  {{- with .Content }}
+  <div class="prose">{{ . }}</div>
+  {{- end }}
+  {{- /* The section's pages and subsections, newest first */}}
+  {{- $paginator := .Paginate .Pages }}
+  {{- with $paginator.Pages }}
+  <div class="card-list stack">
+    {{- range . }}
+    {{ partial "card.html" . }}
+    {{- end }}
+  </div>
+  {{- end }}
+  {{ partial "pagination.html" (dict "page" . "format" "terse") }}
+</div>
+{{ end }}

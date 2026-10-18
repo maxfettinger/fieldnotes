@@ -1,0 +1,15 @@
+/* Skip link (baseof.html): the first stop for keyboard users, out of sight until it has focus */
+.skip-link {
+    position: absolute;
+    z-index: 2;
+    inset-block-start: var(--space-2xs);
+    inset-inline-start: var(--space-2xs);
+    padding: var(--space-2xs) var(--space-xs);
+    background: var(--color-surface);
+    box-shadow: var(--shadow);
+    translate: 0 -200%;
+}
+
+.skip-link:focus {
+    translate: none;
+}

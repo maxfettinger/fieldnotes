@@ -1,0 +1,25 @@
+# Per photo, by file name: alt text for screen readers, an optional caption and place (both shown in the viewer)
+01-dawn.jpg:
+  alt: Layers of purple mountain ridges under a pink dawn sky with a pale sun
+  caption: Leaving before sunrise
+  place: Neustift, Austria
+02-lake.jpg:
+  alt: A calm blue lake mirroring a forested ridge under a clear sky
+  caption: ''
+  place: Stubai Alps, Austria
+03-forest.jpg:
+  alt: Dark spruce silhouettes in layers of fog
+  caption: Into the fog on day two
+  place: ''
+04-hut.jpg:
+  alt: A small mountain hut with a lit window under an orange sunset
+  caption: The hut, finally
+  place: Franz-Senn-Hütte, Austria
+05-stars.jpg:
+  alt: A night sky full of stars over a black mountain ridge
+  caption: ''
+  place: ''
+06-drift.jpg:
+  alt: 'Video: slowly drifting over the lake'
+  caption: The lake from the boat
+  place: ''

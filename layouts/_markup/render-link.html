@@ -1,0 +1,12 @@
+{{- /* Markdown links, after the render hook in the Hugo docs. External ones (http or https to another host) open
+       in a new tab, with rel="noopener" and, for screen readers, the words "opens in a new tab". */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $external := and (in (slice "http" "https") $u.Scheme) (ne $u.Host (urls.Parse site.BaseURL).Host) -}}
+<a href="{{ .Destination | safeURL }}"
+  {{- with .Title }} title="{{ . }}"{{ end -}}
+  {{- if $external }} target="_blank" rel="noopener"{{ end -}}
+>
+  {{- with .Text }}{{ . }}{{ end -}}
+  {{- if $external }}<span class="visually-hidden"> (opens in a new tab)</span>{{ end -}}
+</a>
+{{- /* chomp trailing newline */ -}}

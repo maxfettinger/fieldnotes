@@ -1,0 +1,24 @@
+/* Gruvbox: Gruvbox light and dark. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="gruvbox"]:not([data-theme="dark"]) {
+    --color-bg: #fbf1c7;
+    --color-surface: #f9f5d7;
+    --color-text: #3c3836;
+    --color-primary: #9d0006;
+    --color-secondary: #665c54;
+    --color-tertiary: #ebdbb2;
+    --color-accent: #af3a03;
+    --color-border: #ebdbb2;
+    --pattern-color: #b57614;
+}
+
+:root[data-theme="dark"][data-dark="gruvbox"] {
+    --color-bg: #282828;
+    --color-surface: #32302f;
+    --color-text: #ebdbb2;
+    --color-primary: #fabd2f;
+    --color-secondary: #bdae93;
+    --color-tertiary: #3c3836;
+    --color-accent: #fe8019;
+    --color-border: #504945;
+    --pattern-color: #928374;
+}

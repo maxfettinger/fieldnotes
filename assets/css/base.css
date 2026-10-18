@@ -1,0 +1,91 @@
+/* Base: the page and the HTML elements, before any class. Colours from theme.css, sizes from tokens.css. */
+
+/* Background patterns: params.background picks one per mode, or an image, as --pattern (head/style.html) */
+:root {
+    --pattern-major: color-mix(in srgb, var(--pattern-color) var(--pattern-strength), var(--color-bg));
+    --pattern-minor: color-mix(in srgb, var(--pattern-color) calc(var(--pattern-strength) / 2), var(--color-bg));
+
+    /* Graph paper: a minor line every 10px, a major line every 100px */
+    --pattern-grid:
+        linear-gradient(90deg, var(--pattern-major) 1px, transparent 0) 5px 0 / 100px 100px,
+        linear-gradient(var(--pattern-major) 1px, transparent 0) 0 5px / 100px 100px,
+        linear-gradient(90deg, var(--pattern-minor) 1px, transparent 0) 5px 0 / 10px 10px,
+        linear-gradient(var(--pattern-minor) 1px, transparent 0) 0 5px / 10px 10px;
+
+    /* Dots: a small chalk dot every 10px, on the crossings of the grid */
+    --pattern-dots:
+        radial-gradient(circle, var(--pattern-major) 0.5px, transparent 0.9px) 0.5px 0.5px / 10px 10px;
+}
+
+body {
+    background: var(--pattern), var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: var(--leading);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--heading-spacing);
+    line-height: var(--leading-tight);
+    text-transform: var(--heading-transform);
+}
+
+h1 {
+    font-size: var(--step-4);
+}
+
+h2 {
+    font-size: var(--step-3);
+}
+
+h3 {
+    font-size: var(--step-2);
+}
+
+h4 {
+    font-size: var(--step-1);
+}
+
+/* Links in ink or chalk with an orange underline; hovered, the text turns orange too */
+a {
+    color: var(--color-primary);
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 0.25em;
+}
+
+/* Hover only where there's a real pointer: touch screens keep :hover after a tap */
+@media (hover: hover) {
+    a:hover {
+        color: var(--color-accent);
+    }
+}
+
+code,
+pre {
+    font-family: var(--font-mono);
+}
+
+code {
+    font-size: 0.85em;
+}
+
+button {
+    cursor: pointer;
+}
+
+::selection {
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+/* Keyboard focus: an orange ring, at least 3:1 against page and cards in both modes */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}

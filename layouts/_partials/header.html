@@ -1,0 +1,13 @@
+<div class="wrapper site-header-inner">
+  <div class="site-brand">
+    <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+    {{- if site.Params.mode.toggle }}
+    {{- /* A toggle button: the label stays, aria-pressed says whether dark mode is on (assets/js/theme.js) */}}
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false">
+      {{- partial "icon.html" "moon" }}
+      {{- partial "icon.html" "sun" -}}
+    </button>
+    {{- end }}
+  </div>
+  {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+</div>

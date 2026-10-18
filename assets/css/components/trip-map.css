@@ -1,0 +1,60 @@
+/*
+ * Trip map (trip-map shortcode, assets/js/trip-map.js): a GeoJSON file on a MapTiler map, as wide as the header,
+ * with round corners and the page's shadow. Without a MapTiler key a note takes its place, the same size.
+ */
+.prose > .trip-map {
+    --flow-space: var(--space-m-l);
+}
+
+.trip-map-canvas,
+.trip-map-missing {
+    inline-size: 100%;
+    aspect-ratio: 3 / 2;
+    min-block-size: 360px;
+    max-block-size: 80vh;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-m);
+    background: var(--color-surface);  /* until the map has loaded */
+    box-shadow: var(--shadow-raised);
+}
+
+.trip-map figcaption {
+    padding-block-start: var(--space-2xs);
+    color: var(--color-secondary);
+    font-size: var(--step--1);
+    font-style: italic;
+}
+
+.trip-map-missing {
+    display: grid;
+    place-content: center;
+    gap: var(--space-2xs);
+    padding: var(--space-m);
+    color: var(--color-secondary);
+    font-size: var(--step--1);
+    text-align: center;
+}
+
+.trip-map-missing p {
+    margin: 0;
+    max-inline-size: 40ch;
+}
+
+.trip-map-missing strong {
+    color: var(--color-text);
+}
+
+/* Popups: the page's surface and text, whatever the mode */
+.trip-map .maplibregl-popup-content {
+    border-radius: var(--radius-m);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    box-shadow: var(--shadow-raised);
+}
+
+.trip-map .maplibregl-popup-tip {
+    border-top-color: var(--color-surface);
+    border-bottom-color: var(--color-surface);
+}

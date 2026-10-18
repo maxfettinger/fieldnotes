@@ -1,0 +1,26 @@
+{{- /* The look in effect on a page: the preset (how things are drawn) and the colour schemes for light and dark mode.
+       From the page's front matter (style: { preset, light, dark }), else the site's params.style, else the preset's
+       own schemes (data/fieldnotes/presets/<id>.toml). Unknown names fall back to fieldnotes, with a warning.
+       Returns a dict: preset, light, dark, fonts (the preset's Google Fonts specs). Call it with partialCached and
+       the page's style as the variant key (see head.html). */ -}}
+{{- $site := site.Params.style | default dict }}
+{{- $page := .Params.style | default dict }}
+{{- $presets := hugo.Data.fieldnotes.presets }}
+{{- $schemes := hugo.Data.fieldnotes.schemes }}
+{{- $name := $page.preset | default $site.preset | default "fieldnotes" }}
+{{- $preset := index $presets $name }}
+{{- if not $preset }}
+  {{- warnf "fieldnotes: preset %q not found in data/fieldnotes/presets/, using fieldnotes" $name }}
+  {{- $name = "fieldnotes" }}
+  {{- $preset = index $presets "fieldnotes" }}
+{{- end }}
+{{- $result := dict "preset" $name "fonts" ($preset.fonts | default slice) }}
+{{- range $mode := slice "light" "dark" }}
+  {{- $scheme := index $page $mode | default (index $site $mode) | default (index $preset $mode) | default "fieldnotes" }}
+  {{- if not (index $schemes $scheme) }}
+    {{- warnf "fieldnotes: %s scheme %q not found in data/fieldnotes/schemes/, using fieldnotes" $mode $scheme }}
+    {{- $scheme = "fieldnotes" }}
+  {{- end }}
+  {{- $result = merge $result (dict $mode $scheme) }}
+{{- end }}
+{{- return $result }}

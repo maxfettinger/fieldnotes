@@ -1,0 +1,11 @@
+{{- /* The pages above this one, after the breadcrumb example in the Hugo docs (Ancestors). The current page
+       isn't listed: its title follows right below. */ -}}
+{{- with .Ancestors.Reverse }}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol role="list">
+    {{- range . }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ol>
+</nav>
+{{- end }}

@@ -1,0 +1,24 @@
+/* Nord: Nord's Snow Storm and Polar Night. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="nord"]:not([data-theme="dark"]) {
+    --color-bg: #eceff4;
+    --color-surface: #e5e9f0;
+    --color-text: #2e3440;
+    --color-primary: #33507a;
+    --color-secondary: #4c566a;
+    --color-tertiary: #d8dee9;
+    --color-accent: #a5464f;
+    --color-border: #d8dee9;
+    --pattern-color: #81a1c1;
+}
+
+:root[data-theme="dark"][data-dark="nord"] {
+    --color-bg: #2e3440;
+    --color-surface: #3b4252;
+    --color-text: #d8dee9;
+    --color-primary: #88c0d0;
+    --color-secondary: #b6bfcd;
+    --color-tertiary: #434c5e;
+    --color-accent: #ebcb8b;
+    --color-border: #4c566a;
+    --pattern-color: #81a1c1;
+}

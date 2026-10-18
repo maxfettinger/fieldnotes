@@ -1,0 +1,56 @@
+/*
+ * Layout: where things go, not how they look. Three composition primitives, after Every Layout and CUBE CSS,
+ * each with a custom property to adjust it, and the page frame.
+ */
+
+/* Wrapper: a centred column, --wrapper-width wide at most, the gutter clear of the window's edges. An explicit
+   width, so it keeps it inside grid and flex containers too (auto margins alone would shrink it there). */
+.wrapper {
+    inline-size: min(var(--wrapper-width, var(--width-content)), 100% - 2 * var(--gutter));
+    margin-inline: auto;
+}
+
+/* Stack: children below each other, --stack-gap apart. A grid, so wide children (code) can't widen it. */
+.stack {
+    --stack-gap: var(--space-m);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: var(--stack-gap);
+}
+
+/* Cluster: children in a row that wraps, --cluster-gap apart */
+.cluster {
+    --cluster-gap: var(--space-s);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cluster-gap);
+}
+
+/* Breakout: wider than the text column it stands in, centred on it; --breakout-width sets the width (by default
+   as wide as the header's content, the window minus its gutters on smaller screens). For photos and the map. */
+.breakout {
+    --breakout-width: min(var(--width-wide), 100vw - 2 * var(--gutter));
+    inline-size: var(--breakout-width);
+    margin-inline: calc((100% - var(--breakout-width)) / 2);
+}
+
+/* Page frame: header, main and footer. Main takes the free height, so the footer sits at the bottom of
+   short pages; svh: the height with the browser's bars shown, so short pages don't scroll on phones. */
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-block-size: 100svh;
+}
+
+/* overflow-x: clip: 100vw (breakouts) includes a classic scrollbar, which must not make the page scroll sideways.
+   On html, not body: with it on body, Firefox 158 jumped to the top whenever the photo viewer closed (its scroll
+   lock sets overflow: hidden on html, which takes over from body's value as the window's; checked 2026-10-18). */
+html {
+    overflow-x: clip;
+}
+
+.site-main {
+    padding-block: var(--space-l-xl) var(--space-xl);
+}

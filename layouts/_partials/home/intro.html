@@ -1,0 +1,31 @@
+{{- /* Home intro, from content/_index.md: a photo (front matter photo: a file next to _index.md or in assets/, with
+       photoAlt; an SVG is used as it is, other images are cropped square and resized), the greeting (front matter greeting, else the site's title) and the page's text, and the social
+       links. Shown when the home page has any of photo, greeting or text. */ -}}
+{{- $photo := "" }}
+{{- with .Params.photo }}
+  {{- $photo = or ($.Resources.Get .) (resources.Get .) }}
+  {{- if not $photo }}{{ warnf "fieldnotes: home photo %q not found next to content/_index.md or in assets/" . }}{{ end }}
+{{- end }}
+{{- if or $photo .Params.greeting .Content }}
+<section class="intro" aria-labelledby="intro-title">
+  {{- with $photo }}
+  <figure class="intro-photo">
+    {{- if eq .MediaType.SubType "svg" }}
+    <img src="{{ .RelPermalink }}" width="150" height="150" alt="{{ $.Params.photoAlt }}">
+    {{- else }}
+      {{- $img := .Filter images.AutoOrient }}
+      {{- $x1 := $img.Fill "150x150 webp q85" }}
+      {{- $x2 := $img.Fill "300x300 webp q85" }}
+      {{- $x3 := $img.Fill "450x450 webp q85" }}
+    <img src="{{ $x2.RelPermalink }}" srcset="{{ $x1.RelPermalink }} 1x, {{ $x2.RelPermalink }} 2x, {{ $x3.RelPermalink }} 3x"
+         width="150" height="150" alt="{{ $.Params.photoAlt }}">
+    {{- end }}
+  </figure>
+  {{- end }}
+  <div class="intro-text stack">
+    <h1 id="intro-title">{{ .Params.greeting | default site.Title }}</h1>
+    {{ .Content }}
+    {{ partial "social.html" . }}
+  </div>
+</section>
+{{- end }}

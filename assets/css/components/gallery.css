@@ -1,0 +1,142 @@
+/*
+ * Gallery (gallery shortcode): a folder of photos as a row, all the same height at their own aspect ratio
+ * (portraits taller than 4:5 cropped to it), a small gap between them, the same in light and dark mode. Captions
+ * only show in the viewer. The track scrolls sideways and snaps to each photo; a thin bar below shows where. As
+ * wide as the header (.breakout), edge to edge on phones. Buttons over it for mice.
+ */
+.gallery {
+    --breakout-width: min(var(--width-wide), 100vw);
+    --gallery-height: clamp(11rem, 9rem + 8vw, 15rem);  /* of every photo */
+    --gallery-gap: 6px;                                /* between the photos */
+    position: relative;
+}
+
+.prose > .gallery {
+    --flow-space: var(--space-s);
+}
+
+/* The track scrolls sideways only; no scrollbar (buttons, swipe, trackpad and keyboard instead). overflow-y: hidden,
+   or the track can scroll a pixel or two vertically when anything sticks out, and vertical wheel and trackpad
+   scrolling over a strip gets caught there instead of moving the page (Firefox didn't scroll the page at all). */
+.gallery-track {
+    overflow: auto hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.gallery-track::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-row {
+    display: flex;
+    gap: var(--gallery-gap);
+    inline-size: max-content;
+}
+
+.gallery-item {
+    flex: none;
+    scroll-snap-align: start;
+}
+
+.gallery-frame {
+    position: relative;
+}
+
+/* The photo at the strip's height; its width follows from its width and height attributes, but no narrower than
+   4:5: taller portraits are cropped from the middle (the viewer shows them whole and zooms out of the crop) */
+.gallery-frame img {
+    inline-size: auto;
+    min-inline-size: calc(var(--gallery-height) * 0.8);
+    block-size: var(--gallery-height);
+    object-fit: cover;
+}
+
+/* The caption and place (photos.yaml) stay in the markup for the viewer and screen readers, but don't show in the
+   row; inside the photo's box, so they don't make the row taller */
+.gallery-caption {
+    position: absolute;
+    inset: 0 auto auto 0;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* Below the strip: a thin bar like the videos' progress, its fill as wide as the part of the strip that shows and
+   where it is (gallery.js sets --start and --size, 0 to 1). It shows there is more to the side, and how much. */
+.gallery-progress {
+    block-size: 3px;
+    margin-block-start: var(--space-2xs);
+    margin-inline: calc((100% - min(100%, 100vw - 2 * var(--gutter))) / 2);  /* inside the gutters on phones */
+    border-radius: 2px;
+    background: var(--color-tertiary);
+}
+
+.gallery-progress span {
+    display: block;
+    inline-size: calc(var(--size, 1) * 100%);
+    block-size: 100%;
+    margin-inline-start: calc(var(--start, 0) * 100%);
+    border-radius: inherit;
+    background: var(--color-secondary);  /* pencil grey on light paper, smudged chalk on the board */
+}
+
+/* Scroll buttons over the ends of the strip, centred on the photos; for mice only (touch screens swipe). Plain icons
+   like the videos' play mark and the viewer's buttons (.icon-button: Feather's chevron in white with a soft shadow,
+   orange on hover). At the ends of the strip the button that can't scroll disappears. */
+.gallery-controls:not([hidden]) {
+    display: contents;
+}
+
+.gallery-button {
+    position: absolute;
+    inset-block-start: calc(var(--gallery-height) / 2 - 1.5rem);
+    inline-size: 3rem;
+    block-size: 3rem;
+    font-size: 2.25rem;
+    transition: color 0.2s, opacity 0.2s, visibility 0.2s;
+}
+
+.gallery-button[data-direction="-1"] {
+    inset-inline-start: 0;
+}
+
+.gallery-button[data-direction="1"] {
+    inset-inline-end: 0;
+}
+
+.gallery-button:disabled {
+    visibility: hidden;
+    opacity: 0;
+}
+
+@media (hover: none) {
+    .gallery-controls:not([hidden]) {
+        display: none;
+    }
+}
+
+/* No grey tap highlight on iOS: the viewer opening is the feedback */
+.gallery-frame a {
+    display: block;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* A video's frame: its poster with a small play mark in the top right corner, like Instagram's grid, white with a
+   soft shadow like the scroll buttons; it marks the video without covering the picture */
+.gallery-video {
+    position: relative;
+}
+
+.gallery-video .icon {
+    position: absolute;
+    inset: var(--space-2xs) var(--space-2xs) auto auto;
+    font-size: 1.25rem;
+    color: #fff;
+    fill: #fff;
+    filter: var(--icon-shadow);
+    pointer-events: none;
+}

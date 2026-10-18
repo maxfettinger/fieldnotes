@@ -1,0 +1,8 @@
+/* Icons (layouts/_partials/icon.html): as big as the text around them, in its colour */
+.icon {
+    display: inline-block;
+    flex: none;
+    inline-size: 1em;
+    block-size: 1em;
+    vertical-align: -0.125em;
+}

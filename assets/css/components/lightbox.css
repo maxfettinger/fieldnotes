@@ -1,0 +1,215 @@
+/*
+ * The photo viewer of the galleries (_partials/lightbox.html): one <dialog> run by dialog-lightbox (loaded from
+ * jsDelivr, head/gallery.html). Its own CSS only does layout; everything you see is here. The same in light and
+ * dark mode (--lightbox-* in theme.css): black behind the photo, white text, orange mono for the counter and the
+ * place. Its buttons are plain white icons, like Instagram's.
+ */
+.lightbox {
+    background: transparent;
+    color: #fff;
+}
+
+.lightbox::backdrop {
+    background: color-mix(in srgb, var(--lightbox-bg) calc(var(--dlb-opacity) * 96%), transparent);
+}
+
+/* Room for the bar above (counter, close) and the caption below the photo, and for the side buttons on wide
+   screens; no buttons sit below the photo, so the caption's line is all the bottom needs */
+.lightbox [data-dlb-viewport] {
+    padding: 3rem 0 2.75rem;
+}
+
+@media (min-width: 48rem) {
+    .lightbox [data-dlb-viewport] {
+        padding-inline: 4rem;
+    }
+}
+
+.lightbox-bar {
+    position: absolute;
+    inset-inline: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: 0.5rem max(var(--gutter), env(safe-area-inset-left));
+    transition: opacity 0.2s;
+}
+
+.lightbox-top {
+    inset-block-start: 0;
+}
+
+.lightbox-bottom {
+    inset-block-end: 0;
+    flex-direction: column;
+    padding-block-end: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* "3 / 16", in orange mono like the place */
+.lightbox-counter {
+    margin-inline-end: auto;
+    color: var(--lightbox-print);
+    font: 600 var(--step--1) / 1 var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.1em;
+}
+
+/* Previous and next beside the photo, larger than the other icons */
+.lightbox-side {
+    position: absolute;
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    font-size: 2rem;
+}
+
+.lightbox [data-dlb-prev] {
+    inset-inline-start: var(--gutter);
+}
+
+.lightbox [data-dlb-next] {
+    inset-inline-end: var(--gutter);
+}
+
+/* At the ends of a part the side button that can't move disappears, as on the strip */
+.lightbox-side:disabled {
+    visibility: hidden;
+}
+
+/* The photo's caption, then its place in orange mono (both from photos.yaml) */
+.lightbox-caption {
+    margin: 0;
+    font-size: var(--step--1);
+    text-align: center;
+    text-shadow: 0 1px 3px rgb(0 0 0 / 0.8);
+}
+
+.lightbox-place {
+    color: var(--lightbox-print);
+    font: 600 0.75rem / 1.5 var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.lightbox-text:not(:empty) + .lightbox-place:not(:empty)::before {
+    content: " · ";
+}
+
+/* The video's overlay (the template in _partials/lightbox.html): the library copies it into every video slide over
+   the video, so it moves, swipes and shrinks with the video, and fades it out during the opening and closing zoom
+   and the drag down. Clicks pass through it to the video, except on its buttons. */
+.lightbox [data-dlb-overlay] {
+    pointer-events: none;
+}
+
+/* Play and sound at the top left, fullscreen at the top right, over a soft fade like Instagram's stories */
+.lightbox-overlay-top {
+    position: absolute;
+    inset: 0 0 auto;
+    display: flex;
+    padding: 0.25rem 0.25rem 2.5rem;
+    background: linear-gradient(rgb(0 0 0 / 0.45), rgb(0 0 0 / 0.15) 60%, transparent);
+}
+
+/* The viewer's buttons: plain icons like Instagram's (.icon-button: white, a soft shadow, orange on hover) */
+.lightbox-icon {
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    font-size: 1.5rem;
+    pointer-events: auto;
+}
+
+.lightbox-icon:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.lightbox-close {
+    font-size: 2rem;
+}
+
+/* Fullscreen at the overlay's right end; gone where the browser can't do it (the library disables it) */
+.lightbox-fullscreen {
+    margin-inline-start: auto;
+}
+
+.lightbox-fullscreen:disabled {
+    display: none;
+}
+
+/* On the video's bottom edge, as wide as the video, in orange */
+.lightbox-progress {
+    position: absolute;
+    inset: auto 0 0;
+    block-size: 4px;
+    background:
+        linear-gradient(var(--lightbox-print), var(--lightbox-print)) left / calc(var(--dlb-progress, 0) * 100%) 100% no-repeat,
+        rgb(255 255 255 / 0.25);
+}
+
+.lightbox[data-dlb-paused] .icon-pause,
+.lightbox:not([data-dlb-paused]) .icon-play,
+.lightbox[data-dlb-muted] .icon-volume-2,
+.lightbox:not([data-dlb-muted]) .icon-volume-x {
+    display: none;
+}
+
+/* In the neighbouring slides' copies (swipe previews) a video isn't playing: show play, not the current one's state */
+.lightbox [data-dlb-slide]:not([data-dlb-current]) .icon-play {
+    display: block;
+}
+
+.lightbox [data-dlb-slide]:not([data-dlb-current]) .icon-pause {
+    display: none;
+}
+
+/* A tap on the photo hides the buttons and the caption */
+.lightbox[data-dlb-ui-hidden] :is(.lightbox-bar, .lightbox-side) {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lightbox[data-dlb-zoomable] [data-dlb-current] img {
+    cursor: zoom-in;
+}
+
+.lightbox[data-dlb-zoomed] [data-dlb-current] img {
+    cursor: zoom-out;
+}
+
+.lightbox[data-dlb-error] .lightbox-caption::before {
+    content: "This photo could not be loaded. ";
+}
+
+/* A spinner, only after 400 ms of loading */
+.lightbox[data-dlb-loading]::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    inline-size: 2rem;
+    block-size: 2rem;
+    margin: -1rem;
+    border: 2px solid rgb(255 255 255 / 0.3);
+    border-block-start-color: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: lightbox-spin 0.8s linear infinite, lightbox-appear 0s 0.4s both;
+}
+
+@keyframes lightbox-spin {
+    to {
+        rotate: 1turn;
+    }
+}
+
+@keyframes lightbox-appear {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Touch screens swipe and drag down: no side buttons */
+@media (pointer: coarse) {
+    .lightbox-side {
+        display: none;
+    }
+}

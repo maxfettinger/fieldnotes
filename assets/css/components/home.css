@@ -1,0 +1,4 @@
+/* Home: intro, display card and the list of pages, one even gap apart */
+.home {
+    --stack-gap: var(--space-xl);
+}

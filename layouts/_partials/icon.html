@@ -1,0 +1,8 @@
+{{- /* An icon from assets/icons/<name>.svg (Feather icons, MIT, see assets/icons/LICENSE), inlined so it takes the
+       text colour. Hidden from screen readers: the link or button around it carries the label.
+       Usage: {{ partial "icon.html" "moon" }} */ -}}
+{{- with resources.Get (printf "icons/%s.svg" .) -}}
+  {{- replace .Content "<svg " (printf `<svg class="icon icon-%s" aria-hidden="true" ` $) 1 | safeHTML -}}
+{{- else -}}
+  {{- errorf "icon.html: assets/icons/%s.svg not found" . -}}
+{{- end -}}

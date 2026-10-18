@@ -1,0 +1,58 @@
+{{- /* JSON-LD for search engines (schema.org), next to the meta tags of Hugo's embedded schema.html.
+       Home: the site and its profile page about the author (params.author: name, alternateName, jobTitle,
+       affiliation with name and url, image), with the profiles of params.socialIcons as sameAs (except email and
+       RSS). Pages in a section: a BlogPosting by that person, linked to the home page's by its @id.
+       Structured data must match what visitors see: the profiles are the icons on the home page. */ -}}
+{{- $author := site.Params.author | default dict }}
+{{- $home := site.Home.Permalink }}
+{{- $data := dict }}
+{{- with $author.name }}
+  {{- $person := dict "@type" "Person" "@id" (print $home "#person") "name" . "url" $home }}
+  {{- if $.IsHome }}
+    {{- $sameAs := slice }}
+    {{- range site.Params.socialIcons }}
+      {{- if not (or (strings.HasPrefix .url "mailto:") (eq (lower .name) "rss")) }}
+        {{- $sameAs = $sameAs | append .url }}
+      {{- end }}
+    {{- end }}
+    {{- with $sameAs }}{{ $person = merge $person (dict "sameAs" .) }}{{ end }}
+    {{- with $author.alternateName }}{{ $person = merge $person (dict "alternateName" .) }}{{ end }}
+    {{- with $author.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
+    {{- with site.Params.description }}{{ $person = merge $person (dict "description" (. | plainify)) }}{{ end }}
+    {{- with $author.affiliation }}
+      {{- $person = merge $person (dict "affiliation" (dict "@type" "Organization" "name" .name "url" .url)) }}
+    {{- end }}
+    {{- $image := $author.image | default site.Home.Params.photo }}
+    {{- with $image }}
+      {{- with or (site.Home.Resources.Get .) (resources.Get .) }}
+        {{- $person = merge $person (dict "image" .Permalink) }}
+      {{- end }}
+    {{- end }}
+    {{- $data = dict
+      "@context" "https://schema.org"
+      "@graph" (slice
+        (dict "@type" "WebSite" "@id" (print $home "#website") "url" $home "name" site.Title)
+        (dict "@type" "ProfilePage" "url" $home "name" site.Title "mainEntity" $person)
+      )
+    }}
+  {{- else if and $.IsPage $.Section }}
+    {{- $data = dict
+      "@context" "https://schema.org"
+      "@type" "BlogPosting"
+      "headline" ($.Title | plainify)
+      "description" (or $.Description $.Summary site.Params.description | plainify | htmlUnescape | strings.TrimSpace)
+      "url" $.Permalink
+      "mainEntityOfPage" $.Permalink
+      "datePublished" $.PublishDate
+      "dateModified" $.Lastmod
+      "inLanguage" site.Language.Locale
+      "author" $person
+    }}
+    {{- with partial "_funcs/get-page-images" $ }}
+      {{- $data = merge $data (dict "image" (index . 0).Permalink) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- with $data }}
+<script type="application/ld+json">{{ . | jsonify | safeJS }}</script>
+{{- end }}

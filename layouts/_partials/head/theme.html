@@ -1,0 +1,14 @@
+{{- /* Light or dark before the first paint, so the page doesn't flash (params.mode):
+       - default: "light", "dark", or "auto" (the visitor's system setting)
+       - toggle: whether the header has the switch; with it, the visitor's last choice (assets/js/theme.js) wins.
+       A light-only site: default = "light", toggle = false; dark-only: "dark" and false.
+       Inline on purpose: a script file would load too late. */ -}}
+{{- $default := site.Params.mode.default | default "light" }}
+<script>
+  try {
+    const stored = {{ site.Params.mode.toggle }} ? localStorage.getItem("theme") : null;
+    const system = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const mode = stored || ({{ $default }} === "auto" ? system : {{ $default }});
+    if (mode === "dark") document.documentElement.dataset.theme = "dark";
+  } catch {}
+</script>

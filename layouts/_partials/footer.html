@@ -1,0 +1,8 @@
+{{- /* The copyright line, and what the site is built with: Hugo and this theme */ -}}
+<div class="wrapper site-footer-inner">
+  <p>© {{ now.Year }} <a href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+    · Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo<span class="visually-hidden"> (opens in a new tab)</span></a>
+    and <a href="https://github.com/maxfettinger/fieldnotes" target="_blank" rel="noopener">Fieldnotes<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+</div>
+{{- /* Shown once the page is scrolled down (assets/js/top-link.js). #top scrolls to the start of the page. */}}
+<a class="top-link" href="#top" aria-label="Back to top">{{ partial "icon.html" "arrow-up" }}</a>

@@ -1,0 +1,35 @@
+/*
+ * Brutalist: IBM Plex Mono throughout, thick borders and hard offset shadows in the text colour (so they show in dark
+ * mode too), square corners. Cards jump towards their shadow when hovered.
+ */
+:root[data-preset="brutalist"] {
+    --pattern: none;
+    --font-body: "IBM Plex Mono", ui-monospace, monospace;
+    --font-heading: var(--font-body);
+    --font-mono: var(--font-body);
+    --radius-s: 0;
+    --radius-m: 0;
+    --shadow: 4px 4px 0 var(--color-text);
+    --shadow-raised: 7px 7px 0 var(--color-text);
+    --card-border: 2px solid var(--color-text);
+}
+
+[data-preset="brutalist"] .site-header {
+    border-block-end: 2px solid var(--color-text);
+}
+
+[data-preset="brutalist"] :is(.card:hover, .card:focus-within) {
+    translate: -3px -3px;
+}
+
+[data-preset="brutalist"] .intro-photo img,
+[data-preset="brutalist"] .trip-map-canvas {
+    border: 2px solid var(--color-text);
+    border-radius: 0;
+    box-shadow: var(--shadow);
+}
+
+[data-preset="brutalist"] :is(pre, :not(pre) > code) {
+    border: 2px solid var(--color-text);
+    border-radius: 0;
+}

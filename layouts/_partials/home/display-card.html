@@ -1,0 +1,12 @@
+{{- /* Display card: a card on the home page with the site's own HTML, not a link. The home page's front matter names
+       a partial in the site's layouts/_partials/ (displayCard: display-card-content.html); the theme puts it on a
+       card. Anything goes: a quote, a "now" note, a canvas with a script. */ -}}
+{{- with .Params.displayCard }}
+  {{- if templates.Exists (printf "_partials/%s" .) }}
+<section class="display-card">
+  {{ partial . $ }}
+</section>
+  {{- else }}
+    {{- warnf "fieldnotes: displayCard %q: no such partial in layouts/_partials/" . }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,24 @@
+/* Newsprint: cream paper and black ink with a red; a dark reading room. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="newsprint"]:not([data-theme="dark"]) {
+    --color-bg: #fbf8f1;
+    --color-surface: #fbf8f1;
+    --color-text: #1b1b1b;
+    --color-primary: #111111;
+    --color-secondary: #5e5a52;
+    --color-tertiary: #ece5d6;
+    --color-accent: #b42318;
+    --color-border: #ded6c5;
+    --pattern-color: #b9ad94;
+}
+
+:root[data-theme="dark"][data-dark="newsprint"] {
+    --color-bg: #141312;
+    --color-surface: #1b1a18;
+    --color-text: #e4dfd5;
+    --color-primary: #f6f2ea;
+    --color-secondary: #a59f93;
+    --color-tertiary: #2c2a26;
+    --color-accent: #ff7a6b;
+    --color-border: #33302b;
+    --pattern-color: #5a554c;
+}

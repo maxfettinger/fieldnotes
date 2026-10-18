@@ -1,0 +1,6 @@
+{{- /* Pages with a trip map: MapTiler's SDK (MapLibre GL JS with MapTiler's additions, billed per map session) from
+       their CDN, in the version params.map.sdk, and the script that draws the maps (assets/js/trip-map.js) */ -}}
+{{- $version := site.Params.map.sdk }}
+<link rel="stylesheet" href="https://cdn.maptiler.com/maptiler-sdk-js/v{{ $version }}/maptiler-sdk.css">
+<script src="https://cdn.maptiler.com/maptiler-sdk-js/v{{ $version }}/maptiler-sdk.umd.min.js" defer></script>
+{{ partial "script.html" "js/trip-map.js" }}

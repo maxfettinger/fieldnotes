@@ -1,0 +1,24 @@
+/* Forest: sage paper, pine ink and rust; a forest at night. Light under data-light, dark under data-dark (fieldnotes/style.html). */
+:root[data-light="forest"]:not([data-theme="dark"]) {
+    --color-bg: #eef2e8;
+    --color-surface: #f8faf4;
+    --color-text: #26302a;
+    --color-primary: #1f4d3a;
+    --color-secondary: #56635a;
+    --color-tertiary: #d5dfcf;
+    --color-accent: #a84a22;
+    --color-border: #dbe3d3;
+    --pattern-color: #4f7a5c;
+}
+
+:root[data-theme="dark"][data-dark="forest"] {
+    --color-bg: #18211c;
+    --color-surface: #202c25;
+    --color-text: #d6ddd4;
+    --color-primary: #eef3ea;
+    --color-secondary: #a3b2a5;
+    --color-tertiary: #33443a;
+    --color-accent: #e3895c;
+    --color-border: #2c3b32;
+    --pattern-color: #cfe0d2;
+}

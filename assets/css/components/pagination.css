@@ -1,0 +1,26 @@
+/* Pagination: Hugo's embedded template (terse format) under long lists, round page numbers */
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2xs);
+    padding: 0;
+    list-style: none;
+}
+
+.page-link {
+    display: grid;
+    place-items: center;
+    min-inline-size: 2.5rem;
+    block-size: 2.5rem;
+    padding-inline: var(--space-2xs);
+    border-radius: 1.25rem;
+    background: var(--color-tertiary);
+    font-size: var(--step--1);
+    text-decoration: none;
+}
+
+.page-item.active .page-link {
+    background: var(--color-primary);
+    color: var(--color-bg);
+}

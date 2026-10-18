@@ -1,0 +1,9 @@
+{{- /* Date line of a post or card. A post that's kept up to date (lastmod in its front matter more than a day
+       after its date) says when it was last updated; drafts (only shown by hugo server -D) say so. */ -}}
+{{- if or (not .Date.IsZero) .Draft }}
+<p class="meta">
+  {{- if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format ":date_long" .Date }}</time>{{ end }}
+  {{- if and (not .Date.IsZero) (gt (.Lastmod.Sub .Date).Hours 24) }} · updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ time.Format ":date_long" .Lastmod }}</time>{{ end }}
+  {{- if .Draft }}{{ if not .Date.IsZero }} · {{ end }}<span class="draft">Draft</span>{{ end -}}
+</p>
+{{- end }}

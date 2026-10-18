@@ -1,0 +1,17 @@
+{{- /* A page in a list: title, summary and date; the title's link covers the whole card (card.css). A page with
+       params.link (a project kept elsewhere: its docs or repository; build.render: never in its front matter, so it
+       has no page of its own) links there instead, in a new tab, with the external icon. */ -}}
+{{- $external := .Params.link }}
+<article class="card">
+  <h2 class="card-title">
+    {{- with $external }}
+    <a href="{{ . }}" target="_blank" rel="noopener">{{ $.LinkTitle }}{{ partial "icon.html" "external-link" }}<span class="visually-hidden"> (external link, opens in a new tab)</span></a>
+    {{- else }}
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    {{- end -}}
+  </h2>
+  {{- with .Summary }}
+  <p class="card-summary">{{ . | plainify | htmlUnescape }}{{ if $.Truncated }} …{{ end }}</p>
+  {{- end }}
+  {{ partial "meta.html" . }}
+</article>

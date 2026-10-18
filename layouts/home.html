@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{- /* Home: the intro (content/_index.md), the display card if the home page names one, and the pages of the main
+       sections (params.mainSections, by default the section with the most pages), newest first */}}
+<div class="home stack">
+  {{ partial "home/intro.html" . }}
+  {{ partial "home/display-card.html" . }}
+  {{- $paginator := .Paginate (where site.RegularPages "Section" "in" site.MainSections) }}
+  {{- with $paginator.Pages }}
+  <div class="card-list stack">
+    {{- range . }}
+    {{ partial "card.html" . }}
+    {{- end }}
+  </div>
+  {{- end }}
+  {{ partial "pagination.html" (dict "page" . "format" "terse") }}
+</div>
+{{ end }}

@@ -1,0 +1,9 @@
+{{- /* Top of a section or page: breadcrumbs, title and, for pages in a section (posts, trips), the date.
+       Pages outside sections, like About, have no date line. */ -}}
+<header class="page-header">
+  {{ partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if and .IsPage .Section }}
+  {{ partial "meta.html" . }}
+  {{- end }}
+</header>

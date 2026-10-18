@@ -1,0 +1,57 @@
+/*
+ * Fieldnotes' core stylesheet. head/css.html bundles it with the active preset and colour schemes (one file per
+ * combination, css.Build): @import "main.css"; @import "presets/<id>.css" layer(presets); @import
+ * "schemes/<id>.css" layer(schemes) for the light and the dark scheme.
+ *
+ * Cascade layers, lowest first. A rule in a later layer beats one in an earlier layer whatever its selector:
+ *   reset            browser defaults evened out
+ *   dialog-lightbox  the photo viewer's own layout CSS (loaded from the CDN; it names this layer itself)
+ *   tokens           sizes (tokens.css) and the default colours for both modes (theme.css)
+ *   base             HTML elements: page background, text, headings, links, code
+ *   syntax           code colours
+ *   layout           composition primitives (wrapper, stack, cluster) and the page frame
+ *   components       the parts of the pages, one file each, named like their main class
+ *   schemes          the colour schemes in use (schemes/*.css): colours only
+ *   presets          the preset in use (presets/*.css): its tokens, and its own rules for the components
+ *   site             the site's params: fonts, background, colours (head/style.html, a style block)
+ *   utilities        single-purpose helpers
+ *   custom           the site's own assets/css/custom.css (empty in the theme): it wins over everything above
+ */
+@layer reset, dialog-lightbox, tokens, base, syntax, layout, components, schemes, presets, site, utilities, custom;
+
+@import "reset.css" layer(reset);
+@import "tokens.css" layer(tokens);
+@import "theme.css" layer(tokens);
+@import "base.css" layer(base);
+@import "syntax/light.css" layer(syntax);
+@import "syntax/dark.css" layer(syntax);
+@import "layout.css" layer(layout);
+
+/* Every page */
+@import "components/skip-link.css" layer(components);
+@import "components/icon.css" layer(components);
+@import "components/icon-button.css" layer(components);
+@import "components/header.css" layer(components);
+@import "components/footer.css" layer(components);
+@import "components/top-link.css" layer(components);
+@import "components/page-header.css" layer(components);
+@import "components/breadcrumbs.css" layer(components);
+@import "components/meta.css" layer(components);
+
+/* Content and lists */
+@import "components/prose.css" layer(components);
+@import "components/code.css" layer(components);
+@import "components/card.css" layer(components);
+@import "components/pagination.css" layer(components);
+@import "components/trip-map.css" layer(components);
+@import "components/gallery.css" layer(components);
+@import "components/lightbox.css" layer(components);
+
+/* Home and 404 */
+@import "components/home.css" layer(components);
+@import "components/intro.css" layer(components);
+@import "components/social.css" layer(components);
+@import "components/not-found.css" layer(components);
+
+@import "utilities.css" layer(utilities);
+@import "custom.css" layer(custom);

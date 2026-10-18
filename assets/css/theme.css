@@ -1,0 +1,65 @@
+/*
+ * Theme: the colours and whatever else looks different in light and dark mode. Sizes are in tokens.css.
+ * The site can change any colour per mode with params.colors (hugo.toml), or in its own assets/css/custom.css.
+ *
+ * Names say what a value is for, not what it looks like (the same name is paper in light mode and blackboard
+ * in dark mode). Dark mode only changes values, under :root[data-theme="dark"]. The defaults: graph paper and
+ * blue-black ink in light mode, a green blackboard and chalk in dark mode, one orange accent; text passes
+ * WCAG AA (4.5:1) on the page and on cards.
+ */
+
+/* Light: graph paper and ink */
+:root {
+    color-scheme: light;
+
+    --color-bg: #f7f2e7;             /* the page: paper */
+    --color-surface: #fdfaf3;        /* cards, code: a fresh sheet */
+    --color-text: #2a2e35;           /* body text: graphite */
+    --color-primary: #132e51;        /* headings and links: blue-black ink */
+    --color-secondary: #656056;      /* dates, summaries, captions: pencil */
+    --color-tertiary: #dfd5c2;       /* fills of small controls (back to top, page numbers), the gallery's bar */
+    --color-accent: #ae520b;         /* link underlines, hovers, focus rings, the current menu item: orange */
+    --color-border: #e6ddcd;         /* card and code borders */
+    --pattern: var(--pattern-grid);  /* the background (params.background): --pattern-grid, --pattern-dots, none */
+    --pattern-color: #6babd5;        /* the background's lines or dots */
+    --pattern-strength: 35%;         /* how strongly they show: major lines, minor lines get half */
+
+    --shadow: 0 1px 1px rgb(70 55 30 / 0.10), 0 2px 6px rgb(70 55 30 / 0.08);
+    --shadow-raised: 0 10px 20px rgb(70 55 30 / 0.14);
+
+    /* Cards (card.css): a preset can change their background, border, top rule and side padding */
+    --card-bg: var(--color-surface);
+    --card-border: 1px solid var(--color-border);
+    --card-border-top: var(--card-border);
+    --card-padding-inline: var(--space-m);
+
+    /* Headings: a preset can change their weight, capitals and spacing */
+    --heading-weight: 700;
+    --heading-transform: none;
+    --heading-spacing: normal;
+
+    /* Photo viewer and trip map: the same in both modes */
+    --lightbox-bg: #0c0c0c;          /* behind the photo */
+    --lightbox-print: #f68f31;       /* the viewer's counter, place, video progress, hovered buttons */
+    --route: #e16c0d;                /* trip map lines and points without a colour of their own */
+}
+
+/* Dark: a green blackboard and chalk */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --color-bg: #172820;
+    --color-surface: #1d3128;
+    --color-text: #d8d6cc;
+    --color-primary: #efede4;
+    --color-secondary: #a8b5ad;
+    --color-tertiary: #384c42;
+    --color-accent: #f68f31;
+    --color-border: #2b4237;
+    --pattern: var(--pattern-dots);
+    --pattern-color: #e4eee8;
+    --pattern-strength: 18%;
+
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.25);
+    --shadow-raised: 0 8px 18px rgb(0 0 0 / 0.4);
+}

@@ -1,0 +1,32 @@
+{{- /* Fonts from Google Fonts: the preset's (fieldnotes/style.html: full specs such as "Inter:wght@400;700") and the
+       site's own params.fonts (body in regular, bold and both italics, heading in bold, mono in regular), one link,
+       each family asked for once. params.fonts.url replaces the link; google = false loads nothing (use your own fonts
+       in assets/css/custom.css). Note: every visit then contacts Google's servers. Context: dict with style. */ -}}
+{{- $specs := .style.fonts }}
+{{- with site.Params.fonts }}
+  {{- range $role, $axes := dict "body" "ital,wght@0,400;0,700;1,400;1,700" "heading" "wght@700" "mono" "wght@400" }}
+    {{- with index site.Params.fonts $role }}
+      {{- $specs = $specs | append (printf "%s:%s" (trim (index (split . ",") 0) " \"'") $axes) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- if site.Params.fonts.google }}
+  {{- $url := site.Params.fonts.url }}
+  {{- if not $url }}
+    {{- $families := slice }}
+    {{- $seen := slice }}
+    {{- range $specs }}
+      {{- $name := index (split . ":") 0 }}
+      {{- if not (in $seen $name) }}
+        {{- $families = $families | append (printf "family=%s" (replace . " " "+")) }}
+        {{- $seen = $seen | append $name }}
+      {{- end }}
+    {{- end }}
+    {{- with $families }}{{ $url = printf "https://fonts.googleapis.com/css2?%s&display=swap" (delimit . "&") }}{{ end }}
+  {{- end }}
+  {{- with $url }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ . }}">
+  {{- end }}
+{{- end }}

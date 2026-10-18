@@ -1,0 +1,95 @@
+/*
+ * Reset: evens out browser defaults, so the rest of the CSS starts from the same place everywhere.
+ * After Josh W. Comeau's "custom CSS reset" (public domain, https://www.joshwcomeau.com/css/custom-css-reset/)
+ * and Andy Bell's "A (more) modern CSS reset" (CC BY 3.0, https://piccalil.li/blog/a-more-modern-css-reset/),
+ * trimmed to what this site needs.
+ */
+
+/* Sizes include padding and border */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* No default margins: spacing comes from layout.css and the components */
+* {
+    margin: 0;
+}
+
+/* Text keeps its size when a phone turns to landscape, without blocking zoom */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Links to an anchor scroll smoothly and stop a little above it */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+:target {
+    scroll-margin-block: 5ex;
+}
+
+/* Images and drawings are blocks that never overflow their container */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-inline-size: 100%;
+}
+
+/* Buttons use the page's font */
+button {
+    font: inherit;
+}
+
+/* Long words and URLs wrap instead of overflowing; headings and paragraphs break more evenly */
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+/* Lists marked role="list" have no bullets; the role keeps them lists for VoiceOver in Safari */
+ul[role="list"],
+ol[role="list"] {
+    padding: 0;
+    list-style: none;
+}
+
+/* Hardly any motion for visitors who ask for less (WCAG 2.3.3). The only !important of the site: in the
+   lowest layer, an important declaration beats every later layer. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

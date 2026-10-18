@@ -1,0 +1,35 @@
+{{- /*
+Renders a menu: one level, after the menu template in the Hugo docs.
+The current page's entry gets aria-current="page", the entry of the section it's in aria-current="true".
+Entries with an external URL open in a new tab and get an icon (and the words for screen readers).
+
+@context {page} page The current page.
+@context {string} menuID The menu ID.
+
+@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+*/}}
+
+{{- $page := .page }}
+{{- with index site.Menus .menuID }}
+  <nav class="site-nav" aria-label="Main">
+    <ul class="cluster" role="list">
+      {{- range . }}
+        {{- $current := "" }}
+        {{- if $page.IsMenuCurrent .Menu . }}
+          {{- $current = "page" }}
+        {{- else if $page.HasMenuCurrent .Menu . }}
+          {{- $current = "true" }}
+        {{- end }}
+        <li>
+          {{- $external := strings.HasPrefix .URL "http" }}
+          <a href="{{ .URL }}" {{- with $current }} aria-current="{{ . }}"{{ end }} {{- if $external }} target="_blank" rel="noopener"{{ end }}>
+            {{- .Name }}
+            {{- if $external }}
+              {{- partial "icon.html" "external-link" }}<span class="visually-hidden"> (external link, opens in a new tab)</span>
+            {{- end -}}
+          </a>
+        </li>
+      {{- end }}
+    </ul>
+  </nav>
+{{- end }}

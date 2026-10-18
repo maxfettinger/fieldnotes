@@ -1,0 +1,7 @@
+{{- /* Headings in Markdown, with a # link to the heading that shows on hover (prose.css), after the anchor link
+       example in the Hugo docs. Hidden from screen readers and the tab order, like GitHub's: a convenience for
+       copying the link, the heading itself stays as it is. */ -}}
+<h{{ .Level }} id="{{ .Anchor }}" {{- with .Attributes.class }} class="{{ . }}"{{ end }}>
+  {{- .Text -}}
+  <a class="heading-anchor" href="#{{ .Anchor }}" aria-hidden="true" tabindex="-1">#</a>
+</h{{ .Level }}>

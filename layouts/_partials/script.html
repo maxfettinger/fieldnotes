@@ -1,0 +1,19 @@
+{{- /* A script from assets/, bundled by js.Build (its imports included), deferred. Minified and fingerprinted
+       for production, source maps locally. Usage: {{ partial "script.html" "js/main.js" }} */ -}}
+{{- with resources.Get . }}
+  {{- $opts := dict
+    "minify" (cond hugo.IsDevelopment false true)
+    "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+  }}
+  {{- with . | js.Build $opts }}
+    {{- if hugo.IsDevelopment }}
+      <script src="{{ .RelPermalink }}" defer></script>
+    {{- else }}
+      {{- with . | fingerprint }}
+        <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- else }}
+  {{- errorf "script.html: assets/%s not found" . }}
+{{- end }}

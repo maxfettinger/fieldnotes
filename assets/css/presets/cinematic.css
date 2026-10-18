@@ -1,0 +1,61 @@
+/*
+ * Cinematic: for photographs. If terminal is 8 bit, this is 4K: Inter Tight in light weights, hairlines instead of
+ * boxes, sharp corners, no shadows, captions in spaced capitals, and galleries tall enough to look at.
+ */
+:root[data-preset="cinematic"] {
+    --pattern: none;
+    --font-body: "Inter Tight", system-ui, sans-serif;
+    --font-heading: var(--font-body);
+    --heading-weight: 300;
+    --heading-spacing: -0.015em;
+    --radius-s: 0;
+    --radius-m: 0;
+    --shadow: none;
+    --shadow-raised: none;
+    --card-bg: transparent;
+    --card-border: 0 none;
+    --card-border-top: 1px solid var(--color-border);
+    --card-padding-inline: 0;
+}
+
+/* Labels: the menu, dates, breadcrumbs and captions in small spaced capitals */
+[data-preset="cinematic"] :is(.site-nav, .meta, .breadcrumbs, .trip-map figcaption) {
+    font-size: var(--step--2);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+[data-preset="cinematic"] .site-title {
+    font-size: var(--step-0);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+[data-preset="cinematic"] .site-header {
+    border-block-end: 1px solid var(--color-border);
+}
+
+[data-preset="cinematic"] :is(.card:hover, .card:focus-within) {
+    translate: none;
+}
+
+[data-preset="cinematic"] .card-title {
+    font-weight: 300;
+}
+
+/* Photos: tall rows with hairline gaps, a square portrait with a hairline frame */
+[data-preset="cinematic"] .gallery {
+    --gallery-height: clamp(14rem, 9rem + 16vw, 26rem);
+    --gallery-gap: 2px;
+}
+
+[data-preset="cinematic"] .intro-photo img {
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+[data-preset="cinematic"] .trip-map-canvas {
+    box-shadow: none;
+}

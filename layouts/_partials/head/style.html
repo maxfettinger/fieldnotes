@@ -1,0 +1,53 @@
+{{- /* The site's own choices from params, as custom properties in the "site" cascade layer, which comes after the
+       preset and the schemes (so these win over them; the site's custom.css still wins over these):
+       - fonts (params.fonts): --font-body, --font-heading, --font-mono; a single name falls back to serif (body),
+         the body font (heading) or monospace (mono) while it loads; a whole font stack is used as given
+       - background (params.background): "grid", "dots", "none", or an image in assets/, e.g. an SVG tile, repeated
+         at its own size or at params.background.size
+       - colours (params.colors.light / .dark): --color-<name> for bg, surface, text, primary, secondary, tertiary,
+         accent, border; pattern sets --pattern-color */ -}}
+{{- $p := site.Params }}
+{{- $root := slice }}
+{{- range $role, $fallback := dict "body" "serif" "heading" "var(--font-body)" "mono" "monospace" }}
+  {{- with index ($p.fonts | default dict) $role }}
+    {{- $stack := . }}
+    {{- if not (strings.Contains . ",") }}{{ $stack = printf "%q, %s" . $fallback }}{{ end }}
+    {{- $root = $root | append (printf "--font-%s: %s;" $role $stack) }}
+  {{- end }}
+{{- end }}
+{{- $patterns := dict "grid" "var(--pattern-grid)" "dots" "var(--pattern-dots)" "none" "none" }}
+{{- $modes := dict }}
+{{- range $mode := slice "light" "dark" }}
+  {{- $rules := slice }}
+  {{- with index ($p.background | default dict) $mode }}
+    {{- $value := index $patterns . }}
+    {{- if not $value }}
+      {{- with resources.Get . }}
+        {{- $value = printf "url(%q) left top / %s repeat" .RelPermalink ($p.background.size | default "auto") }}
+      {{- else }}
+        {{- warnf "fieldnotes: params.background.%s: %q is neither grid, dots, none nor a file in assets/" $mode . }}
+      {{- end }}
+    {{- end }}
+    {{- with $value }}{{ $rules = $rules | append (printf "--pattern: %s;" .) }}{{ end }}
+  {{- end }}
+  {{- range $name, $color := index ($p.colors | default dict) $mode }}
+    {{- $prop := cond (eq $name "pattern") "--pattern-color" (printf "--color-%s" $name) }}
+    {{- $rules = $rules | append (printf "%s: %s;" $prop $color) }}
+  {{- end }}
+  {{- $modes = merge $modes (dict $mode $rules) }}
+{{- end }}
+{{- if or $root $modes.light $modes.dark }}
+<style>
+  @layer site {
+    {{- with $root }}
+    :root { {{ delimit . " " | safeCSS }} }
+    {{- end }}
+    {{- with $modes.light }}
+    :root:not([data-theme="dark"]) { {{ delimit . " " | safeCSS }} }
+    {{- end }}
+    {{- with $modes.dark }}
+    :root[data-theme="dark"] { {{ delimit . " " | safeCSS }} }
+    {{- end }}
+  }
+</style>
+{{- end }}

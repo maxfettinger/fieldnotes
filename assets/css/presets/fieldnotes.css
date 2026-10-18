@@ -1,0 +1,127 @@
+/*
+ * Fieldnotes (the default preset): graph paper and ink. Cards are cut-outs of paper, stuck onto the page with a strip
+ * of masking tape and slightly tilted, every other one the other way; the home photo and the trip map are white
+ * photo prints taped in at their top corners, the map's caption in the print's margin. Its fonts and background are
+ * the theme's defaults (tokens.css, theme.css); data/fieldnotes/presets/fieldnotes.toml names them.
+ */
+:root[data-preset="fieldnotes"] {
+    --tape-height: 24px;
+    --tape-clip: polygon(3% 0, 97% 0, 100% 15%, 97% 30%, 100% 45%, 97% 60%, 100% 75%, 97% 90%, 100% 100%,
+                         0 100%, 3% 85%, 0 70%, 3% 55%, 0 40%, 3% 25%, 0 10%);
+    --tape-bg: rgb(236 224 186 / 0.75);
+    --print-bg: #fefbf6;              /* white prints in both modes */
+    --print-caption-color: #656056;   /* pencil, AA on the print in both modes */
+}
+
+:root[data-preset="fieldnotes"][data-theme="dark"] {
+    --tape-bg: rgb(140 120 85 / 0.95);  /* the same tape, darker on the board */
+}
+
+/* Cards and the display card: tilted, with tape centred on the top edge */
+[data-preset="fieldnotes"] :is(.card, .display-card) {
+    --side: 1;
+    --tape-width: 110px;
+    --tape-rotate: -3deg;
+    border-radius: 2px;
+    rotate: calc(0.6deg * var(--side));
+}
+
+[data-preset="fieldnotes"] .card:nth-of-type(even) {
+    --side: -1;
+}
+
+[data-preset="fieldnotes"] :is(.card, .display-card)::before {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(var(--tape-height) / -2);
+    inset-inline-start: 50%;
+    inline-size: var(--tape-width);
+    block-size: var(--tape-height);
+    background: var(--tape-bg);
+    clip-path: var(--tape-clip);
+    translate: -50% 0;
+    rotate: calc(var(--tape-rotate) * var(--side));
+    pointer-events: none;
+}
+
+/* Cards stand further apart, so the tape has room */
+[data-preset="fieldnotes"] .card-list {
+    --stack-gap: var(--space-m-l);
+}
+
+/* Prints: the home photo and the trip map, white with a wider bottom margin, tape at both top corners */
+[data-preset="fieldnotes"] :is(.intro-photo, .trip-map) {
+    --tape-width: 56px;
+    position: relative;
+    padding: 8px 8px 28px;
+    background: var(--print-bg);
+    box-shadow: var(--shadow-raised);
+}
+
+[data-preset="fieldnotes"] :is(.intro-photo, .trip-map)::before,
+[data-preset="fieldnotes"] :is(.intro-photo, .trip-map)::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 2px;
+    inline-size: var(--tape-width);
+    block-size: var(--tape-height);
+    background: var(--tape-bg);
+    clip-path: var(--tape-clip);
+    pointer-events: none;
+}
+
+[data-preset="fieldnotes"] :is(.intro-photo, .trip-map)::before {
+    inset-inline-start: -16px;
+    rotate: -38deg;
+}
+
+[data-preset="fieldnotes"] :is(.intro-photo, .trip-map)::after {
+    inset-inline-end: -16px;
+    rotate: 38deg;
+}
+
+/* The home photo hangs a little tilted; inside the print it has square corners and no shadow of its own */
+[data-preset="fieldnotes"] .intro-photo {
+    rotate: -2.5deg;
+}
+
+[data-preset="fieldnotes"] .intro-photo img {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* The map: never tilted (a rotated map blurs and shifts clicks); its caption in the print's bottom margin */
+[data-preset="fieldnotes"] .trip-map {
+    padding-block-end: 0;
+}
+
+[data-preset="fieldnotes"] .trip-map :is(.trip-map-canvas, .trip-map-missing) {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+[data-preset="fieldnotes"] .trip-map figcaption {
+    padding: 6px 2px 8px;
+    color: var(--print-caption-color);
+}
+
+[data-preset="fieldnotes"] .trip-map-missing {
+    background: var(--print-bg);
+    color: var(--print-caption-color);
+}
+
+/* The note on the white print: dark text and the print's colours, not the mode's */
+[data-preset="fieldnotes"] .trip-map-missing strong {
+    color: #2a2e35;
+}
+
+[data-preset="fieldnotes"] .trip-map-missing :is(a, code) {
+    color: inherit;
+}
+
+[data-preset="fieldnotes"] .trip-map-missing code {
+    padding: 0;
+    background: none;
+}

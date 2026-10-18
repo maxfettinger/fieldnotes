@@ -1,0 +1,18 @@
+/*
+ * Code: inline code on a fresh sheet, code blocks framed by a border. The colours of the code itself are in
+ * syntax/light.css and syntax/dark.css; their block background loses to this later layer.
+ */
+:not(pre) > code {
+    padding: 0.15em 0.3em;
+    border-radius: var(--radius-s);
+    background: var(--color-surface);
+}
+
+.highlight pre {
+    padding: var(--space-xs) var(--space-s);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-m);
+    background: var(--color-surface);
+    line-height: 1.5;
+    overflow-x: auto;
+}

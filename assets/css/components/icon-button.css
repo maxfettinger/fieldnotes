@@ -1,0 +1,30 @@
+/*
+ * Icon button: a plain white icon with a soft shadow and no background, for buttons over photos and videos (the
+ * photo viewer's buttons, lightbox.css; the gallery's scroll buttons, gallery.css), the viewer's orange on
+ * hover. Size and place come from the component.
+ */
+.icon-button {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.2s, opacity 0.2s;
+}
+
+/* The shadow on the icon itself: on the button it also shadowed the button's box (a focus ring, the tap
+   highlight, and in Safari the moment the viewer's play icon swaps for pause) */
+.icon-button .icon {
+    display: block;
+    filter: var(--icon-shadow);
+}
+
+/* Hover only where there's a real pointer: touch screens keep :hover after a tap */
+@media (hover: hover) {
+    .icon-button:hover {
+        color: var(--lightbox-print);
+    }
+}

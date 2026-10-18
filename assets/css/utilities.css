@@ -1,0 +1,11 @@
+/* Utilities: single-purpose helpers, in the last layer so they always apply */
+
+/* Read by screen readers, not shown (the usual clip pattern) */
+.visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}

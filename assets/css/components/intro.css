@@ -1,0 +1,31 @@
+/*
+ * Home intro (home/intro.html): the photo beside the greeting and text, below each other once the text would get
+ * narrower than 18rem. The photo is round-cornered with the page's shadow.
+ */
+.intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-m) var(--space-l);
+}
+
+.intro-photo {
+    flex: none;
+}
+
+.intro-photo img {
+    inline-size: 150px;
+    block-size: 150px;
+    border-radius: var(--radius-m);
+    object-fit: cover;
+    box-shadow: var(--shadow-raised);
+}
+
+.intro-text {
+    --stack-gap: var(--space-xs);
+    flex: 1 1 18rem;
+}
+
+.intro-text p {
+    color: var(--color-secondary);
+}
