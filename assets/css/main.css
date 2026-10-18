@@ -6,6 +6,7 @@
  * Cascade layers, lowest first. A rule in a later layer beats one in an earlier layer whatever its selector:
  *   reset            browser defaults evened out
  *   dialog-lightbox  the photo viewer's own layout CSS (loaded from the CDN; it names this layer itself)
+ *   maptiler         the trip map's SDK CSS (head/trip-map.html imports it into this layer)
  *   tokens           sizes (tokens.css) and the default colours for both modes (theme.css)
  *   base             HTML elements: page background, text, headings, links, code
  *   syntax           code colours
@@ -17,7 +18,7 @@
  *   utilities        single-purpose helpers
  *   custom           the site's own assets/css/custom.css (empty in the theme): it wins over everything above
  */
-@layer reset, dialog-lightbox, tokens, base, syntax, layout, components, schemes, presets, site, utilities, custom;
+@layer reset, dialog-lightbox, maptiler, tokens, base, syntax, layout, components, schemes, presets, site, utilities, custom;
 
 @import "reset.css" layer(reset);
 @import "tokens.css" layer(tokens);

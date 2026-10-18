@@ -1,6 +1,8 @@
 {{- /* Pages with a trip map: MapTiler's SDK (MapLibre GL JS with MapTiler's additions, billed per map session) from
        their CDN, in the version params.map.sdk, and the script that draws the maps (assets/js/trip-map.js) */ -}}
 {{- $version := site.Params.map.sdk }}
-<link rel="stylesheet" href="https://cdn.maptiler.com/maptiler-sdk-js/v{{ $version }}/maptiler-sdk.css">
+{{- /* The SDK's CSS in the cascade layer "maptiler", which main.css ranks below the theme's: unlayered, its white
+       popups would win over the theme's popup colours (light text on white in dark mode) */}}
+<style>@import url("https://cdn.maptiler.com/maptiler-sdk-js/v{{ $version }}/maptiler-sdk.css") layer(maptiler);</style>
 <script src="https://cdn.maptiler.com/maptiler-sdk-js/v{{ $version }}/maptiler-sdk.umd.min.js" defer></script>
 {{ partial "script.html" "js/trip-map.js" }}

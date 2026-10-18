@@ -47,10 +47,12 @@
     --heading-transform: none;
     --heading-spacing: normal;
 
-    /* Photo viewer and trip map: the same in both modes */
-    --lightbox-bg: #0c0c0c;          /* behind the photo */
-    --lightbox-print: #f68f31;       /* the viewer's counter, place, video progress, hovered buttons */
-    --route: #e16c0d;                /* trip map lines and points without a colour of their own */
+    /* Photo viewer: black behind the photo in both modes; its orange (counter, place, video progress, hovered
+       buttons) is the scheme's accent, lightened in light mode so it reads on the black */
+    --lightbox-bg: #0c0c0c;
+    --lightbox-print: color-mix(in srgb, var(--color-accent) 65%, white);
+    /* Trip map lines and points without a colour of their own: the accent (the map follows the mode) */
+    --route: var(--color-accent);
 }
 
 /* Dark: a green blackboard and chalk */
@@ -70,6 +72,8 @@
     --pattern-strength: 18%;
     --backdrop-veil: color-mix(in srgb, color-mix(in srgb, var(--color-bg), black 50%) 88%, transparent); /* darker than the page */
     --backdrop-veil-edge: color-mix(in srgb, color-mix(in srgb, var(--color-bg), black 50%) 30%, transparent);
+
+    --lightbox-print: var(--color-accent);
 
     --shadow: 0 1px 2px rgb(0 0 0 / 0.25);
     --shadow-raised: 0 8px 18px rgb(0 0 0 / 0.4);

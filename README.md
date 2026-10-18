@@ -302,9 +302,11 @@ File → Export, untick "Location Information").
 
 `geojson` is a file next to the page, in `assets/` or in `static/`. Any tool that exports GeoJSON works (most GPX
 tools do). Lines, points and areas use their own colours if the file has them (`stroke`, `stroke-width`,
-`marker-color`, `fill`), otherwise the theme's orange. A click on a line or point shows its `name` and `description`.
-`style` picks another [MapTiler map](https://www.maptiler.com/maps/), like `style="outdoor-v4"`; the default is
-`params.map.style`.
+`marker-color`, `fill`), otherwise the colour scheme's accent. A click on a line or point shows its `name` and
+`description`, in the page's colours. The map follows the page's light and dark mode: `params.map.style` (default
+`topo-v4`) in light mode, `params.map.styleDark` (default `topo-v4-dark`) in dark mode, and it switches when the
+visitor uses the toggle. `style` and `styleDark` on the shortcode pick other [MapTiler maps](https://www.maptiler.com/maps/),
+like `style="outdoor-v4" styleDark="outdoor-v4-dark"`.
 
 ### The MapTiler key
 

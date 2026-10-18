@@ -1,17 +1,20 @@
 {{- /* Trip map: a GeoJSON file on a MapTiler map (trip-map.css, assets/js/trip-map.js).
 
          {{< trip-map geojson="route.geojson" >}}
-         {{< trip-map geojson="route.geojson" style="outdoor-v4" caption="Eight days on foot" >}}
+         {{< trip-map geojson="route.geojson" style="outdoor-v4" styleDark="outdoor-v4-dark" caption="Eight days on foot" >}}
 
        geojson: a file next to the page's index.md, or in assets/ or static/. Lines, points and areas are drawn in
        the colours of their own properties if they have them (stroke, stroke-width, marker-color, fill: the
        "simplestyle" names most GPX and GeoJSON tools write), else in the theme's orange; a click shows a feature's
-       name and description (or desc). style: a MapTiler style ID or a style.json URL, default params.map.style.
+       name and description (or desc). style: a MapTiler style ID or a style.json URL, default params.map.style;
+       styleDark: the same for dark mode (the map switches with the page), default params.map.styleDark, or style
+       when the page sets only that.
        The MapTiler key comes from the environment variable HUGO_MAPTILER_KEY when the site is built (Hugo's getenv
        may read HUGO_* variables; a browser map's key is public anyway, MapTiler's allowed origins protect it).
        Without a key the map's place shows a note. */ -}}
 {{- $file := .Get "geojson" }}
 {{- $style := .Get "style" | default site.Params.map.style }}
+{{- $styleDark := .Get "styleDark" | default (cond (ne (.Get "style") "") $style (site.Params.map.styleDark | default $style)) }}
 {{- $key := getenv "HUGO_MAPTILER_KEY" }}
 {{- $url := "" }}
 {{- with $file }}
@@ -27,12 +30,13 @@
 {{- else }}
   {{- warnf "%s: trip-map: no geojson given" .Page.RelPermalink }}
 {{- end }}
-{{- if not (strings.Contains $style "://") }}
-  {{- $style = printf "https://api.maptiler.com/maps/%s/style.json?key=%s" $style (urlquery $key) }}
+{{- $styles := slice }}
+{{- range slice $style $styleDark }}
+  {{- $styles = $styles | append (cond (strings.Contains . "://") . (printf "https://api.maptiler.com/maps/%s/style.json?key=%s" . (urlquery $key))) }}
 {{- end }}
 <figure class="trip-map breakout">
   {{- if and $key $url }}
-  <div class="trip-map-canvas" data-geojson="{{ $url }}" data-map-style="{{ $style }}" data-key="{{ $key }}"
+  <div class="trip-map-canvas" data-geojson="{{ $url }}" data-map-style="{{ index $styles 0 }}" data-map-style-dark="{{ index $styles 1 }}" data-key="{{ $key }}"
        role="region" aria-label="Map of the trip"></div>
   {{- else if not $key }}
     {{- warnf "%s: trip-map: no MapTiler key, the map shows a note instead (set HUGO_MAPTILER_KEY)" .Page.RelPermalink }}

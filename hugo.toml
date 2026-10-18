@@ -51,10 +51,11 @@
     ico = ""
     appleTouch = ""
 
-  # Trip maps: MapTiler's style (a style ID like "topo-v4" or a style.json URL). The key comes from the
-  # environment variable HUGO_MAPTILER_KEY when the site is built.
+  # Trip maps: MapTiler's style (a style ID like "topo-v4" or a style.json URL), and the one for dark mode (the map
+  # switches with the page). The key comes from the environment variable HUGO_MAPTILER_KEY when the site is built.
   [params.map]
     style = "topo-v4"
+    styleDark = "topo-v4-dark"
     sdk = "4.2.0"    # the version of MapTiler's SDK, loaded from their CDN
 
   # Galleries: the version of dialog-lightbox, the photo viewer, loaded from jsDelivr
