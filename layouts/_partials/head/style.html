@@ -4,7 +4,7 @@
          the body font (heading) or monospace (mono) while it loads; a whole font stack is used as given
        - background (params.background, or a page's style.background): "grid", "dots", "none", or an image in
          assets/: an SVG tile, repeated at its own size or at size; with size "cover" a photo, fixed behind the page
-         and covering the window, under a veil of the background colour (--backdrop-veil), in 1920 and 3840 px wide
+         and covering the window, under a gradient of the background colour (--backdrop-overlay), in 1920 and 3840 px wide
          WebP for 1x and 2x screens
        - colours (params.colors.light / .dark): --color-<name> for bg, surface, text, primary, secondary, tertiary,
          accent, border; pattern sets --pattern-color */ -}}
@@ -31,7 +31,7 @@
         {{- if and (eq $size "cover") (ne .MediaType.SubType "svg") }}
           {{- $small := .Resize "1920x webp q78" }}
           {{- $large := cond (gt .Width 3840) (.Resize "3840x webp q80") (.Resize (printf "%dx webp q80" .Width)) }}
-          {{- $rules = $rules | append (printf "--backdrop: linear-gradient(var(--backdrop-veil), var(--backdrop-veil)), image-set(url(%q) 1x, url(%q) 2x) center / cover no-repeat;" $small.RelPermalink $large.RelPermalink) }}
+          {{- $rules = $rules | append (printf "--backdrop: var(--backdrop-overlay), image-set(url(%q) 1x, url(%q) 2x) center / cover no-repeat;" $small.RelPermalink $large.RelPermalink) }}
           {{- $value = "none" }}
         {{- else }}
           {{- $value = printf "url(%q) left top / %s %s" .RelPermalink $size (cond (eq $size "cover") "no-repeat fixed" "repeat") }}

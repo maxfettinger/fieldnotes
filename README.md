@@ -194,7 +194,8 @@ Google's servers, which in the EU can count as sharing visitors' data.
 ```
 
 With `size = "cover"` the image is a photo: fixed behind the page, covering the window, under a veil of the
-background colour so text stays readable (`--backdrop-veil`, stronger in light mode). The theme makes 1920 and 3840
+background colour so text stays readable: strong behind the text column, thinner toward the window's edges, where
+the photo shows (`--backdrop-overlay`, from `--backdrop-veil` and `--backdrop-veil-edge`; stronger in light mode). The theme makes 1920 and 3840
 px wide WebP versions for normal and sharp screens, so a 4K original is a good start. A page can have its own, in
 its front matter, as the example site's cyberpunk page does:
 

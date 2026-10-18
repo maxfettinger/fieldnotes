@@ -16,7 +16,7 @@
     patterns: { grid: "var(--pattern-grid)", dots: "var(--pattern-dots)", none: "none", city: "none" },
     {{- /* The photo option: the same image-set as head/style.html makes for a background with size "cover" */}}
     {{- with resources.Get "images/neon-streets.jpg" }}
-    backdrops: { city: {{ printf "linear-gradient(var(--backdrop-veil), var(--backdrop-veil)), image-set(url(%q) 1x, url(%q) 2x) center / cover no-repeat" (.Resize "1920x webp q78").RelPermalink (.Resize "3840x webp q80").RelPermalink }} },
+    backdrops: { city: {{ printf "var(--backdrop-overlay), image-set(url(%q) 1x, url(%q) 2x) center / cover no-repeat" (.Resize "1920x webp q78").RelPermalink (.Resize "3840x webp q80").RelPermalink }} },
     {{- end }}
     load() {
       try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch { return {}; }
