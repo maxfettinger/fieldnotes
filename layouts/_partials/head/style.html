@@ -2,8 +2,10 @@
        preset and the schemes (so these win over them; the site's custom.css still wins over these):
        - fonts (params.fonts): --font-body, --font-heading, --font-mono; a single name falls back to serif (body),
          the body font (heading) or monospace (mono) while it loads; a whole font stack is used as given
-       - background (params.background): "grid", "dots", "none", or an image in assets/, e.g. an SVG tile, repeated
-         at its own size or at params.background.size
+       - background (params.background, or a page's style.background): "grid", "dots", "none", or an image in
+         assets/: an SVG tile, repeated at its own size or at size; with size "cover" a photo, fixed behind the page
+         and covering the window, under a veil of the background colour (--backdrop-veil), in 1920 and 3840 px wide
+         WebP for 1x and 2x screens
        - colours (params.colors.light / .dark): --color-<name> for bg, surface, text, primary, secondary, tertiary,
          accent, border; pattern sets --pattern-color */ -}}
 {{- $p := site.Params }}
@@ -16,16 +18,26 @@
   {{- end }}
 {{- end }}
 {{- $patterns := dict "grid" "var(--pattern-grid)" "dots" "var(--pattern-dots)" "none" "none" }}
+{{- $background := $p.background | default dict }}
+{{- with .Params.style }}{{ with .background }}{{ $background = . }}{{ end }}{{ end }}
+{{- $size := $background.size | default "auto" }}
 {{- $modes := dict }}
 {{- range $mode := slice "light" "dark" }}
   {{- $rules := slice }}
-  {{- with index ($p.background | default dict) $mode }}
+  {{- with index $background $mode }}
     {{- $value := index $patterns . }}
     {{- if not $value }}
       {{- with resources.Get . }}
-        {{- $value = printf "url(%q) left top / %s repeat" .RelPermalink ($p.background.size | default "auto") }}
+        {{- if and (eq $size "cover") (ne .MediaType.SubType "svg") }}
+          {{- $small := .Resize "1920x webp q78" }}
+          {{- $large := cond (gt .Width 3840) (.Resize "3840x webp q80") (.Resize (printf "%dx webp q80" .Width)) }}
+          {{- $rules = $rules | append (printf "--backdrop: linear-gradient(var(--backdrop-veil), var(--backdrop-veil)), image-set(url(%q) 1x, url(%q) 2x) center / cover no-repeat;" $small.RelPermalink $large.RelPermalink) }}
+          {{- $value = "none" }}
+        {{- else }}
+          {{- $value = printf "url(%q) left top / %s %s" .RelPermalink $size (cond (eq $size "cover") "no-repeat fixed" "repeat") }}
+        {{- end }}
       {{- else }}
-        {{- warnf "fieldnotes: params.background.%s: %q is neither grid, dots, none nor a file in assets/" $mode . }}
+        {{- warnf "fieldnotes: background.%s: %q is neither grid, dots, none nor a file in assets/" $mode . }}
       {{- end }}
     {{- end }}
     {{- with $value }}{{ $rules = $rules | append (printf "--pattern: %s;" .) }}{{ end }}

@@ -5,7 +5,7 @@ a blackboard in dark mode, and it comes with trip maps, photo galleries with a v
 build step: Hugo does everything.
 
 - Seven presets for how the site is drawn (fieldnotes with tape, minimal, editorial, cinematic, brutalist,
-  terminal, cyberpunk) and sixteen colour schemes with light and dark versions, any with any; your own as plugins
+  terminal, cyberpunk) and seventeen colour schemes with light and dark versions, any with any; your own as plugins
 - Light-only, dark-only or both, following the visitor's system or a toggle
 - Fonts from Google Fonts, backgrounds including your own SVG tile
 - Hooks for your own CSS, HTML and scripts
@@ -110,9 +110,9 @@ of its own, and its theme generator tries them all live and writes the settings.
 | `cinematic` | for photographs: Inter Tight in light weights, hairlines, sharp corners, tall galleries | cinema |
 | `brutalist` | IBM Plex Mono, thick borders, hard offset shadows, square corners | ink |
 | `terminal` | Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, a blinking cursor | omarchy |
-| `cyberpunk` | a 90s anime heads-up display: steel-blue panels with thin cyan frames, mono labels, a red signal light | hud |
+| `cyberpunk` | a 90s anime heads-up display: steel-blue panels with thin cyan frames, a red signal light | hud |
 
-Colour schemes, calm ones first: fieldnotes, newsprint, ink, cinema, forest, ocean, nord, gruvbox, everforest,
+Colour schemes, calm ones first: fieldnotes, pencil, ink, newsprint, cinema, forest, ocean, nord, gruvbox, everforest,
 rose-pine, catppuccin, tokyo-night, omarchy, sakura, hud, neon. Each has a light and a dark version, with all text at
 least 4.5:1 on page and cards; where an original scheme's light colours fall short, they're slightly darker here.
 
@@ -191,6 +191,20 @@ Google's servers, which in the EU can count as sharing visitors' data.
   light = "images/tile.svg"   # assets/images/tile.svg
   dark = "dots"
   size = "120px"
+```
+
+With `size = "cover"` the image is a photo: fixed behind the page, covering the window, under a veil of the
+background colour so text stays readable (`--backdrop-veil`, stronger in light mode). The theme makes 1920 and 3840
+px wide WebP versions for normal and sharp screens, so a 4K original is a good start. A page can have its own, in
+its front matter, as the example site's cyberpunk page does:
+
+```yaml
+style:
+  preset: cyberpunk
+  background:
+    light: images/neon-streets.jpg
+    dark: images/neon-streets.jpg
+    size: cover
 ```
 
 **Your own CSS.** Create `assets/css/custom.css`. The theme imports it last, in its own cascade layer, so your rules
@@ -351,6 +365,9 @@ jobs:
   [Andy Bell](https://piccalil.li/blog/a-more-modern-css-reset/) (CC BY); fluid type and space computed the
   [Utopia](https://utopia.fyi/) way
 - Maths: [MathJax](https://www.mathjax.org/), from jsDelivr
+- Example site: the city at night behind the cyberpunk page is "Neon streets" by JINDONG H, CC0
+  ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Neon_streets_(Unsplash).jpg), from Unsplash); the other
+  photos are generated gradients
 
 ## Licence
 

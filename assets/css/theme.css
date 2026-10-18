@@ -23,6 +23,8 @@
     --pattern: var(--pattern-grid);  /* the background (params.background): --pattern-grid, --pattern-dots, none */
     --pattern-color: #6babd5;        /* the background's lines or dots */
     --pattern-strength: 35%;         /* how strongly they show: major lines, minor lines get half */
+    --backdrop: none;                /* a photo behind the page, set by head/style.html (background size "cover") */
+    --backdrop-veil: color-mix(in srgb, var(--color-bg) 72%, transparent); /* over the photo, so text stays readable */
 
     --shadow: 0 1px 1px rgb(70 55 30 / 0.10), 0 2px 6px rgb(70 55 30 / 0.08);
     --shadow-raised: 0 10px 20px rgb(70 55 30 / 0.14);
@@ -59,6 +61,7 @@
     --pattern: var(--pattern-dots);
     --pattern-color: #e4eee8;
     --pattern-strength: 18%;
+    --backdrop-veil: color-mix(in srgb, var(--color-bg) 50%, transparent);
 
     --shadow: 0 1px 2px rgb(0 0 0 / 0.25);
     --shadow-raised: 0 8px 18px rgb(0 0 0 / 0.4);

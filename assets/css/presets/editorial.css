@@ -1,5 +1,5 @@
 /*
- * Editorial: a newspaper. A centred masthead over a double rule, Playfair Display headlines over Source Serif text,
+ * Editorial: a newspaper. A masthead over a double rule, Playfair Display headlines over Source Serif text,
  * articles between rules in two columns on wide screens, datelines in small capitals, a drop cap at the start of a
  * page.
  */
@@ -18,15 +18,13 @@
     --card-padding-inline: 0;
 }
 
-/* The masthead: the paper's name large and centred, the sections below it, a double rule under both */
+/* The masthead: the paper's name large, the sections beside it, a double rule under both */
 [data-preset="editorial"] .site-header {
     border-block-end: 4px double var(--color-primary);
 }
 
 [data-preset="editorial"] .site-header-inner {
-    flex-direction: column;
-    justify-content: center;
-    padding-block: var(--space-s) 0;
+    align-items: baseline;
 }
 
 [data-preset="editorial"] .site-title {
@@ -65,12 +63,7 @@
     letter-spacing: 0.06em;
 }
 
-/* A page's headline centred over its dateline; the text starts with a drop cap */
-[data-preset="editorial"] .page-header {
-    justify-items: center;
-    text-align: center;
-}
-
+/* The text starts with a drop cap */
 [data-preset="editorial"] article > .prose > p:first-child::first-letter {
     float: left;
     margin: 0.06em 0.08em 0 0;

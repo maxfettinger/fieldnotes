@@ -1,7 +1,7 @@
 /*
  * Cyberpunk: a heads-up display from a 90s anime. Steel-blue see-through panels with thin frames in the scheme's
- * primary colour, a label over each in spaced mono capitals ("LOG // 01") above a hairline, a small red signal light in
- * the corner, IBM Plex Sans text and Chakra Petch headings, a faint grid behind.
+ * primary colour, a small red signal light in the corner, IBM Plex Sans text and Chakra Petch headings, a faint grid
+ * behind, or a photo of a city at night (a background with size "cover", like this preset's page in the example site).
  */
 :root[data-preset="cyberpunk"] {
     --pattern: var(--pattern-grid);
@@ -43,33 +43,11 @@
     text-decoration-color: var(--color-primary);
 }
 
-/* The label over each panel, numbered, above a hairline */
-[data-preset="cyberpunk"] .card-list {
-    counter-reset: panel;
-}
-
-[data-preset="cyberpunk"] .card {
-    counter-increment: panel;
-}
-
-[data-preset="cyberpunk"] :is(.card, .display-card)::before {
-    content: "LOG // " counter(panel, decimal-leading-zero);
-    padding-block-end: var(--space-2xs);
-    border-block-end: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
-    color: var(--color-secondary);
-    font: 500 var(--step--2) / 1 var(--font-mono);
-    letter-spacing: 0.2em;
-}
-
-[data-preset="cyberpunk"] .display-card::before {
-    content: "SYS // NOW";
-}
-
 /* The signal light */
 [data-preset="cyberpunk"] :is(.card, .display-card)::after {
     content: "";
     position: absolute;
-    inset-block-start: calc(var(--space-s) + 0.15em);
+    inset-block-start: var(--space-s);
     inset-inline-end: var(--space-m);
     inline-size: 5px;
     block-size: 5px;

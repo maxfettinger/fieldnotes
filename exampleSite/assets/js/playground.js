@@ -25,7 +25,11 @@ if (form) {
   function render() {
     const lines = ["[params.style]", `  preset = "${choices.preset}"`, `  scheme = "${choices.scheme}"`];
     if (choices.font) lines.push("[params.fonts]", `  body = "${choices.font}"`);
-    if (choices.background) lines.push("[params.background]", `  light = "${choices.background}"`, `  dark = "${choices.background}"`);
+    if (choices.background === "city") {
+      lines.push("[params.background]", '  light = "images/neon-streets.jpg"  # your photo in assets/', '  dark = "images/neon-streets.jpg"', '  size = "cover"');
+    } else if (choices.background) {
+      lines.push("[params.background]", `  light = "${choices.background}"`, `  dark = "${choices.background}"`);
+    }
     form.parentElement.querySelector(".playground-config code").textContent = lines.join("\n");
   }
 

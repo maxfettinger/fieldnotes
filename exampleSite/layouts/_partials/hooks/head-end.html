@@ -13,7 +13,11 @@
   window.playground = {
     key: "fieldnotes-playground",
     presets: {{ hugo.Data.fieldnotes.presets }},
-    patterns: { grid: "var(--pattern-grid)", dots: "var(--pattern-dots)", none: "none" },
+    patterns: { grid: "var(--pattern-grid)", dots: "var(--pattern-dots)", none: "none", city: "none" },
+    {{- /* The photo option: the same image-set as head/style.html makes for a background with size "cover" */}}
+    {{- with resources.Get "images/neon-streets.jpg" }}
+    backdrops: { city: {{ printf "linear-gradient(var(--backdrop-veil), var(--backdrop-veil)), image-set(url(%q) 1x, url(%q) 2x) center / cover no-repeat" (.Resize "1920x webp q78").RelPermalink (.Resize "3840x webp q80").RelPermalink }} },
+    {{- end }}
     load() {
       try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch { return {}; }
     },
@@ -40,6 +44,8 @@
       root.dataset.scheme = scheme || p.scheme;
       if (background) root.style.setProperty("--pattern", this.patterns[background]);
       else root.style.removeProperty("--pattern");
+      if (this.backdrops?.[background]) root.style.setProperty("--backdrop", this.backdrops[background]);
+      else root.style.removeProperty("--backdrop");
       for (const role of ["body", "heading"]) {
         if (font) root.style.setProperty(`--font-${role}`, `"${font}", serif`);
         else root.style.removeProperty(`--font-${role}`);

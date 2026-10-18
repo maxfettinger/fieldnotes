@@ -24,7 +24,7 @@
 {{ partialCached "head/theme.html" . }}
 {{ partialCached "head/fonts.html" (dict "style" $style) $style.preset }}
 {{ partialCached "head/css.html" (dict "style" $style) $style.preset $style.scheme }}
-{{ partialCached "head/style.html" . }}
+{{ partialCached "head/style.html" . (.Params.style | jsonify) }}
 {{ partial "script.html" "js/main.js" }}
 {{- if .HasShortcode "gallery" }}
 {{ partialCached "head/gallery.html" . }}

@@ -1,16 +1,26 @@
 ---
 title: "Cyberpunk"
 weight: 70
-summary: "A heads-up display from a 90s anime: steel-blue panels with thin cyan frames, mono labels and a red signal light."
+summary: "A heads-up display from a 90s anime: steel-blue panels with thin cyan frames and a red signal light, over a city at night."
 style:
   preset: cyberpunk
+  background:
+    light: images/neon-streets.jpg
+    dark: images/neon-streets.jpg
+    size: cover
 ---
 
-A heads-up display from a 90s anime: steel-blue panels with thin cyan frames, mono labels and a red signal light. In your `hugo.toml`:
+A heads-up display from a 90s anime: steel-blue panels with thin cyan frames and a red signal light. Behind this page
+is a photo of a city at night ("Neon streets" by JINDONG H, CC0). In your `hugo.toml`:
 
 ```toml
 [params.style]
   preset = "cyberpunk"
+
+[params.background]
+  light = "images/neon-streets.jpg"   # a photo in assets/
+  dark = "images/neon-streets.jpg"
+  size = "cover"
 ```
 
 ## A heading

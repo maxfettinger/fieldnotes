@@ -19,10 +19,22 @@
 
 body {
     background: var(--pattern), var(--color-bg);
+    isolation: isolate;
     color: var(--color-text);
     font-family: var(--font-body);
     font-size: var(--step-0);
     line-height: var(--leading);
+}
+
+/* A photo behind the page (a background image with size "cover", head/style.html): fixed to the window, so it stays
+   sharp and still on long pages (background-attachment: fixed would cover the whole page on iOS) */
+body::before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    background: var(--backdrop);
+    pointer-events: none;
 }
 
 h1,
