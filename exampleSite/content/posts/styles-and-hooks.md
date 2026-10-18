@@ -12,7 +12,7 @@ The playground on the [home page]({{< relref "/" >}}) tries the settings out liv
 
 ```toml
 [params.style]
-  preset = "cyberpunk" # how it's drawn: fieldnotes, minimal, editorial, cinematic, brutalist, terminal or cyberpunk
+  preset = "terminal"  # how it's drawn: fieldnotes, minimal, editorial, cinematic, brutalist or terminal
   scheme = "catppuccin" # its colours, light and dark (empty: the preset's own)
 
 [params.mode]

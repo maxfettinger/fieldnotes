@@ -7,6 +7,8 @@ const form = document.querySelector(".playground");
 if (form) {
   const has = (name) => Boolean(form.elements[name]);
   const saved = playground.load();
+  // A preset saved before it was removed from the theme: back to the site's own
+  if (saved.preset && !playground.presets[saved.preset]) delete saved.preset;
   const choices = {
     preset: form.dataset.preset,
     scheme: form.dataset.scheme,

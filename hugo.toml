@@ -8,7 +8,7 @@
   description = ""   # the site's description for search engines and link previews
   math = false       # MathJax on every page; a page can switch it with math: true/false in its front matter
 
-  # Look: a preset is how the site is drawn (fieldnotes, minimal, editorial, cinematic, brutalist, terminal, cyberpunk:
+  # Look: a preset is how the site is drawn (fieldnotes, minimal, editorial, cinematic, brutalist, terminal:
   # fonts, background, corners, cards, decoration), a scheme its colours in a light and a dark version (fieldnotes,
   # newsprint, ink, cinema, forest, ocean, nord, gruvbox, everforest, rose-pine, catppuccin, tokyo-night, omarchy,
   # sakura, hud, neon); any scheme with any preset, empty: the preset's own. A page can set the same in its front

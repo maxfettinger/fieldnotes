@@ -4,8 +4,8 @@ A Hugo theme for people who write about their trips and their research. It looks
 a blackboard in dark mode, and it comes with trip maps, photo galleries with a viewer, maths and code. No Node, no
 build step: Hugo does everything.
 
-- Seven presets for how the site is drawn (fieldnotes with tape, minimal, editorial, cinematic, brutalist,
-  terminal, cyberpunk) and seventeen colour schemes with light and dark versions, any with any; your own as plugins
+- Six presets for how the site is drawn (fieldnotes with tape, minimal, editorial, cinematic, brutalist,
+  terminal) and seventeen colour schemes with light and dark versions, any with any; your own as plugins
 - Light-only, dark-only or both, following the visitor's system or a toggle
 - Fonts from Google Fonts, backgrounds including your own SVG tile
 - Hooks for your own CSS, HTML and scripts
@@ -98,7 +98,7 @@ of its own, and its theme generator tries them all live and writes the settings.
 
 ```toml
 [params.style]
-  preset = "cyberpunk"    # fieldnotes, minimal, editorial, cinematic, brutalist, terminal, cyberpunk
+  preset = "terminal"     # fieldnotes, minimal, editorial, cinematic, brutalist, terminal
   scheme = "catppuccin"   # optional, else the preset's own
 ```
 
@@ -110,7 +110,6 @@ of its own, and its theme generator tries them all live and writes the settings.
 | `cinematic` | for photographs: Inter Tight in light weights, hairlines, sharp corners, tall galleries | cinema |
 | `brutalist` | IBM Plex Mono, thick borders, hard offset shadows, square corners | ink |
 | `terminal` | Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, a blinking cursor | omarchy |
-| `cyberpunk` | a 90s anime heads-up display: steel-blue panels with thin cyan frames, a red signal light | hud |
 
 Colour schemes, calm ones first: fieldnotes, pencil, ink, newsprint, cinema, forest, ocean, nord, gruvbox, everforest,
 rose-pine, catppuccin, tokyo-night, omarchy, sakura, hud, neon. Each has a light and a dark version, with all text at
@@ -198,11 +197,10 @@ background colour so text stays readable: strong behind the text column, thinner
 the photo shows (`--backdrop-overlay`, from `--backdrop-veil` and `--backdrop-veil-edge`; stronger in light mode). The theme makes 1920 and 3840
 px wide WebP versions for normal and sharp screens, so a 4K original is a good start. Each mode can have its own
 photo, like a wallpaper that follows the time of day; in dark mode the veil is darker than the page. A page can have its own, in
-its front matter, as the example site's cyberpunk page does:
+its front matter; the example site's generator has a photo to try:
 
 ```yaml
 style:
-  preset: cyberpunk
   background:
     light: images/neon-streets-day.jpg
     dark: images/neon-streets.jpg
@@ -369,7 +367,7 @@ jobs:
   [Andy Bell](https://piccalil.li/blog/a-more-modern-css-reset/) (CC BY); fluid type and space computed the
   [Utopia](https://utopia.fyi/) way
 - Maths: [MathJax](https://www.mathjax.org/), from jsDelivr
-- Example site: the city at night behind the cyberpunk page is "Neon streets" by JINDONG H, CC0
+- Example site: the generator's photo background, a city at night, is "Neon streets" by JINDONG H, CC0
   ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Neon_streets_(Unsplash).jpg), from Unsplash); the other
   photos are generated gradients. Its light-mode version (`neon-streets-day.jpg`) is the same photo with its lightness
   inverted and its hues kept

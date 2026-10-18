@@ -1,5 +1,0 @@
-name = "Cyberpunk"
-weight = 70
-description = "A heads-up display from a 90s anime: steel-blue panels with thin cyan frames and a red signal light."
-scheme = "hud"
-fonts = ["IBM Plex Sans:ital,wght@0,400;0,600;1,400", "Chakra Petch:wght@500;700", "JetBrains Mono:wght@400;500"]

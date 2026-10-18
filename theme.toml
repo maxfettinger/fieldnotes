@@ -4,7 +4,7 @@ licenselink = "https://github.com/maxfettinger/fieldnotes/blob/main/LICENSE"
 description = "A calm theme for people who write about their trips and their research: graph paper, dark mode, trip maps, photo galleries, maths."
 homepage = "https://github.com/maxfettinger/fieldnotes"
 tags = ["blog", "personal", "portfolio", "dark mode", "maps", "gallery", "math", "minimal"]
-features = ["light, dark or both", "seven presets", "seventeen colour schemes", "presets and schemes as plugins", "theme generator", "trip maps (MapTiler)", "photo galleries with a viewer", "MathJax", "SEO", "Google Fonts"]
+features = ["light, dark or both", "six presets", "seventeen colour schemes", "presets and schemes as plugins", "theme generator", "trip maps (MapTiler)", "photo galleries with a viewer", "MathJax", "SEO", "Google Fonts"]
 min_version = "0.158.0"
 
 [author]
