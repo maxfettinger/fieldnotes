@@ -68,8 +68,8 @@
     --pattern: var(--pattern-dots);
     --pattern-color: #e4eee8;
     --pattern-strength: 18%;
-    --backdrop-veil: color-mix(in srgb, var(--color-bg) 72%, transparent);
-    --backdrop-veil-edge: color-mix(in srgb, var(--color-bg) 20%, transparent);
+    --backdrop-veil: color-mix(in srgb, var(--color-bg) 90%, transparent);
+    --backdrop-veil-edge: color-mix(in srgb, var(--color-bg) 15%, transparent);
 
     --shadow: 0 1px 2px rgb(0 0 0 / 0.25);
     --shadow-raised: 0 8px 18px rgb(0 0 0 / 0.4);
