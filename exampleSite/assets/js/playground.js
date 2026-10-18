@@ -26,7 +26,7 @@ if (form) {
     const lines = ["[params.style]", `  preset = "${choices.preset}"`, `  scheme = "${choices.scheme}"`];
     if (choices.font) lines.push("[params.fonts]", `  body = "${choices.font}"`);
     if (choices.background === "city") {
-      lines.push("[params.background]", '  light = "images/neon-streets.jpg"  # your photo in assets/', '  dark = "images/neon-streets.jpg"', '  size = "cover"');
+      lines.push("[params.background]", '  light = "images/neon-streets-day.jpg"  # your photos in assets/, one per mode', '  dark = "images/neon-streets.jpg"', '  size = "cover"');
     } else if (choices.background) {
       lines.push("[params.background]", `  light = "${choices.background}"`, `  dark = "${choices.background}"`);
     }

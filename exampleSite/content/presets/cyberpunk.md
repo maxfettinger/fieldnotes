@@ -5,20 +5,22 @@ summary: "A heads-up display from a 90s anime: steel-blue panels with thin cyan 
 style:
   preset: cyberpunk
   background:
-    light: images/neon-streets.jpg
+    light: images/neon-streets-day.jpg
     dark: images/neon-streets.jpg
     size: cover
 ---
 
 A heads-up display from a 90s anime: steel-blue panels with thin cyan frames and a red signal light. Behind this page
-is a photo of a city at night ("Neon streets" by JINDONG H, CC0). In your `hugo.toml`:
+is a photo of a city at night ("Neon streets" by JINDONG H, CC0), and in light mode the same city by day: the photo
+with its lightness turned round and its colours kept, like a wallpaper that follows the time of day. In your
+`hugo.toml`:
 
 ```toml
 [params.style]
   preset = "cyberpunk"
 
 [params.background]
-  light = "images/neon-streets.jpg"   # a photo in assets/
+  light = "images/neon-streets-day.jpg"   # a photo in assets/, one per mode
   dark = "images/neon-streets.jpg"
   size = "cover"
 ```

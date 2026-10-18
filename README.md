@@ -196,14 +196,15 @@ Google's servers, which in the EU can count as sharing visitors' data.
 With `size = "cover"` the image is a photo: fixed behind the page, covering the window, under a veil of the
 background colour so text stays readable: strong behind the text column, thinner toward the window's edges, where
 the photo shows (`--backdrop-overlay`, from `--backdrop-veil` and `--backdrop-veil-edge`; stronger in light mode). The theme makes 1920 and 3840
-px wide WebP versions for normal and sharp screens, so a 4K original is a good start. A page can have its own, in
+px wide WebP versions for normal and sharp screens, so a 4K original is a good start. Each mode can have its own
+photo, like a wallpaper that follows the time of day; in dark mode the veil is darker than the page. A page can have its own, in
 its front matter, as the example site's cyberpunk page does:
 
 ```yaml
 style:
   preset: cyberpunk
   background:
-    light: images/neon-streets.jpg
+    light: images/neon-streets-day.jpg
     dark: images/neon-streets.jpg
     size: cover
 ```
@@ -368,7 +369,8 @@ jobs:
 - Maths: [MathJax](https://www.mathjax.org/), from jsDelivr
 - Example site: the city at night behind the cyberpunk page is "Neon streets" by JINDONG H, CC0
   ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Neon_streets_(Unsplash).jpg), from Unsplash); the other
-  photos are generated gradients
+  photos are generated gradients. Its light-mode version (`neon-streets-day.jpg`) is the same photo with its lightness
+  inverted and its hues kept
 
 ## Licence
 

@@ -25,8 +25,8 @@
     --pattern-strength: 35%;         /* how strongly they show: major lines, minor lines get half */
     --backdrop: none;                /* a photo behind the page, set by head/style.html (background size "cover") */
     /* Over the photo, so text stays readable: the veil behind the text column, thinner toward the window's edges */
-    --backdrop-veil: color-mix(in srgb, var(--color-bg) 86%, transparent);
-    --backdrop-veil-edge: color-mix(in srgb, var(--color-bg) 45%, transparent);
+    --backdrop-veil: color-mix(in srgb, var(--color-bg) 80%, transparent);
+    --backdrop-veil-edge: color-mix(in srgb, var(--color-bg) 25%, transparent);
     --backdrop-overlay: linear-gradient(90deg,
         var(--backdrop-veil-edge),
         var(--backdrop-veil) calc(50% - var(--width-content) / 2 - var(--space-xl))
@@ -68,8 +68,8 @@
     --pattern: var(--pattern-dots);
     --pattern-color: #e4eee8;
     --pattern-strength: 18%;
-    --backdrop-veil: color-mix(in srgb, var(--color-bg) 90%, transparent);
-    --backdrop-veil-edge: color-mix(in srgb, var(--color-bg) 15%, transparent);
+    --backdrop-veil: color-mix(in srgb, color-mix(in srgb, var(--color-bg), black 50%) 88%, transparent); /* darker than the page */
+    --backdrop-veil-edge: color-mix(in srgb, color-mix(in srgb, var(--color-bg), black 50%) 30%, transparent);
 
     --shadow: 0 1px 2px rgb(0 0 0 / 0.25);
     --shadow-raised: 0 8px 18px rgb(0 0 0 / 0.4);
