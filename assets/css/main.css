@@ -1,7 +1,7 @@
 /*
- * Fieldnotes' core stylesheet. head/css.html bundles it with the active preset and colour schemes (one file per
+ * Fieldnotes' core stylesheet. head/css.html bundles it with the active preset and colour scheme (one file per
  * combination, css.Build): @import "main.css"; @import "presets/<id>.css" layer(presets); @import
- * "schemes/<id>.css" layer(schemes) for the light and the dark scheme.
+ * "schemes/<id>.css" layer(schemes).
  *
  * Cascade layers, lowest first. A rule in a later layer beats one in an earlier layer whatever its selector:
  *   reset            browser defaults evened out
@@ -11,7 +11,7 @@
  *   syntax           code colours
  *   layout           composition primitives (wrapper, stack, cluster) and the page frame
  *   components       the parts of the pages, one file each, named like their main class
- *   schemes          the colour schemes in use (schemes/*.css): colours only
+ *   schemes          the colour scheme in use (schemes/*.css): colours only, light and dark
  *   presets          the preset in use (presets/*.css): its tokens, and its own rules for the components
  *   site             the site's params: fonts, background, colours (head/style.html, a style block)
  *   utilities        single-purpose helpers

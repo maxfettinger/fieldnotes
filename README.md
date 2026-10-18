@@ -4,10 +4,10 @@ A Hugo theme for people who write about their trips and their research. It looks
 a blackboard in dark mode, and it comes with trip maps, photo galleries with a viewer, maths and code. No Node, no
 build step: Hugo does everything.
 
-- Light and dark mode, with a toggle and "follow the system"
-- Six presets for how the site is drawn (paper with tape, minimal, terminal, editorial, brutalist, riced) and eleven
-  colour schemes for any of them (Tokyo Night, Catppuccin, Gruvbox, Nord and more); then fonts from Google Fonts,
-  colours and background per mode
+- Seven presets for how the site is drawn (fieldnotes with tape, minimal, editorial, cinematic, brutalist,
+  terminal, riced) and sixteen colour schemes with light and dark versions, any with any; your own as plugins
+- Light-only, dark-only or both, following the visitor's system or a toggle
+- Fonts from Google Fonts, backgrounds including your own SVG tile
 - Hooks for your own CSS, HTML and scripts
 - Home page with a photo, a greeting, social icons and a "display card" for anything you like
 - Cards for posts, and link cards for projects that live elsewhere
@@ -23,8 +23,8 @@ cd fieldnotes
 hugo server -s exampleSite
 ```
 
-Open http://localhost:1313/. The card on the home page is a style playground: try the presets, colour schemes, fonts and
-backgrounds live, and copy the matching settings. The trip map needs a MapTiler key (see [Trip maps](#trip-maps));
+Open http://localhost:1313/. The card on the home page is a style playground, the Presets section shows each preset on a
+page of its own, and the theme generator tries presets, schemes, fonts and backgrounds live and writes the settings. The trip map needs a MapTiler key (see [Trip maps](#trip-maps));
 without one it shows a note in its place.
 
 ## Use it for your site
@@ -92,34 +92,61 @@ to that table.
 
 ## Look and feel
 
-**Preset and colour scheme.** Two independent choices. The preset is how the site is drawn: fonts, background
-pattern, corners, cards, headings and decoration. The colour scheme is its colours, for light and dark mode. Any
-scheme works with any preset; without one, a preset uses its own.
+The look has two parts, chosen independently: a **preset** (how the site is drawn: fonts, background, corners,
+cards, decoration) and a **colour scheme** (its colours, in a light and a dark version). The example site shows every preset on a page
+of its own, and its theme generator tries them all live and writes the settings.
 
 ```toml
 [params.style]
-  preset = "riced"          # paper, minimal, terminal, editorial, brutalist or riced
-  scheme = "catppuccin"     # optional: paper, forest, ocean, ink, neon, tokyo-night, catppuccin, gruvbox, nord,
-                            # rose-pine or everforest
+  preset = "riced"        # fieldnotes, minimal, editorial, cinematic, brutalist, terminal, riced
+  scheme = "catppuccin"   # optional, else the preset's own
 ```
 
-| Preset | How it's drawn | Its own scheme |
+| Preset | How it's drawn | Its scheme |
 |---|---|---|
-| `paper` | PT Serif, graph paper, taped and tilted cards, photos and maps as taped prints | paper |
-| `minimal` | Inter, no pattern, thin borders, hardly any shadow | ink |
-| `terminal` | monospace, Orbitron capitals, a faint grid, square corners, glowing frames | neon |
-| `editorial` | a magazine: Playfair Display over Source Serif, articles between rules | paper |
+| `fieldnotes` | graph paper, PT Serif, cards taped onto the page, photos and maps as taped prints | fieldnotes |
+| `minimal` | Inter, thin borders, no pattern, no shadows, no motion, like a documentation site | ink |
+| `editorial` | a newspaper: a masthead, Playfair Display over Source Serif, articles in columns between rules, drop caps | newsprint |
+| `cinematic` | for photographs: Inter Tight in light weights, hairlines, sharp corners, tall galleries | cinema |
 | `brutalist` | IBM Plex Mono, thick borders, hard offset shadows, square corners | ink |
-| `riced` | a tiling desktop (Hyprland, Omarchy): JetBrains Mono, the header as a status bar, cards as windows | tokyo-night |
+| `terminal` | Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, a blinking cursor | omarchy |
+| `riced` | an anime desktop: a pastel dusk wallpaper, frosted panels with HUD labels, soft glows | sakura |
 
-The colour schemes include the classics of riced Linux desktops (Tokyo Night, Catppuccin, Gruvbox, Nord, Rosé Pine,
-Everforest), each with its light and dark version, a few light colours darkened so all text is at least 4.5:1.
-Fonts, background and colours (below) override single parts of both. Presets and schemes are CSS
-(`assets/css/presets.css`, `assets/css/schemes.css`) plus a line each in `data/fieldnotes/`, so a new one is a block
-of custom properties.
+Colour schemes, calm ones first: fieldnotes, newsprint, ink, cinema, forest, ocean, nord, gruvbox, everforest,
+rose-pine, catppuccin, tokyo-night, omarchy, sakura, hud, neon. Each has a light and a dark version, with all text at
+least 4.5:1 on page and cards; where an original scheme's light colours fall short, they're slightly darker here.
 
-**Dark mode.** `params.mode.default` is `"light"`, `"dark"` or `"auto"` (the visitor's system setting) until the
-visitor uses the toggle. `params.mode.toggle = false` hides the toggle.
+A page can have its own look in its front matter, for example a photo story in `cinematic`:
+
+```yaml
+style:
+  preset: cinematic
+```
+
+**Your own presets and schemes.** They're plugins: a CSS file and a small data file each, in the same folders as the
+theme's. Hugo looks in your site first, so a new name adds one and a theme name replaces it. Only the preset and
+schemes a page uses go into its stylesheet.
+
+| File | What it holds |
+|---|---|
+| `assets/css/schemes/<id>.css` | `:root[data-scheme="<id>"] { --color-bg: …; … }` for light mode and `:root[data-scheme="<id>"][data-theme="dark"] { … }` |
+| `data/fieldnotes/schemes/<id>.toml` | `name`, `weight` (its place in lists), `description` |
+| `assets/css/presets/<id>.css` | `:root[data-preset="<id>"] { --font-body: …; --radius-m: …; … }` and rules like `[data-preset="<id>"] .card { … }` |
+| `data/fieldnotes/presets/<id>.toml` | `name`, `weight`, `description`, its default `scheme`, and the Google Fonts it loads (`fonts = ["Inter:wght@400;700"]`) |
+
+The easiest start is the example site's theme generator: it downloads the preset you're looking at as a copy under a
+name of your own. The custom properties a preset can set are in the theme's `assets/css/tokens.css` and `theme.css`;
+`assets/css/main.css` explains the cascade layers that keep a preset's rules above the theme's.
+
+**Light and dark mode.**
+
+```toml
+[params.mode]
+  default = "auto"   # "light", "dark", or "auto" (the visitor's system setting)
+  toggle = true      # the switch in the header; with it, the visitor's choice wins
+```
+
+A light-only site: `default = "light"` and `toggle = false`. Dark only: `"dark"` and `false`.
 
 **Fonts.** Any family on [Google Fonts](https://fonts.google.com/) by name:
 
@@ -156,13 +183,14 @@ Google's servers, which in the EU can count as sharing visitors' data.
 | `border` | card and code borders |
 | `pattern` | the background's lines or dots |
 
-**Background.** Per mode: `"grid"` (graph paper), `"dots"`, `"none"`, or an image in `assets/`, which repeats and
-scrolls with the page:
+**Background.** Instead of the preset's: per mode `"grid"` (graph paper), `"dots"`, `"none"`, or an image in
+`assets/`. An SVG tile repeats across the page at its own size, or at `size`:
 
 ```toml
 [params.background]
-  light = "grid"
-  dark = "images/stars.svg"
+  light = "images/tile.svg"   # assets/images/tile.svg
+  dark = "dots"
+  size = "120px"
 ```
 
 **Your own CSS.** Create `assets/css/custom.css`. The theme imports it last, in its own cascade layer, so your rules

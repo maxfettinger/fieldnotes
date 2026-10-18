@@ -1,6 +1,5 @@
 name = "Minimal"
 weight = 20
 description = "Inter, thin borders, no pattern, no shadows, no motion: calm like a documentation site."
-light = "ink"
-dark = "ink"
+scheme = "ink"
 fonts = ["Inter:ital,wght@0,400;0,600;0,700;1,400", "JetBrains Mono:wght@400"]

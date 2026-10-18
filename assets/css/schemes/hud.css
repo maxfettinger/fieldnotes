@@ -1,5 +1,5 @@
-/* HUD: a 90s anime heads-up display: steel blue panels, cyan and a red signal. Light under data-light, dark under data-dark (fieldnotes/style.html). */
-:root[data-light="hud"]:not([data-theme="dark"]) {
+/* HUD: a 90s anime heads-up display: steel blue panels, cyan and a red signal. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+:root[data-scheme="hud"] {
     --color-bg: #e6ebf1;
     --color-surface: #f2f5f9;
     --color-text: #1d2a3a;
@@ -11,7 +11,7 @@
     --pattern-color: #0f5f73;
 }
 
-:root[data-theme="dark"][data-dark="hud"] {
+:root[data-scheme="hud"][data-theme="dark"] {
     --color-bg: #101827;
     --color-surface: #162236;
     --color-text: #c9d6e3;

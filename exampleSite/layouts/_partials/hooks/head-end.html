@@ -14,7 +14,6 @@
     key: "fieldnotes-playground",
     presets: {{ hugo.Data.fieldnotes.presets }},
     patterns: { grid: "var(--pattern-grid)", dots: "var(--pattern-dots)", none: "none" },
-    colours: ["bg", "surface", "text", "primary", "secondary", "tertiary", "accent", "border"],
     load() {
       try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch { return {}; }
     },
@@ -33,23 +32,12 @@
       }
       link.href = `https://fonts.googleapis.com/css2?${families.join("&")}&display=swap`;
     },
-    // Your own colours, in the "site" layer like the theme's params.colors
-    paint(colours = {}) {
-      let style = document.getElementById("playground-colours");
-      if (!style) {
-        style = Object.assign(document.createElement("style"), { id: "playground-colours" });
-        document.head.append(style);
-      }
-      const block = (values) => Object.entries(values || {}).map(([k, v]) => `--color-${k}: ${v};`).join(" ");
-      style.textContent = `@layer site { :root:not([data-theme="dark"]) { ${block(colours.light)} } :root[data-theme="dark"] { ${block(colours.dark)} } }`;
-    },
-    apply({ preset, light, dark, font, background, colours }) {
+    apply({ preset, scheme, font, background }) {
       const root = document.documentElement;
       const p = this.presets[preset];
       if (!p) return;
       root.dataset.preset = preset;
-      root.dataset.light = light || p.light;
-      root.dataset.dark = dark || p.dark;
+      root.dataset.scheme = scheme || p.scheme;
       if (background) root.style.setProperty("--pattern", this.patterns[background]);
       else root.style.removeProperty("--pattern");
       for (const role of ["body", "heading"]) {
@@ -57,7 +45,6 @@
         else root.style.removeProperty(`--font-${role}`);
       }
       this.loadFonts(font ? [...(p.fonts || []), font] : p.fonts || []);
-      this.paint(colours);
     },
   };
   {{- /* Not on pages that set their own look (the preset pages) */}}

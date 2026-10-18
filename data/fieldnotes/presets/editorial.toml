@@ -1,6 +1,5 @@
 name = "Editorial"
 weight = 30
 description = "A newspaper: a masthead, Playfair Display over Source Serif, articles between rules in columns, drop caps."
-light = "newsprint"
-dark = "newsprint"
+scheme = "newsprint"
 fonts = ["Source Serif 4:ital,wght@0,400;0,700;1,400;1,700", "Playfair Display:wght@700;900"]

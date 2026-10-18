@@ -1,5 +1,5 @@
-/* Cinema: neutral white and black with a muted gold, for photographs. Light under data-light, dark under data-dark (fieldnotes/style.html). */
-:root[data-light="cinema"]:not([data-theme="dark"]) {
+/* Cinema: neutral white and black with a muted gold, for photographs. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+:root[data-scheme="cinema"] {
     --color-bg: #fafafa;
     --color-surface: #ffffff;
     --color-text: #161616;
@@ -11,7 +11,7 @@
     --pattern-color: #bdbdbd;
 }
 
-:root[data-theme="dark"][data-dark="cinema"] {
+:root[data-scheme="cinema"][data-theme="dark"] {
     --color-bg: #0b0b0c;
     --color-surface: #111113;
     --color-text: #e6e4e1;

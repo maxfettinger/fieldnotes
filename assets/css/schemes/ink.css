@@ -1,5 +1,5 @@
-/* Ink: white paper and black ink with one blue; a GitHub-like night. Light under data-light, dark under data-dark (fieldnotes/style.html). */
-:root[data-light="ink"]:not([data-theme="dark"]) {
+/* Ink: white paper and black ink with one blue; a GitHub-like night. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+:root[data-scheme="ink"] {
     --color-bg: #ffffff;
     --color-surface: #ffffff;
     --color-text: #1f2328;
@@ -11,7 +11,7 @@
     --pattern-color: #9aa1a9;
 }
 
-:root[data-theme="dark"][data-dark="ink"] {
+:root[data-scheme="ink"][data-theme="dark"] {
     --color-bg: #0d1117;
     --color-surface: #151b23;
     --color-text: #d1d7e0;

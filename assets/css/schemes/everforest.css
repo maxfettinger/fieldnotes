@@ -1,5 +1,5 @@
-/* Everforest: Everforest light and dark. Light under data-light, dark under data-dark (fieldnotes/style.html). */
-:root[data-light="everforest"]:not([data-theme="dark"]) {
+/* Everforest: Everforest light and dark. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+:root[data-scheme="everforest"] {
     --color-bg: #fdf6e3;
     --color-surface: #f4f0d9;
     --color-text: #4f5b62;
@@ -11,7 +11,7 @@
     --pattern-color: #93b259;
 }
 
-:root[data-theme="dark"][data-dark="everforest"] {
+:root[data-scheme="everforest"][data-theme="dark"] {
     --color-bg: #2d353b;
     --color-surface: #343f44;
     --color-text: #d3c6aa;

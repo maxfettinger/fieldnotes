@@ -34,5 +34,4 @@ def trapezoid(f, a, b, n):
 | Setting | Value |
 |---|---|
 | preset | `fieldnotes` |
-| light | `fieldnotes` |
-| dark | `fieldnotes` |
+| scheme | `fieldnotes` |

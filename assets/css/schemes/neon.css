@@ -1,5 +1,5 @@
-/* Neon: lavender daylight with magenta; cyan and magenta on near-black. Light under data-light, dark under data-dark (fieldnotes/style.html). */
-:root[data-light="neon"]:not([data-theme="dark"]) {
+/* Neon: lavender daylight with magenta; cyan and magenta on near-black. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+:root[data-scheme="neon"] {
     --color-bg: #f3f1ff;
     --color-surface: #ffffff;
     --color-text: #1c1a2e;
@@ -11,7 +11,7 @@
     --pattern-color: #8b7cf6;
 }
 
-:root[data-theme="dark"][data-dark="neon"] {
+:root[data-scheme="neon"][data-theme="dark"] {
     --color-bg: #0a0e17;
     --color-surface: #0f1522;
     --color-text: #c8f7ef;

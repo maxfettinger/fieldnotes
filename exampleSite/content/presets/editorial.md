@@ -34,5 +34,4 @@ def trapezoid(f, a, b, n):
 | Setting | Value |
 |---|---|
 | preset | `editorial` |
-| light | `newsprint` |
-| dark | `newsprint` |
+| scheme | `newsprint` |

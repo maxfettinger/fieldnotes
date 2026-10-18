@@ -4,33 +4,35 @@ date: 2026-10-10
 summary: "How to change the look of Fieldnotes with a few settings, and where to add your own HTML, CSS and scripts."
 ---
 
-There are two ways to make Fieldnotes yours. Settings in `hugo.toml` cover the look: a preset and a colour
-scheme, then fonts, background and colours on top. Hooks are files of your own that the theme picks up, for everything the settings don't cover.
+There are two ways to make Fieldnotes yours. Settings in `hugo.toml` cover the look: a preset and a colour scheme,
+then fonts and background on top. Hooks are files of your own that the theme picks up, for everything the settings don't cover.
 The playground on the [home page]({{< relref "/" >}}) tries the settings out live.
 
 ## Settings
 
 ```toml
 [params.style]
-  preset = "riced"     # how it's drawn: paper, minimal, terminal, editorial, brutalist or riced
-  scheme = "gruvbox"   # its colours: paper, forest, ocean, ink, neon, tokyo-night, catppuccin, gruvbox, nord,
-                       # rose-pine or everforest; empty for the preset's own
+  preset = "riced"     # how it's drawn: fieldnotes, minimal, editorial, cinematic, brutalist, terminal or riced
+  scheme = "catppuccin" # its colours, light and dark (empty: the preset's own)
+
+[params.mode]
+  default = "auto"     # light, dark, or auto (the visitor's system setting)
+  toggle = true        # false and a fixed default: a light-only or dark-only site
 
 [params.fonts]
-  body = "Lora"        # any Google Fonts family
-  heading = "Inter"    # optional
+  body = "Lora"        # any Google Fonts family, instead of the preset's
 
 [params.background]
-  light = "grid"       # grid, dots, none, or an image in assets/
+  light = "grid"       # grid, dots, none, or an image in assets/, like an SVG tile
   dark = "none"
-
-[params.colors.light]
-  accent = "#0b6e4f"   # any single colour of the preset, per mode
 ```
 
-The preset is how the site is drawn: fonts, background, corners, cards and decoration like paper's tape. The scheme
-is its colours, with a light and a dark version; the visitor switches between them with the toggle in the header.
-The other settings change single parts of either.
+The preset is how the site is drawn: fonts, background, corners, cards and decoration like the fieldnotes preset's
+tape. The scheme is its colours, with a light and a dark version, any scheme with any preset. A page can
+pick its own look with the same names in its front matter (`style:`), as the pages in [Presets]({{< relref "/presets" >}}) do.
+
+Presets and schemes are plugins: a CSS file and a small data file each, which your site can add or replace. The
+[theme generator]({{< relref "/generator" >}}) explains them and downloads a preset as a copy to change.
 
 ## Hooks
 
@@ -44,6 +46,6 @@ The other settings change single parts of either.
 The theme has empty versions of the first three. Hugo takes your site's file over the theme's when both exist, so
 creating the file is all it takes.
 
-This example site uses all four for the playground: the display card holds the form, `head-end.html` applies the saved
-choices before the page is drawn, `body-end.html` loads the form's script on the home page, and `custom.css` styles
-the form.
+This example site uses all four for the playground: the display card holds the form, `head-end.html` loads every
+preset and scheme and applies the saved choices before the page is drawn, `body-end.html` loads the form's script,
+and `custom.css` styles the form.

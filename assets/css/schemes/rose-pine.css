@@ -1,5 +1,5 @@
-/* Rosé Pine: Rosé Pine Dawn and Main. Light under data-light, dark under data-dark (fieldnotes/style.html). */
-:root[data-light="rose-pine"]:not([data-theme="dark"]) {
+/* Rosé Pine: Rosé Pine Dawn and Main. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+:root[data-scheme="rose-pine"] {
     --color-bg: #faf4ed;
     --color-surface: #fffaf3;
     --color-text: #575279;
@@ -11,7 +11,7 @@
     --pattern-color: #907aa9;
 }
 
-:root[data-theme="dark"][data-dark="rose-pine"] {
+:root[data-scheme="rose-pine"][data-theme="dark"] {
     --color-bg: #191724;
     --color-surface: #1f1d2e;
     --color-text: #e0def4;

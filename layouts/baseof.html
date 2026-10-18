@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-{{- /* data-preset, data-light, data-dark: the look in effect (fieldnotes/style.html; presets/, schemes/) */}}
+{{- /* data-preset and data-scheme: the look in effect (fieldnotes/style.html; presets/, schemes/) */}}
 {{- $style := partialCached "fieldnotes/style.html" . (.Params.style | jsonify) }}
-<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction `ltr` }}" data-preset="{{ $style.preset }}" data-light="{{ $style.light }}" data-dark="{{ $style.dark }}">
+<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction `ltr` }}" data-preset="{{ $style.preset }}" data-scheme="{{ $style.scheme }}">
 <head>
   {{ partial "head.html" . }}
 </head>

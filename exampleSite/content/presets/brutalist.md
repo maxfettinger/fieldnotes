@@ -34,5 +34,4 @@ def trapezoid(f, a, b, n):
 | Setting | Value |
 |---|---|
 | preset | `brutalist` |
-| light | `ink` |
-| dark | `ink` |
+| scheme | `ink` |

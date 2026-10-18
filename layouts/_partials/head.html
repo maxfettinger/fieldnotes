@@ -19,11 +19,11 @@
 {{ partial "schema.html" . }}
 {{ partial "head/schema.html" . }}
 
-{{- /* The look in effect (preset and schemes), cached per combination of the page's own style settings */}}
+{{- /* The look in effect (preset and scheme), cached per combination of the page's own style settings */}}
 {{- $style := partialCached "fieldnotes/style.html" . (.Params.style | jsonify) }}
 {{ partialCached "head/theme.html" . }}
 {{ partialCached "head/fonts.html" (dict "style" $style) $style.preset }}
-{{ partialCached "head/css.html" (dict "style" $style) $style.preset $style.light $style.dark }}
+{{ partialCached "head/css.html" (dict "style" $style) $style.preset $style.scheme }}
 {{ partialCached "head/style.html" . }}
 {{ partial "script.html" "js/main.js" }}
 {{- if .HasShortcode "gallery" }}

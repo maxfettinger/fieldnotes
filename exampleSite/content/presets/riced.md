@@ -34,5 +34,4 @@ def trapezoid(f, a, b, n):
 | Setting | Value |
 |---|---|
 | preset | `riced` |
-| light | `sakura` |
-| dark | `sakura` |
+| scheme | `sakura` |

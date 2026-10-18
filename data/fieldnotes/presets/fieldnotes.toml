@@ -1,6 +1,5 @@
 name = "Fieldnotes"
 weight = 10
 description = "Graph paper and ink, PT Serif, cards taped onto the page, photos and maps as taped prints."
-light = "fieldnotes"
-dark = "fieldnotes"
+scheme = "fieldnotes"
 fonts = ["PT Serif:ital,wght@0,400;0,700;1,400;1,700"]

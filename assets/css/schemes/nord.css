@@ -1,5 +1,5 @@
-/* Nord: Nord's Snow Storm and Polar Night. Light under data-light, dark under data-dark (fieldnotes/style.html). */
-:root[data-light="nord"]:not([data-theme="dark"]) {
+/* Nord: Nord's Snow Storm and Polar Night. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+:root[data-scheme="nord"] {
     --color-bg: #eceff4;
     --color-surface: #e5e9f0;
     --color-text: #2e3440;
@@ -11,7 +11,7 @@
     --pattern-color: #81a1c1;
 }
 
-:root[data-theme="dark"][data-dark="nord"] {
+:root[data-scheme="nord"][data-theme="dark"] {
     --color-bg: #2e3440;
     --color-surface: #3b4252;
     --color-text: #d8dee9;

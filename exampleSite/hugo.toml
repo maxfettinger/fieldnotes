@@ -74,12 +74,11 @@ themesDir = "../.."          # the theme is this repository; a site of your own 
       name = "University of Example"
       url = "https://example.org/university"
 
-  # The look: a preset is how the site is drawn, light and dark its colour schemes (empty: the preset's own).
+  # The look: a preset is how the site is drawn, a scheme its colours, light and dark (empty: the preset's own).
   # See the theme's hugo.toml for all names, and the playground on this site's home page.
   [params.style]
     preset = "fieldnotes"
-    light = ""
-    dark = ""
+    scheme = ""
 
   [params.mode]
     default = "auto"   # light, dark or auto

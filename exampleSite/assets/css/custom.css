@@ -27,60 +27,13 @@
     font-size: var(--step--1);
 }
 
-/* Your own colours: a row of colour wells with their names */
-.playground-colours {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-    gap: var(--space-2xs) var(--space-s);
-    margin: 0;
-    padding: var(--space-xs) var(--space-s);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-m);
-}
-
-.playground-colours legend {
-    padding-inline: 0.4em;
-    color: var(--color-text);
-    font-size: var(--step--1);
-}
-
-.playground-colours legend span {
-    color: var(--color-secondary);
-}
-
-.playground-colours label {
-    display: flex;
-    gap: 0.5em;
-    align-items: center;
-}
-
-.playground-colours input[type="color"] {
-    inline-size: 2rem;
-    block-size: 1.6rem;
-    padding: 0;
-    border: 1px solid var(--color-border);
-    background: none;
-}
-
-.playground-colours .playground-name {
-    display: grid;
-    grid-column: 1 / -1;
-}
-
-.playground-config,
-.playground-files pre {
+.playground-config {
     margin: 0;
     padding: var(--space-xs) var(--space-s);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-m);
     background: var(--color-bg);
     font-size: var(--step--1);
-}
-
-.playground-files:not([hidden]) {
-    display: grid;
-    gap: var(--space-xs);
 }
 
 .playground-actions {

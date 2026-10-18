@@ -34,5 +34,4 @@ def trapezoid(f, a, b, n):
 | Setting | Value |
 |---|---|
 | preset | `terminal` |
-| light | `omarchy` |
-| dark | `omarchy` |
+| scheme | `omarchy` |
