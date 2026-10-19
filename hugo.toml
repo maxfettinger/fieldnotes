@@ -10,8 +10,8 @@
 
   # Look: a preset is how the site is drawn (fieldnotes, minimal, editorial, cinematic, brutalist, terminal:
   # fonts, background, corners, cards, decoration), a scheme its colours in a light and a dark version (fieldnotes,
-  # pencil, ink, newsprint, studio, forest, ocean, nord, gruvbox, everforest, rose-pine, catppuccin, tokyo-night,
-  # omarchy); any scheme with any preset, empty: the preset's own. A page can set the same in its front
+  # pencil, ink, newsprint, studio, forest, ocean, terminal, nord, gruvbox, everforest, rose-pine, catppuccin,
+  # tokyo-night); any scheme with any preset, empty: the preset's own. A page can set the same in its front
   # matter (style:). Your own presets and schemes: assets/css/presets/<id>.css, assets/css/schemes/<id>.css and a data
   # file each in data/fieldnotes/presets/ or data/fieldnotes/schemes/ (README).
   [params.style]

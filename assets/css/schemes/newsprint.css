@@ -1,4 +1,4 @@
-/* Newsprint: cream paper and black ink with a red; a dark reading room. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+/* Newsprint: cream, black and a red accent; warm near-black. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
 :root[data-scheme="newsprint"] {
     --color-bg: #fbf8f1;
     --color-surface: #fbf8f1;

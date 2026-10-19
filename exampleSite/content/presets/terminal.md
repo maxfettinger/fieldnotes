@@ -1,12 +1,12 @@
 ---
 title: "Terminal"
 weight: 60
-summary: "Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, prompts and a blinking cursor."
+summary: "Geist and JetBrains Mono, a dot grid, stepped corners, Markdown-style headings and a blinking cursor."
 style:
   preset: terminal
 ---
 
-Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, prompts and a blinking cursor. In your `hugo.toml`:
+Geist and JetBrains Mono, a dot grid, stepped corners, Markdown-style headings and a blinking cursor. In your `hugo.toml`:
 
 ```toml
 [params.style]
@@ -34,4 +34,4 @@ def trapezoid(f, a, b, n):
 | Setting | Value |
 |---|---|
 | preset | `terminal` |
-| scheme | `omarchy` |
+| scheme | `terminal` |

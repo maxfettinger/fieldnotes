@@ -1,6 +1,6 @@
 /*
- * Minimal: calm like a documentation site (Hextra, Docsy). Inter, thin borders, no background pattern, no shadows
- * and no motion: cards don't lift, they only darken their border when hovered.
+ * Minimal: Inter, thin borders, no background pattern, no shadows and no motion: cards don't lift, they only darken
+ * their border when hovered.
  */
 :root[data-preset="minimal"] {
     --pattern: none;

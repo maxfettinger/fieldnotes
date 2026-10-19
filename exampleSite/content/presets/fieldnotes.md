@@ -1,12 +1,12 @@
 ---
 title: "Fieldnotes"
 weight: 10
-summary: "Graph paper and ink, PT Serif, cards taped onto the page, photos and maps as taped prints."
+summary: "PT Serif on graph paper; cards taped onto the page, photos and maps as taped prints."
 style:
   preset: fieldnotes
 ---
 
-Graph paper and ink, PT Serif, cards taped onto the page, photos and maps as taped prints. In your `hugo.toml`:
+PT Serif on graph paper; cards taped onto the page, photos and maps as taped prints. In your `hugo.toml`:
 
 ```toml
 [params.style]

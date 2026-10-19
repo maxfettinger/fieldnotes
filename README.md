@@ -104,15 +104,15 @@ of its own, and its theme generator tries them all live and writes the settings.
 
 | Preset | How it's drawn | Its scheme |
 |---|---|---|
-| `fieldnotes` | graph paper, PT Serif, cards taped onto the page, photos and maps as taped prints | fieldnotes |
-| `minimal` | Inter, thin borders, no pattern, no shadows, no motion, like a documentation site | ink |
-| `editorial` | a newspaper: a masthead, Playfair Display over Source Serif, articles in columns between rules, drop caps | newsprint |
-| `cinematic` | for photographs: Inter Tight in light weights, hairlines, sharp corners, tall galleries | studio |
-| `brutalist` | IBM Plex Mono, thick borders, hard offset shadows, square corners | ink |
-| `terminal` | Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, a blinking cursor | omarchy |
+| `fieldnotes` | PT Serif on graph paper; cards taped onto the page, photos and maps as taped prints | fieldnotes |
+| `minimal` | Inter, thin borders, no background pattern, no shadows, no motion | ink |
+| `editorial` | Playfair Display headings over Source Serif text, a large masthead, articles in two columns between rules, drop caps | newsprint |
+| `cinematic` | Inter Tight in light weights, hairline rules instead of boxes, square corners, taller galleries | studio |
+| `brutalist` | IBM Plex Mono throughout, thick borders, hard offset shadows, square corners | ink |
+| `terminal` | Geist and JetBrains Mono, a dot grid, stepped corners, Markdown-style headings and a blinking cursor | terminal |
 
 Colour schemes, the theme's own first, then popular editor themes: fieldnotes, pencil, ink, newsprint, studio, forest,
-ocean, nord, gruvbox, everforest, rose-pine, catppuccin, tokyo-night, omarchy. Each has a light and a dark version, with all text at
+ocean, terminal, nord, gruvbox, everforest, rose-pine, catppuccin, tokyo-night. Each has a light and a dark version, with all text at
 least 4.5:1 on page and cards; where an original scheme's light colours fall short, they're slightly darker here.
 
 A page can have its own look in its front matter, for example a photo story in `cinematic`:

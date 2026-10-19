@@ -1,7 +1,7 @@
 /*
- * Terminal: Omarchy's website (omarchy.org) in 8 bit. Geist for text and JetBrains Mono for everything that names
- * things, a field of dots, square boxes with pixel-cut corners, headings like Markdown (## ), cards as prompts (> ),
- * the menu's current item as a green tag, and a blinking cursor after the site's name.
+ * Terminal: Geist for text and JetBrains Mono for everything that names things, a dot grid, square boxes with
+ * stepped corners, headings like Markdown (## ), card titles as prompts (> ), the menu's current item as a tag in the
+ * accent colour, and a blinking cursor after the site's name.
  */
 :root[data-preset="terminal"] {
     --pattern: var(--pattern-dots);
@@ -14,7 +14,7 @@
     --shadow: none;
     --shadow-raised: none;
     --heading-spacing: -0.01em;
-    /* Pixel-cut corners: two 4px steps */
+    /* Stepped corners: two 4px steps */
     --px: 4px;
     --pixel-corners: polygon(0 calc(2 * var(--px)), var(--px) calc(2 * var(--px)), var(--px) var(--px), calc(2 * var(--px)) var(--px), calc(2 * var(--px)) 0,
         calc(100% - 2 * var(--px)) 0, calc(100% - 2 * var(--px)) var(--px), calc(100% - var(--px)) var(--px), calc(100% - var(--px)) calc(2 * var(--px)), 100% calc(2 * var(--px)),
@@ -26,7 +26,7 @@
     clip-path: var(--pixel-corners);
 }
 
-/* The header as Omarchy's top bar: a surface strip, a mono name with a blinking cursor, the current item tagged */
+/* The header as a top bar: a surface strip, a mono name with a blinking cursor, the current item tagged */
 [data-preset="terminal"] .site-header {
     border-block-end: 1px solid var(--color-border);
     background: var(--color-surface);

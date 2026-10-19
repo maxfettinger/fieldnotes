@@ -1,0 +1,12 @@
+/*
+ * Maths (MathJax, head/math.html): an in-line formula too wide for the column even after MathJax has broken it
+ * across lines scrolls sideways in its own box, as display maths does (MathJax's displayOverflow: scroll). Only that
+ * formula: a scroll box on every in-line formula would shift them off the text's baseline.
+ */
+mjx-container[data-overflow] {
+    display: inline-block;
+    max-inline-size: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    vertical-align: middle;
+}

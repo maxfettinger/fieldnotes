@@ -1,6 +1,6 @@
 /*
- * Cinematic: for photographs. If terminal is 8 bit, this is 4K: Inter Tight in light weights, hairlines instead of
- * boxes, sharp corners, no shadows, captions in spaced capitals, and galleries tall enough to look at.
+ * Cinematic: for sites about photographs. Inter Tight in light weights, hairlines instead of boxes, square corners,
+ * no shadows, labels in spaced capitals, and taller galleries.
  */
 :root[data-preset="cinematic"] {
     --pattern: none;

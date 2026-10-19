@@ -1,12 +1,12 @@
 ---
 title: "Cinematic"
 weight: 40
-summary: "For photographs: Inter Tight in light weights, hairlines, sharp corners, large galleries, nothing in the way."
+summary: "Inter Tight in light weights, hairline rules instead of boxes, square corners, taller galleries."
 style:
   preset: cinematic
 ---
 
-For photographs: Inter Tight in light weights, hairlines, sharp corners, large galleries, nothing in the way. In your `hugo.toml`:
+Inter Tight in light weights, hairline rules instead of boxes, square corners, taller galleries. In your `hugo.toml`:
 
 ```toml
 [params.style]

@@ -1,12 +1,12 @@
 ---
 title: "Minimal"
 weight: 20
-summary: "Inter, thin borders, no pattern, no shadows, no motion: calm like a documentation site."
+summary: "Inter, thin borders, no background pattern, no shadows, no motion."
 style:
   preset: minimal
 ---
 
-Inter, thin borders, no pattern, no shadows, no motion: calm like a documentation site. In your `hugo.toml`:
+Inter, thin borders, no background pattern, no shadows, no motion. In your `hugo.toml`:
 
 ```toml
 [params.style]

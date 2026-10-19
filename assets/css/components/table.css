@@ -1,0 +1,54 @@
+/*
+ * Tables in Markdown (_markup/render-table.html), after Tailwind Typography's: the column's full width, a slightly
+ * smaller type, no boxes; a firmer line under the header, hairlines between the rows, and no padding at the outer
+ * edges, so the table lines up with the text. Wider than the column (on phones), it scrolls sideways in its box.
+ */
+.table-scroll {
+    overflow-x: auto;
+}
+
+.table-scroll table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+    line-height: 1.5;
+    text-align: start;
+}
+
+.table-scroll th {
+    padding: 0 var(--space-xs) var(--space-2xs);
+    border-block-end: 1px solid color-mix(in srgb, var(--color-text) 35%, transparent);
+    color: var(--color-primary);
+    font-weight: 700;
+    text-align: start;  /* browsers centre th; a column's alignment from the Markdown is inline and still wins */
+    vertical-align: bottom;
+}
+
+.table-scroll td {
+    padding: var(--space-2xs) var(--space-xs);
+    vertical-align: top;
+}
+
+.table-scroll tbody tr + tr {
+    border-block-start: 1px solid var(--color-border);
+}
+
+.table-scroll :is(th, td):first-child {
+    padding-inline-start: 0;
+}
+
+.table-scroll :is(th, td):last-child {
+    padding-inline-end: 0;
+}
+
+/* Code in a cell (file names, settings) stays whole on wide screens; on narrow ones it may break anywhere, as a long
+   path would otherwise widen its column and squeeze the others to a word's width */
+.table-scroll td code {
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 40rem) {
+    .table-scroll td code {
+        overflow-wrap: anywhere;
+    }
+}

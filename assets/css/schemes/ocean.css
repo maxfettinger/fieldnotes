@@ -1,4 +1,4 @@
-/* Ocean: grey-blue paper, navy ink and coral; the deep sea. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+/* Ocean: pale blue-grey, navy and a coral accent; deep navy. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
 :root[data-scheme="ocean"] {
     --color-bg: #eef3f7;
     --color-surface: #f9fbfd;

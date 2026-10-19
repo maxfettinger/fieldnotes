@@ -1,5 +1,5 @@
-/* Omarchy: Omarchy's website: white or Tokyo Night with its green. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
-:root[data-scheme="omarchy"] {
+/* Terminal: white, near-black and a green accent; dark blue-grey with green. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+:root[data-scheme="terminal"] {
     --color-bg: #ffffff;
     --color-surface: #f5f5f5;
     --color-text: #16161e;
@@ -11,7 +11,7 @@
     --pattern-color: #3b7512;
 }
 
-:root[data-scheme="omarchy"][data-theme="dark"] {
+:root[data-scheme="terminal"][data-theme="dark"] {
     --color-bg: #1a1b26;
     --color-surface: #1f2230;
     --color-text: #c0caf5;

@@ -1,4 +1,4 @@
-/* Pencil: light grey paper and graphite with a blue pencil; a graphite night. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+/* Pencil: light grey, graphite and a blue accent; dark graphite. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
 :root[data-scheme="pencil"] {
     --color-bg: #ebeae6;
     --color-surface: #f4f3f0;

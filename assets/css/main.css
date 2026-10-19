@@ -41,6 +41,8 @@
 /* Content and lists */
 @import "components/prose.css" layer(components);
 @import "components/code.css" layer(components);
+@import "components/math.css" layer(components);
+@import "components/table.css" layer(components);
 @import "components/card.css" layer(components);
 @import "components/pagination.css" layer(components);
 @import "components/trip-map.css" layer(components);

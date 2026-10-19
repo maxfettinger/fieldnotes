@@ -1,4 +1,4 @@
-/* Ink: white paper and black ink with one blue; a GitHub-like night. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+/* Ink: white, near-black and a blue accent; blue-black. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
 :root[data-scheme="ink"] {
     --color-bg: #ffffff;
     --color-surface: #ffffff;

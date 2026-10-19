@@ -1,4 +1,4 @@
-/* Studio: neutral white and black with a muted gold, like a photo studio. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+/* Studio: neutral white and a muted gold accent; neutral black. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
 :root[data-scheme="studio"] {
     --color-bg: #fafafa;
     --color-surface: #ffffff;

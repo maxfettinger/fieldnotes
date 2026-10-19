@@ -1,5 +1,5 @@
 name = "Terminal"
 weight = 60
-description = "Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, prompts and a blinking cursor."
-scheme = "omarchy"
+description = "Geist and JetBrains Mono, a dot grid, stepped corners, Markdown-style headings and a blinking cursor."
+scheme = "terminal"
 fonts = ["Geist:wght@400;600;700", "JetBrains Mono:wght@400;700"]

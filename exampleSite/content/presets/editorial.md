@@ -1,12 +1,12 @@
 ---
 title: "Editorial"
 weight: 30
-summary: "A newspaper: a masthead, Playfair Display over Source Serif, articles between rules in columns, drop caps."
+summary: "Playfair Display headings over Source Serif text, a large masthead, articles in two columns between rules, drop caps."
 style:
   preset: editorial
 ---
 
-A newspaper: a masthead, Playfair Display over Source Serif, articles between rules in columns, drop caps. In your `hugo.toml`:
+Playfair Display headings over Source Serif text, a large masthead, articles in two columns between rules, drop caps. In your `hugo.toml`:
 
 ```toml
 [params.style]

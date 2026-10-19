@@ -1,13 +1,38 @@
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-
+{{- /* MathJax 4 for pages with math (params.math or the page's math: true). Long formulas on narrow screens: in-line
+       maths breaks across lines like words (MathJax's default); display maths that is too wide scrolls sideways in
+       its own box (displayOverflow); an in-line formula that still sticks out past the column (a group it can't
+       break, like \left( … \right)) gets data-overflow and scrolls too (components/math.css). Checked after every
+       typeset and when the column's width changes. */ -}}
 <script>
   MathJax = {
     tex: {
       displayMath: [['\\[', '\\]'], ['$$', '$$']],  // block
       inlineMath: [['\\(', '\\)']]                  // inline
     },
-    loader:{
+    output: {
+      displayOverflow: 'scroll'
+    },
+    loader: {
       load: ['ui/safe']
     },
+    startup: {
+      ready() {
+        MathJax.startup.defaultReady();
+        const fit = () => {
+          for (const math of document.querySelectorAll('mjx-container:not([display="true"])')) {
+            math.removeAttribute('data-overflow');
+            const column = math.parentElement.getBoundingClientRect();
+            const sticksOut = [...math.getClientRects()].some((line) => line.right > column.right + 1 || line.left < column.left - 1);
+            math.toggleAttribute('data-overflow', sticksOut);
+          }
+        };
+        MathJax.startup.promise.then(() => {
+          fit();
+          const prose = document.querySelector('.prose');
+          if (prose) new ResizeObserver(fit).observe(prose);
+        });
+      }
+    }
   };
 </script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
