@@ -1,12 +1,14 @@
 {{- /* Images in Markdown: ![Alt text](photo.jpg "Optional title")
        - an image next to the page (in its bundle) or in assets/ is resized to WebP versions 480 to 1600px wide, with
-         width and height (no jump while it loads), srcset for the screen's size, and lazy loading
+         width and height (no jump while it loads), srcset for the screen's size, and lazy loading; a click opens it
+         large in the photo viewer (a link with data-photo, assets/js/gallery.js)
        - other addresses are used as written; a path from the site's root gets the base path
        - an image alone in its paragraph, with markup.goldmark.parser.wrapStandAloneImageWithinParagraph = false in the
          site's config, becomes a figure with the title as its caption; otherwise the title is the image's tooltip */ -}}
 {{- $u := urls.Parse .Destination }}
 {{- $src := $u.String }}
 {{- $attrs := dict }}
+{{- $viewer := false }}
 {{- if not $u.IsAbs }}
   {{- with or (.PageInner.Resources.Get (strings.TrimPrefix "./" $u.Path)) (resources.Get $u.Path) }}
     {{- $src = .RelPermalink }}
@@ -22,6 +24,7 @@
       {{- range $versions }}{{ $srcset = $srcset | append (printf "%s %dw" .RelPermalink .Width) }}{{ end }}
       {{- $src = $largest.RelPermalink }}
       {{- $attrs = dict "srcset" (delimit $srcset ", ") "sizes" "(min-width: 56rem) 52.5rem, 100vw" "width" $largest.Width "height" $largest.Height }}
+      {{- $viewer = $image.Fit "1600x1600 webp q82" }}
     {{- end }}
   {{- else }}
     {{- if and (strings.HasPrefix $src "/") (not (strings.HasPrefix $src "//")) }}{{ $src = strings.TrimPrefix "/" $src | relURL }}{{ end }}
@@ -31,6 +34,9 @@
 {{- range $k, $v := $attrs }}{{ $tag = printf `%s %s=%q` $tag $k (string $v) }}{{ end }}
 {{- if and .Title (not .IsBlock) }}{{ $tag = printf `%s title=%q` $tag .Title }}{{ end }}
 {{- $tag = printf `%s loading="lazy" decoding="async">` $tag }}
+{{- with $viewer }}
+  {{- $tag = printf `<span class="photo"><a href=%q data-photo data-dlb-width="%d" data-dlb-height="%d">%s</a></span>` .RelPermalink .Width .Height $tag }}
+{{- end }}
 {{- if and .IsBlock .Title }}
 <figure>
   {{ $tag | safeHTML }}

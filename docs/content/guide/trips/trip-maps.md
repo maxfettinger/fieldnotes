@@ -102,4 +102,5 @@ are free. Over the limit, the maps stop until the next month.
   sdk = "4.2.0"               # the version of MapTiler's map library
 ```
 
-A style can also be the address of a `style.json`, for a map you designed in MapTiler's editor.
+For a light map in both modes, set `styleDark` to the same style as `style`. A style can also be the address of a
+`style.json`, for a map you designed in MapTiler's editor.

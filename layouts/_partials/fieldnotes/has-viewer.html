@@ -1,0 +1,3 @@
+{{- /* Whether the page needs the photo viewer: a gallery, or a photo in its text that opens in the viewer
+       (_markup/render-image.html marks those links with data-photo). Returns a bool. */ -}}
+{{- return or (.HasShortcode "gallery") (strings.Contains .Content "data-photo") }}

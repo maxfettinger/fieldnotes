@@ -213,3 +213,8 @@
         display: none;
     }
 }
+
+/* A photo from a post's text opens alone: no counter */
+.lightbox[data-single] .lightbox-counter {
+    visibility: hidden;
+}

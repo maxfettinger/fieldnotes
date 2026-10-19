@@ -1,6 +1,7 @@
-{{- /* Pages with a gallery: the photo viewer's layout CSS from jsDelivr (dialog-lightbox, in the version
-       params.gallery.lightbox; it puts its rules in its own cascade layer, which main.css ranks below the theme's)
-       and the gallery script, a module that imports the viewer from the same place (assets/js/gallery.js). */ -}}
+{{- /* Pages with a gallery or a photo that opens in the viewer (fieldnotes/has-viewer.html): the photo viewer's
+       layout CSS from jsDelivr (dialog-lightbox, in the version params.gallery.lightbox; it puts its rules in its own
+       cascade layer, which main.css ranks below the theme's) and the gallery script, a module that imports the viewer
+       from the same place (assets/js/gallery.js). */ -}}
 {{- $version := site.Params.gallery.lightbox }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dialog-lightbox@{{ $version }}/dist/dialog-lightbox.css">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/dialog-lightbox@{{ $version }}/dist/dialog-lightbox.js">

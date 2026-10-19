@@ -16,7 +16,7 @@
   <footer class="site-footer">
     {{ partial "footer.html" . }}
   </footer>
-  {{- if .HasShortcode "gallery" }}
+  {{- if partial "fieldnotes/has-viewer.html" . }}
   {{ partial "lightbox.html" . }}
   {{- end }}
   {{ partial "hooks/body-end.html" . }}

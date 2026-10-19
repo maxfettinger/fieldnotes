@@ -85,3 +85,8 @@
     padding-inline: 0.1em;
     text-decoration: none;
 }
+
+/* A photo that opens in the viewer (render-image.html): the pointer says it can be enlarged */
+.prose .photo a {
+    cursor: zoom-in;
+}

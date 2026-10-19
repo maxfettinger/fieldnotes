@@ -1,7 +1,8 @@
 {{- /* The photo viewer of the galleries: one <dialog> for every gallery on the page. dialog-lightbox (loaded from
        jsDelivr in the version params.gallery.lightbox, see data-module) finds its parts by their data-dlb-*
        attributes and adds the behaviour (assets/js/gallery.js); everything you see is components/lightbox.css.
-       Included by baseof.html on pages with a gallery. Laid out like Instagram's story viewer: counter and close in the window's corners,
+       Included by baseof.html on pages with a gallery or a photo in the text (fieldnotes/has-viewer.html). Laid out
+       like Instagram's story viewer: counter and close in the window's corners,
        and on videos an overlay inside the video itself (the template, which the library copies into every video
        slide, so it moves, swipes and shrinks with the video): play and sound at the top left over a soft fade,
        fullscreen at the top right, the progress bar on the bottom edge. */ -}}

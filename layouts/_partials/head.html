@@ -26,7 +26,7 @@
 {{ partialCached "head/css.html" (dict "style" $style) $style.preset $style.scheme }}
 {{ partialCached "head/style.html" . (.Params.style | jsonify) }}
 {{ partial "script.html" "js/main.js" }}
-{{- if .HasShortcode "gallery" }}
+{{- if partial "fieldnotes/has-viewer.html" . }}
 {{ partialCached "head/gallery.html" . }}
 {{- end }}
 {{- if .HasShortcode "trip-map" }}

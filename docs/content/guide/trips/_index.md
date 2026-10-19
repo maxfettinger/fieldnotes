@@ -11,5 +11,5 @@ and turns each folder into a row of photos that opens in a full-screen viewer.
 - [Photo galleries](photo-galleries/): folders, captions, videos, and keeping your location private.
 - [Trip maps](trip-maps/): the route file, its colours, and the free MapTiler key the map needs.
 
-The demo's [Hut to Hut in the Stubai Alps](https://fieldnotes.maxfettinger.com/trips/alps/) has a map and two
+The demo's [Eleven Days in Svaneti](https://fieldnotes.maxfettinger.com/trips/georgia/) has a map and two
 galleries.

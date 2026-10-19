@@ -106,4 +106,4 @@ themesDir = "../.."          # the theme is this repository; a site of your own 
 
   [params.map]
     style = "topo-v4"
-    styleDark = "topo-v4-dark"
+    styleDark = "topo-v4"      # the light map in dark mode too

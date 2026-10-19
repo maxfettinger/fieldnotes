@@ -44,7 +44,8 @@ link to a chapter.
 - **A title** in quotes, optional: for a photo alone in its paragraph, it becomes a caption under the photo.
 
 A photo in the page's bundle or in `assets/` gets copies from 480 to 1600 pixels wide in WebP; each browser loads the
-one that fits its screen, and only when it scrolls into view. Its width and height are known, so the text doesn't
+one that fits its screen, and only when it scrolls into view. A click opens it large in the photo viewer, with its
+caption, as in a [gallery](/guide/trips/photo-galleries/#the-viewer). Its width and height are known, so the text doesn't
 jump while it loads. Photos are framed in the preset's style: white prints on the graph paper, thick borders in
 brutalist.
 

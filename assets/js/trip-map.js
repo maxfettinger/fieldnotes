@@ -16,6 +16,8 @@ for (const element of document.querySelectorAll(".trip-map-canvas")) {
 async function draw(element) {
   const { geojson, mapStyle, mapStyleDark, key } = element.dataset;
   const styleFor = () => (dark() ? mapStyleDark || mapStyle : mapStyle);
+  // A light map stays light in dark mode when the site sets the same style for both (params.map.styleDark)
+  const mapIsDark = () => styleFor() !== mapStyle;
   const response = await fetch(geojson);
   if (!response.ok) throw new Error(`Could not load ${geojson}: ${response.status}`);
   const data = await response.json();
@@ -41,14 +43,20 @@ async function draw(element) {
   map.on("terrain", () => map.easeTo(map.getTerrain() ? { pitch: 60 } : { pitch: 0, bearing: 0 }));
 
   // The trip above the style's lines and areas, below its labels: on every style load, the first and after each switch
-  map.on("style.load", () => addTrip(map, data));
+  map.on("style.load", () => addTrip(map, data, mapIsDark()));
   await map.once("load");
   map.fitBounds(bounds, { padding: 40, duration: 0 }); // again: a globe style fits differently than the constructor
 
-  // Light and dark: a new style when the page's mode changes (the trip is drawn again on its style.load)
+  // Light and dark: a new style when the page's mode changes (the trip is drawn again on its style.load); with the
+  // same style for both modes, only the trip, in the new mode's colours
   let current = styleFor();
   new MutationObserver(() => {
-    if (styleFor() === current) return;
+    if (styleFor() === current) {
+      for (const id of ["trip-points", "trip-lines", "trip-lines-casing", "trip-areas"]) map.removeLayer(id);
+      map.removeSource("trip");
+      addTrip(map, data, mapIsDark());
+      return;
+    }
     current = styleFor();
     map.setStyle(current, { diff: false }); // a fresh load, so style.load fires and the trip comes back
   }).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
@@ -69,10 +77,11 @@ async function draw(element) {
 }
 
 // The trip's source and layers, in the theme's colours of the moment: --route (the accent) for features without
-// their own colour, the page's surface colour for the lines' casing and the points' rims
-function addTrip(map, data) {
+// their own colour; the lines' casing and the points' rims in the page's surface colour on a dark map, white on a
+// light one
+function addTrip(map, data, darkMap) {
   const accent = resolve("--route") || "#e16c0d";
-  const rim = resolve("--color-surface") || "#fff";
+  const rim = darkMap ? resolve("--color-surface") || "#fff" : "#fff";
   const layers = map.getStyle().layers;
   const labels = layers[layers.findLastIndex((l) => l.type !== "symbol") + 1]?.id;
   map.addSource("trip", { type: "geojson", data });
