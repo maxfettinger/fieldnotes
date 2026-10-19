@@ -17,8 +17,8 @@
     overflow-x: auto;
 }
 
-/* The copy button (assets/js/code-copy.js): in the block's top-right corner, shown on hover and keyboard focus, and
-   always on touch screens, where nothing hovers */
+/* The copy button (assets/js/code-copy.js): an icon in the block's top-right corner on the code's own background, shown
+   on hover and keyboard focus and always on touch screens, where nothing hovers; a check for a moment after copying */
 .highlight {
     position: relative;
 }
@@ -27,14 +27,33 @@
     position: absolute;
     inset-block-start: var(--space-3xs);
     inset-inline-end: var(--space-3xs);
-    padding: 0.2em 0.6em;
-    border: 1px solid var(--color-border);
+    display: grid;
+    place-items: center;
+    inline-size: 2rem;
+    block-size: 2rem;
+    padding: 0;
+    border: 0;
     border-radius: var(--radius-s);
     background: var(--color-surface);
     color: var(--color-secondary);
-    font: var(--step--2) / 1.4 var(--font-mono);
     opacity: 0;
     transition: opacity 0.15s;
+}
+
+.code-copy .icon {
+    grid-area: 1 / 1;
+    inline-size: 1rem;
+    block-size: 1rem;
+}
+
+.code-copy .icon:last-child,
+.code-copy[data-copied] .icon:first-child {
+    visibility: hidden;
+}
+
+.code-copy[data-copied] .icon:last-child {
+    visibility: visible;
+    color: var(--color-accent);
 }
 
 .highlight:focus-within .code-copy,
@@ -48,6 +67,7 @@
     }
 
     .code-copy:hover {
+        background: var(--color-tertiary);
         color: var(--color-text);
     }
 }
