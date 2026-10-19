@@ -1,6 +1,6 @@
 /*
- * Code: inline code on a fresh sheet, code blocks framed by a border. The colours of the code itself are in
- * syntax/light.css and syntax/dark.css; their block background loses to this later layer.
+ * Code: inline code on a fresh sheet, code blocks framed by a border. The colours of the code itself come from the
+ * colour scheme (syntax.css).
  */
 :not(pre) > code {
     padding: 0.15em 0.3em;

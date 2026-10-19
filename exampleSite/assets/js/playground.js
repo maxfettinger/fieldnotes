@@ -7,8 +7,6 @@ const form = document.querySelector(".playground");
 if (form) {
   const has = (name) => Boolean(form.elements[name]);
   const saved = playground.load();
-  // A preset saved before it was removed from the theme: back to the site's own
-  if (saved.preset && !playground.presets[saved.preset]) delete saved.preset;
   const choices = {
     preset: form.dataset.preset,
     scheme: form.dataset.scheme,
@@ -27,11 +25,7 @@ if (form) {
   function render() {
     const lines = ["[params.style]", `  preset = "${choices.preset}"`, `  scheme = "${choices.scheme}"`];
     if (choices.font) lines.push("[params.fonts]", `  body = "${choices.font}"`);
-    if (choices.background === "city") {
-      lines.push("[params.background]", '  light = "images/neon-streets-day.jpg"  # your photos in assets/, one per mode', '  dark = "images/neon-streets.jpg"', '  size = "cover"');
-    } else if (choices.background) {
-      lines.push("[params.background]", `  light = "${choices.background}"`, `  dark = "${choices.background}"`);
-    }
+    if (choices.background) lines.push("[params.background]", `  light = "${choices.background}"`, `  dark = "${choices.background}"`);
     form.parentElement.querySelector(".playground-config code").textContent = lines.join("\n");
   }
 

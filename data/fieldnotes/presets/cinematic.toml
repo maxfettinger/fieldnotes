@@ -1,5 +1,5 @@
 name = "Cinematic"
 weight = 40
 description = "For photographs: Inter Tight in light weights, hairlines, sharp corners, large galleries, nothing in the way."
-scheme = "cinema"
+scheme = "studio"
 fonts = ["Inter Tight:ital,wght@0,300;0,400;0,600;1,300"]

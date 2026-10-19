@@ -34,4 +34,4 @@ def trapezoid(f, a, b, n):
 | Setting | Value |
 |---|---|
 | preset | `cinematic` |
-| scheme | `cinema` |
+| scheme | `studio` |

@@ -5,7 +5,7 @@ a blackboard in dark mode, and it comes with trip maps, photo galleries with a v
 build step: Hugo does everything.
 
 - Six presets for how the site is drawn (fieldnotes with tape, minimal, editorial, cinematic, brutalist,
-  terminal) and seventeen colour schemes with light and dark versions, any with any; your own as plugins
+  terminal) and fourteen colour schemes with light and dark versions, any with any; your own as plugins
 - Light-only, dark-only or both, following the visitor's system or a toggle
 - Fonts from Google Fonts, backgrounds including your own SVG tile
 - Hooks for your own CSS, HTML and scripts
@@ -45,7 +45,7 @@ theme = "fieldnotes"
 
 # Two Markdown settings the theme needs but can't set itself
 [markup.highlight]
-  noClasses = false          # code colours as CSS classes, so dark mode can change them
+  noClasses = false          # code colours as CSS classes, so the colour scheme can colour them
 [markup.goldmark.extensions.passthrough]
   enable = true              # maths reaches MathJax untouched
   [markup.goldmark.extensions.passthrough.delimiters]
@@ -107,12 +107,12 @@ of its own, and its theme generator tries them all live and writes the settings.
 | `fieldnotes` | graph paper, PT Serif, cards taped onto the page, photos and maps as taped prints | fieldnotes |
 | `minimal` | Inter, thin borders, no pattern, no shadows, no motion, like a documentation site | ink |
 | `editorial` | a newspaper: a masthead, Playfair Display over Source Serif, articles in columns between rules, drop caps | newsprint |
-| `cinematic` | for photographs: Inter Tight in light weights, hairlines, sharp corners, tall galleries | cinema |
+| `cinematic` | for photographs: Inter Tight in light weights, hairlines, sharp corners, tall galleries | studio |
 | `brutalist` | IBM Plex Mono, thick borders, hard offset shadows, square corners | ink |
 | `terminal` | Omarchy's website in 8 bit: Geist and JetBrains Mono, a dot field, pixel-cut corners, a blinking cursor | omarchy |
 
-Colour schemes, calm ones first: fieldnotes, pencil, ink, newsprint, cinema, forest, ocean, nord, gruvbox, everforest,
-rose-pine, catppuccin, tokyo-night, omarchy, sakura, hud, neon. Each has a light and a dark version, with all text at
+Colour schemes, the theme's own first, then popular editor themes: fieldnotes, pencil, ink, newsprint, studio, forest,
+ocean, nord, gruvbox, everforest, rose-pine, catppuccin, tokyo-night, omarchy. Each has a light and a dark version, with all text at
 least 4.5:1 on page and cards; where an original scheme's light colours fall short, they're slightly darker here.
 
 A page can have its own look in its front matter, for example a photo story in `cinematic`:
@@ -175,10 +175,10 @@ Google's servers, which in the EU can count as sharing visitors' data.
 | `bg` | the page |
 | `surface` | cards, code blocks, the map before it loads |
 | `text` | body text |
-| `primary` | headings and links |
-| `secondary` | dates, summaries, captions |
+| `primary` | headings, links, keywords in code |
+| `secondary` | dates, summaries, captions, comments in code |
 | `tertiary` | small controls, the gallery's scroll bar |
-| `accent` | link underlines, hovers, focus rings, the current menu item |
+| `accent` | link underlines, hovers, focus rings, the current menu item, strings in code, the photo viewer's labels, map routes |
 | `border` | card and code borders |
 | `pattern` | the background's lines or dots |
 
@@ -192,19 +192,13 @@ Google's servers, which in the EU can count as sharing visitors' data.
   size = "120px"
 ```
 
-With `size = "cover"` the image is a photo: fixed behind the page, covering the window, under a veil of the
-background colour so text stays readable: strong behind the text column, thinner toward the window's edges, where
-the photo shows (`--backdrop-overlay`, from `--backdrop-veil` and `--backdrop-veil-edge`; stronger in light mode). The theme makes 1920 and 3840
-px wide WebP versions for normal and sharp screens, so a 4K original is a good start. Each mode can have its own
-photo, like a wallpaper that follows the time of day; in dark mode the veil is darker than the page. A page can have its own, in
-its front matter; the example site's generator has a photo to try:
+A page can have its own background in its front matter, with the same names:
 
 ```yaml
 style:
   background:
-    light: images/neon-streets-day.jpg
-    dark: images/neon-streets.jpg
-    size: cover
+    light: images/tile.svg
+    dark: dots
 ```
 
 **Your own CSS.** Create `assets/css/custom.css`. The theme imports it last, in its own cascade layer, so your rules
@@ -367,10 +361,7 @@ jobs:
   [Andy Bell](https://piccalil.li/blog/a-more-modern-css-reset/) (CC BY); fluid type and space computed the
   [Utopia](https://utopia.fyi/) way
 - Maths: [MathJax](https://www.mathjax.org/), from jsDelivr
-- Example site: the generator's photo background, a city at night, is "Neon streets" by JINDONG H, CC0
-  ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Neon_streets_(Unsplash).jpg), from Unsplash); the other
-  photos are generated gradients. Its light-mode version (`neon-streets-day.jpg`) is the same photo with its lightness
-  inverted and its hues kept
+- Example site: the photos are gradients and stick figures drawn by a script
 
 ## Licence
 

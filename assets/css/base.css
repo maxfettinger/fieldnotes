@@ -1,6 +1,6 @@
 /* Base: the page and the HTML elements, before any class. Colours from theme.css, sizes from tokens.css. */
 
-/* Background patterns: params.background picks one per mode, or an image, as --pattern (head/style.html) */
+/* Background patterns: params.background picks one per mode, or an image tile, as --pattern (head/style.html) */
 :root {
     --pattern-major: color-mix(in srgb, var(--pattern-color) var(--pattern-strength), var(--color-bg));
     --pattern-minor: color-mix(in srgb, var(--pattern-color) calc(var(--pattern-strength) / 2), var(--color-bg));
@@ -19,22 +19,10 @@
 
 body {
     background: var(--pattern), var(--color-bg);
-    isolation: isolate;
     color: var(--color-text);
     font-family: var(--font-body);
     font-size: var(--step-0);
     line-height: var(--leading);
-}
-
-/* A photo behind the page (a background image with size "cover", head/style.html): fixed to the window, so it stays
-   sharp and still on long pages (background-attachment: fixed would cover the whole page on iOS) */
-body::before {
-    content: "";
-    position: fixed;
-    z-index: -1;
-    inset: 0;
-    background: var(--backdrop);
-    pointer-events: none;
 }
 
 h1,

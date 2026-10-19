@@ -16,7 +16,7 @@
       {{- end }}
     </select>
   </label>
-  <label>Colours
+  <label>Colour scheme
     <select name="scheme">
       {{- range sort $schemes "weight" }}
       <option value="{{ .id }}">{{ .name }}</option>
@@ -38,7 +38,6 @@
       <option value="grid">Graph paper</option>
       <option value="dots">Dots</option>
       <option value="none">None</option>
-      <option value="city">A city at night (photo)</option>
     </select>
   </label>
   <label>Name for your copy of the preset

@@ -11,19 +11,26 @@ The playground on the [home page]({{< relref "/" >}}) tries the settings out liv
 ## Settings
 
 ```toml
+# How it's drawn: fieldnotes, minimal, editorial, cinematic,
+# brutalist or terminal; its colours, light and dark
+# (empty: the preset's own)
 [params.style]
-  preset = "terminal"  # how it's drawn: fieldnotes, minimal, editorial, cinematic, brutalist or terminal
-  scheme = "catppuccin" # its colours, light and dark (empty: the preset's own)
+  preset = "terminal"
+  scheme = "catppuccin"
 
+# light, dark or auto (the visitor's system); without the toggle,
+# a light-only or dark-only site
 [params.mode]
-  default = "auto"     # light, dark, or auto (the visitor's system setting)
-  toggle = true        # false and a fixed default: a light-only or dark-only site
+  default = "auto"
+  toggle = true
 
+# Any Google Fonts family, instead of the preset's
 [params.fonts]
-  body = "Lora"        # any Google Fonts family, instead of the preset's
+  body = "Lora"
 
+# grid, dots, none, or an image in assets/, like an SVG tile
 [params.background]
-  light = "grid"       # grid, dots, none, or an image in assets/, like an SVG tile
+  light = "grid"
   dark = "none"
 ```
 

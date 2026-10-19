@@ -25,6 +25,6 @@
 /* Hover only where there's a real pointer: touch screens keep :hover after a tap */
 @media (hover: hover) {
     .icon-button:hover {
-        color: var(--lightbox-print);
+        color: var(--lightbox-accent);
     }
 }

@@ -1,9 +1,9 @@
-/* Tokyo Night: Tokyo Night Day and Night. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
+/* Tokyo Night: Tokyo Night Light and Night. Light, and dark under data-theme="dark" (fieldnotes/style.html sets data-scheme). */
 :root[data-scheme="tokyo-night"] {
     --color-bg: #e1e2e7;
     --color-surface: #e9e9ed;
-    --color-text: #3760bf;
-    --color-primary: #2e3c64;
+    --color-text: #343b58;
+    --color-primary: #24509a;
     --color-secondary: #4f5a8c;
     --color-tertiary: #c4c8da;
     --color-accent: #7633d6;

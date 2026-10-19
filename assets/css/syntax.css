@@ -1,0 +1,81 @@
+/*
+ * Code colours (Hugo's Chroma highlighter, markup.highlight.noClasses = false) from the colour scheme, so code looks
+ * like the rest of the site in every scheme and mode: comments in the secondary colour, keywords and tags in the
+ * primary colour, strings and numbers in the accent, everything else in the text colour. All four pass WCAG AA on
+ * the code's background (the surface colour, components/code.css) in every scheme.
+ */
+.chroma {
+    color: var(--color-text);
+}
+
+/* Comments */
+.chroma :is(.c, .ch, .cm, .c1, .cs, .cp, .cpf) {
+    color: var(--color-secondary);
+    font-style: italic;
+}
+
+/* Keywords, tags, declarations */
+.chroma :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .nt, .ow, .nd) {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Names that are defined or looked up: functions, classes, attributes, properties, built-ins */
+.chroma :is(.nf, .fm, .nc, .na, .py, .nb, .bp, .no, .ne, .nn) {
+    color: var(--color-primary);
+}
+
+/* Strings, numbers, dates */
+.chroma :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss, .m, .mb, .mf, .mh, .mi, .il, .mo, .ld) {
+    color: var(--color-accent);
+}
+
+/* Diffs and emphasis */
+.chroma .gd {
+    color: var(--color-accent);
+}
+
+.chroma .gi,
+.chroma .gs,
+.chroma .gh,
+.chroma .gu {
+    font-weight: 600;
+}
+
+.chroma .ge {
+    font-style: italic;
+}
+
+.chroma .gl {
+    text-decoration: underline;
+}
+
+.chroma .err {
+    color: var(--color-accent);
+    text-decoration: underline wavy;
+}
+
+/* Line numbers and highlighted lines (hl_lines) */
+.chroma .line {
+    display: flex;
+}
+
+.chroma :is(.ln, .lnt) {
+    margin-inline-end: 0.4em;
+    padding-inline: 0.4em;
+    color: var(--color-secondary);
+    white-space: pre;
+    user-select: none;
+}
+
+.chroma .hl {
+    background: var(--color-tertiary);
+}
+
+.chroma :is(.lntable, .lntd) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-spacing: 0;
+    vertical-align: top;
+}

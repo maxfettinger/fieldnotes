@@ -9,7 +9,7 @@
  *   maptiler         the trip map's SDK CSS (head/trip-map.html imports it into this layer)
  *   tokens           sizes (tokens.css) and the default colours for both modes (theme.css)
  *   base             HTML elements: page background, text, headings, links, code
- *   syntax           code colours
+ *   syntax           code colours, from the scheme (syntax.css)
  *   layout           composition primitives (wrapper, stack, cluster) and the page frame
  *   components       the parts of the pages, one file each, named like their main class
  *   schemes          the colour scheme in use (schemes/*.css): colours only, light and dark
@@ -24,8 +24,7 @@
 @import "tokens.css" layer(tokens);
 @import "theme.css" layer(tokens);
 @import "base.css" layer(base);
-@import "syntax/light.css" layer(syntax);
-@import "syntax/dark.css" layer(syntax);
+@import "syntax.css" layer(syntax);
 @import "layout.css" layer(layout);
 
 /* Every page */

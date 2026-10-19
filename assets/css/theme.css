@@ -23,15 +23,6 @@
     --pattern: var(--pattern-grid);  /* the background (params.background): --pattern-grid, --pattern-dots, none */
     --pattern-color: #6babd5;        /* the background's lines or dots */
     --pattern-strength: 35%;         /* how strongly they show: major lines, minor lines get half */
-    --backdrop: none;                /* a photo behind the page, set by head/style.html (background size "cover") */
-    /* Over the photo, so text stays readable: the veil behind the text column, thinner toward the window's edges */
-    --backdrop-veil: color-mix(in srgb, var(--color-bg) 80%, transparent);
-    --backdrop-veil-edge: color-mix(in srgb, var(--color-bg) 25%, transparent);
-    --backdrop-overlay: linear-gradient(90deg,
-        var(--backdrop-veil-edge),
-        var(--backdrop-veil) calc(50% - var(--width-content) / 2 - var(--space-xl))
-        calc(50% + var(--width-content) / 2 + var(--space-xl)),
-        var(--backdrop-veil-edge));
 
     --shadow: 0 1px 1px rgb(70 55 30 / 0.10), 0 2px 6px rgb(70 55 30 / 0.08);
     --shadow-raised: 0 10px 20px rgb(70 55 30 / 0.14);
@@ -47,10 +38,10 @@
     --heading-transform: none;
     --heading-spacing: normal;
 
-    /* Photo viewer: black behind the photo in both modes; its orange (counter, place, video progress, hovered
-       buttons) is the scheme's accent, lightened in light mode so it reads on the black */
+    /* Photo viewer: black behind the photo in both modes; its counter, place, video progress and hovered buttons in
+       the scheme's accent, lightened in light mode so it reads on the black (at least 5.6:1 in every scheme) */
     --lightbox-bg: #0c0c0c;
-    --lightbox-print: color-mix(in srgb, var(--color-accent) 65%, white);
+    --lightbox-accent: color-mix(in srgb, var(--color-accent) 65%, white);
     /* Trip map lines and points without a colour of their own: the accent (the map follows the mode) */
     --route: var(--color-accent);
 }
@@ -70,10 +61,8 @@
     --pattern: var(--pattern-dots);
     --pattern-color: #e4eee8;
     --pattern-strength: 18%;
-    --backdrop-veil: color-mix(in srgb, color-mix(in srgb, var(--color-bg), black 50%) 88%, transparent); /* darker than the page */
-    --backdrop-veil-edge: color-mix(in srgb, color-mix(in srgb, var(--color-bg), black 50%) 30%, transparent);
 
-    --lightbox-print: var(--color-accent);
+    --lightbox-accent: var(--color-accent);
 
     --shadow: 0 1px 2px rgb(0 0 0 / 0.25);
     --shadow-raised: 0 8px 18px rgb(0 0 0 / 0.4);

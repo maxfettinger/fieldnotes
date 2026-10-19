@@ -48,7 +48,7 @@
 /* "3 / 16", in orange mono like the place */
 .lightbox-counter {
     margin-inline-end: auto;
-    color: var(--lightbox-print);
+    color: var(--lightbox-accent);
     font: 600 var(--step--1) / 1 var(--font-mono);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.1em;
@@ -84,7 +84,7 @@
 }
 
 .lightbox-place {
-    color: var(--lightbox-print);
+    color: var(--lightbox-accent);
     font: 600 0.75rem / 1.5 var(--font-mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -142,7 +142,7 @@
     inset: auto 0 0;
     block-size: 4px;
     background:
-        linear-gradient(var(--lightbox-print), var(--lightbox-print)) left / calc(var(--dlb-progress, 0) * 100%) 100% no-repeat,
+        linear-gradient(var(--lightbox-accent), var(--lightbox-accent)) left / calc(var(--dlb-progress, 0) * 100%) 100% no-repeat,
         rgb(255 255 255 / 0.25);
 }
 
