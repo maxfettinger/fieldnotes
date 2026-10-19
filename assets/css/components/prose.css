@@ -47,3 +47,41 @@
         color: var(--color-accent);
     }
 }
+
+/* Images and figures in Markdown (_markup/render-image.html): as wide as the column at most, rounded like the cards;
+   a figure's caption small and in the secondary colour, under the image */
+.prose img {
+    border-radius: var(--radius-m);
+}
+
+.prose figure {
+    display: grid;
+    gap: var(--space-2xs);
+}
+
+.prose figcaption {
+    color: var(--color-secondary);
+    font-size: var(--step--1);
+    font-style: italic;
+}
+
+/* A rule between parts of a text, and the one Hugo puts above the footnotes */
+.prose hr {
+    border: 0;
+    border-block-start: 1px solid var(--color-border);
+}
+
+/* Footnotes: smaller, at the end of the text; the numbers in the text without an underline */
+.prose .footnotes {
+    --flow-space: var(--space-l);
+    font-size: var(--step--1);
+}
+
+.prose .footnotes ol {
+    margin-block-start: var(--space-s);
+}
+
+.prose sup a {
+    padding-inline: 0.1em;
+    text-decoration: none;
+}

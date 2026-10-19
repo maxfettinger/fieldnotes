@@ -59,3 +59,7 @@
 [data-preset="cinematic"] .trip-map-canvas {
     box-shadow: none;
 }
+
+[data-preset="cinematic"] .prose img {
+    border-radius: 0;
+}

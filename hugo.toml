@@ -48,8 +48,8 @@
   # Favicon: files in static/ (or the theme's). svg is enough for current browsers; ico and appleTouch are optional
   [params.favicon]
     svg = "favicon.svg"
-    ico = ""
-    appleTouch = ""
+    ico = "favicon.ico"
+    appleTouch = "apple-touch-icon.png"
 
   # Trip maps: MapTiler's style (a style ID like "topo-v4" or a style.json URL), and the one for dark mode (the map
   # switches with the page). The key comes from the environment variable HUGO_MAPTILER_KEY when the site is built.

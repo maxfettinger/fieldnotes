@@ -76,3 +76,7 @@
     box-shadow: none;
     filter: grayscale(1) contrast(1.05);
 }
+
+[data-preset="editorial"] .prose img {
+    border-radius: 0;
+}

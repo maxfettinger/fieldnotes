@@ -14,6 +14,9 @@ themesDir = "../.."          # the theme is this repository; a site of your own 
 # MathJax untouched (otherwise Markdown eats the backslashes in \( \) and \[ \]).
 [markup.highlight]
   noClasses = false
+# An image alone in its paragraph becomes a figure, with its title as the caption (posts/writing-in-markdown)
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
 [markup.goldmark.extensions.passthrough]
   enable = true
   [markup.goldmark.extensions.passthrough.delimiters]
@@ -33,10 +36,6 @@ themesDir = "../.."          # the theme is this repository; a site of your own 
     name = "Projects"
     pageRef = "/projects"
     weight = 30
-  [[menus.main]]
-    name = "Presets"
-    pageRef = "/presets"
-    weight = 33
   [[menus.main]]
     name = "Presets"
     pageRef = "/presets"

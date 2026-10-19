@@ -33,3 +33,9 @@
     border: 2px solid var(--color-text);
     border-radius: 0;
 }
+
+[data-preset="brutalist"] .prose img {
+    border: 2px solid var(--color-text);
+    border-radius: 0;
+    box-shadow: var(--shadow);
+}

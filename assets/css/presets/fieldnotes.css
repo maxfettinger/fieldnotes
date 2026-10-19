@@ -125,3 +125,11 @@
     padding: 0;
     background: none;
 }
+
+/* Photos in a text: white prints like the home photo, never tilted (they'd blur), without tape */
+[data-preset="fieldnotes"] .prose img {
+    padding: 6px;
+    border-radius: 2px;
+    background: var(--print-bg);
+    box-shadow: var(--shadow-raised);
+}

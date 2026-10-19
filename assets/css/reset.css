@@ -47,6 +47,12 @@ svg {
     max-inline-size: 100%;
 }
 
+/* With width and height attributes (no jump while loading), a narrowed image keeps its proportions */
+img,
+video {
+    block-size: auto;
+}
+
 /* Buttons use the page's font */
 button {
     font: inherit;

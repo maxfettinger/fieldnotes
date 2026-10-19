@@ -22,7 +22,7 @@
         calc(2 * var(--px)) 100%, calc(2 * var(--px)) calc(100% - var(--px)), var(--px) calc(100% - var(--px)), var(--px) calc(100% - 2 * var(--px)), 0 calc(100% - 2 * var(--px)));
 }
 
-[data-preset="terminal"] :is(.card, .display-card, .intro-photo img, .trip-map-canvas, .trip-map-missing, pre) {
+[data-preset="terminal"] :is(.card, .display-card, .intro-photo img, .trip-map-canvas, .trip-map-missing, pre, .prose img) {
     clip-path: var(--pixel-corners);
 }
 
