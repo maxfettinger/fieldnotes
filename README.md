@@ -8,14 +8,14 @@ server, no database and no build step of its own.
 [**Demo**](https://fieldnotes.maxfettinger.com/) · [**Docs**](https://fieldnotes.maxfettinger.com/docs/) ·
 [Getting started](https://fieldnotes.maxfettinger.com/docs/guide/getting-started/)
 
-![Fieldnotes: a home page on graph paper with a taped photo and a card, a trip page with a topographic map of the route, and the photo viewer on a phone showing a portrait photo](images/screenshot.png)
+![Fieldnotes: a home page on graph paper with a taped photo and a card, a trip page with a topographic map of the route, and the photo viewer on a phone showing a portrait photo](https://raw.githubusercontent.com/maxfettinger/fieldnotes/main/images/showcase.png)
 
 ## What's in it
 
 - **Six presets** for how the site is drawn (fieldnotes, minimal, editorial, cinematic, brutalist, terminal) and
   **fourteen colour schemes**, any with any.
 
-  ![The six presets: fieldnotes, minimal, editorial, cinematic, brutalist and terminal, each a home page](images/presets.jpg)
+  ![The six presets: fieldnotes, minimal, editorial, cinematic, brutalist and terminal, each a home page](https://raw.githubusercontent.com/maxfettinger/fieldnotes/main/images/presets.jpg)
 
 - **Trip maps** from a GeoJSON route on MapTiler's topographic map.
 - **Photo and video galleries** from a folder, opening in a swipeable viewer
