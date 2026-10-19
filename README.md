@@ -8,7 +8,7 @@ server, no database and no build step of its own.
 [**Demo**](https://fieldnotes.maxfettinger.com/) · [**Docs**](https://fieldnotes.maxfettinger.com/docs/) ·
 [Getting started](https://fieldnotes.maxfettinger.com/docs/guide/getting-started/)
 
-![Fieldnotes: a home page on graph paper with a taped photo and a card, a trip page with a topographic map of the route, and the photo viewer on a phone showing a portrait photo](https://raw.githubusercontent.com/maxfettinger/fieldnotes/main/images/showcase.png)
+![Fieldnotes: a home page on graph paper with a taped photo and a card, a trip page with a topographic map of the route, and the photo viewer on a phone showing a portrait photo](https://raw.githubusercontent.com/maxfettinger/fieldnotes/main/images/screenshot.png)
 
 ## What's in it
 

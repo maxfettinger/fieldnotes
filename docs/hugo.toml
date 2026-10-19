@@ -36,7 +36,7 @@ disableKinds = ["taxonomy", "term", "rss"]
 
 [params]
   description = "Documentation for Fieldnotes, a Hugo theme for personal sites: notes, trips with maps and photo galleries, maths, six presets and fourteen colour schemes."
-  version = "1.1.1"
+  version = "1.1.2"
   repo = "https://github.com/maxfettinger/fieldnotes"
   editPath = "https://github.com/maxfettinger/fieldnotes/edit/main/docs/content/"
   footer = "Fieldnotes is MIT licensed · [Demo](https://fieldnotes.maxfettinger.com/)"
