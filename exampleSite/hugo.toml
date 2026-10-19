@@ -1,8 +1,9 @@
 # Fieldnotes' example site. Run it from the theme's folder:
 #   hugo server -s exampleSite        (with HUGO_MAPTILER_KEY set for the trip map)
-baseURL = "https://example.org/"
+baseURL = "https://fieldnotes.maxfettinger.com/"
 locale = "en-US"
 title = "Jane Doe"
+disableKinds = ["taxonomy", "term"]   # no tag and category pages: Fieldnotes doesn't show tags (yet)
 theme = "fieldnotes"
 themesDir = "../.."          # the theme is this repository; a site of your own uses themes/ or a Hugo module
 
@@ -48,6 +49,10 @@ themesDir = "../.."          # the theme is this repository; a site of your own 
     name = "About"
     pageRef = "/about"
     weight = 40
+  [[menus.main]]
+    name = "Docs"
+    url = "/docs/"           # the theme's documentation, published next to this demo
+    weight = 50
 
 [params]
   description = "Jane Doe writes about long bike trips and numerical analysis."

@@ -3,7 +3,9 @@
        layers (main.css explains the layers). A site adds a preset or scheme by putting its file into its own
        assets/css/presets/ or assets/css/schemes/ (and a line in data/fieldnotes/). The target is the "Baseline widely
        available" browsers of the css.Build docs (March 2026): nesting is rewritten, prefixes added. Minified and
-       fingerprinted for production, source maps locally. The context is a dict: style (fieldnotes/style.html). */ -}}
+       fingerprinted for production, source maps locally. url()s from the site's root ("/fonts/x.woff2", a file in
+       static/) stay as written; relative ones ("../fonts/x.woff2" from assets/css/) are copied and fingerprinted.
+       The context is a dict: style (fieldnotes/style.html). */ -}}
 {{- $style := .style }}
 {{- $imports := slice `@import "main.css";` (printf `@import "presets/%s.css" layer(presets);` $style.preset) }}
 {{- $imports = $imports | append (printf `@import "schemes/%s.css" layer(schemes);` $style.scheme) }}
@@ -12,6 +14,7 @@
   "minify" (cond hugo.IsDevelopment false true)
   "sourceMap" (cond hugo.IsDevelopment "linked" "none")
   "target" (slice "chrome115" "edge115" "firefox116" "ios16.4" "opera101" "safari16.4")
+  "externals" (slice "/*")
 }}
 {{- with $entry | css.Build $opts }}
   {{- if hugo.IsDevelopment }}

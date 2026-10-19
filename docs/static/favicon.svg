@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Fieldnotes: graph paper, a line of orange ink and the fountain pen that wrote it -->
+  <rect width="32" height="32" rx="7" fill="#f7f2e7"/>
+  <path d="M8 0v32M16 0v32M24 0v32M0 8h32M0 16h32M0 24h32" stroke="#6babd5" stroke-opacity="0.45"/>
+  <path d="M3.5 27.5c2.6-1 3.4-3.8 5.8-4.3s2.3-2 3.1-3" fill="none" stroke="#ae520b" stroke-width="2.4" stroke-linecap="round"/>
+  <g transform="translate(19 13) rotate(45)">
+    <rect x="-3.6" y="-26" width="7.2" height="19" rx="1.8" fill="#132e51"/>
+    <path d="M-3.6-8.6h7.2" stroke="#d9a441" stroke-width="1.6"/>
+    <path d="M0 8.8L-4.4-0.4C-4.6-3.6-3.6-6.2-2.8-7.4h5.6c0.8 1.2 1.8 3.8 1.6 7z" fill="#d9a441" stroke="#8a5f17" stroke-width="0.7" stroke-linejoin="round"/>
+    <path d="M0 8V0.4" stroke="#5a3d0e" stroke-width="0.9" stroke-linecap="round"/>
+    <circle cy="-0.6" r="1.15" fill="#5a3d0e"/>
+  </g>
+</svg>

@@ -11,7 +11,7 @@ up for this example, and so are the photos: gradients and stick figures drawn by
 
 {{< trip-map geojson="route.geojson" caption="Three days, three huts" >}}
 
-The map draws each day in the colour its GeoJSON feature names (`stroke`), or the theme's orange, and the huts as
+The map draws each day in the colour its GeoJSON feature names (`stroke`), or the colour scheme's accent, and the huts as
 points (`marker-color`). Click a line or a point for its name and description.
 
 ## The lakes

@@ -1,0 +1,5 @@
+# Alt text, a caption and a place for each photo, by file name ("part-1/01-start.jpg" is "01-start.jpg"):
+# 01-start.jpg:
+#   alt: What the photo shows, for people who can't see it
+#   caption: A short caption, shown in the viewer
+#   place: Where it was taken, shown in the viewer

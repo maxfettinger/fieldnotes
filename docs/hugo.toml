@@ -1,0 +1,42 @@
+# Fieldnotes' documentation, built with the Vitrine theme (a Hugo module). From the theme's folder:
+#   cd docs && hugo server
+# The demo site is exampleSite/; both are published together: the demo at the root, these docs under /docs/.
+baseURL = "https://fieldnotes.maxfettinger.com/docs/"
+locale = "en"
+title = "Fieldnotes"
+disableKinds = ["taxonomy", "term", "rss"]
+
+[module]
+  [[module.imports]]
+    path = "github.com/maxfettinger/vitrine"
+
+# What Vitrine needs from a site (see its docs): only Markdown files are pages, code colours as classes, h2 and h3
+# in "On this page"
+[contentTypes]
+  [contentTypes.'text/markdown']
+[markup.highlight]
+  noClasses = false
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+
+[menus]
+  [[menus.main]]
+    name = "Docs"
+    pageRef = "/guide"
+    weight = 10
+  [[menus.main]]
+    name = "Demo"
+    url = "https://fieldnotes.maxfettinger.com/"
+    weight = 20
+  [[menus.main]]
+    name = "Vitrine"
+    url = "https://vitrine.maxfettinger.com/"
+    weight = 30
+
+[params]
+  description = "Documentation for Fieldnotes, a Hugo theme for personal sites: notes, trips with maps and photo galleries, maths, six presets and fourteen colour schemes."
+  version = "1.0.0"
+  repo = "https://github.com/maxfettinger/fieldnotes"
+  editPath = "https://github.com/maxfettinger/fieldnotes/edit/main/docs/content/"
+  footer = "Fieldnotes is MIT licensed · [Demo](https://fieldnotes.maxfettinger.com/)"

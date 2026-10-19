@@ -1,368 +1,75 @@
 # Fieldnotes
 
-A Hugo theme for people who write about their trips and their research. It looks like graph paper in light mode and
-a blackboard in dark mode, and it comes with trip maps, photo galleries with a viewer, maths and code. No Node, no
-build step: Hugo does everything.
+**A Hugo theme for a personal site: posts and notes, trips with maps and photo galleries, maths and code.**
 
-- Six presets for how the site is drawn (fieldnotes with tape, minimal, editorial, cinematic, brutalist,
-  terminal) and fourteen colour schemes with light and dark versions, any with any; your own as plugins
-- Light-only, dark-only or both, following the visitor's system or a toggle
-- Fonts from Google Fonts, backgrounds including your own SVG tile
-- Hooks for your own CSS, HTML and scripts
-- Home page with a photo, a greeting, social icons and a "display card" for anything you like
-- Cards for posts, and link cards for projects that live elsewhere
-- Trip maps from a GeoJSON file (MapTiler)
-- Photo galleries from a folder of photos, with a swipe viewer and videos
-- Maths (MathJax), code with light and dark colours, search engine data (JSON-LD, Open Graph)
+Graph paper and taped cards by day, a chalk blackboard by night, or one of five other looks. Write Markdown; Hugo
+turns it into a fast site with no server, no database and no build step of its own.
 
-## Try the example site
+[**Demo**](https://fieldnotes.maxfettinger.com/) · [**Docs**](https://fieldnotes.maxfettinger.com/docs/) ·
+[Getting started](https://fieldnotes.maxfettinger.com/docs/guide/getting-started/)
 
-```sh
-git clone https://github.com/maxfettinger/fieldnotes
-cd fieldnotes
-hugo server -s exampleSite
-```
+![Fieldnotes: a home page on graph paper with a taped photo and cards, a trip map in dark mode, and the photo viewer on a phone](images/screenshot.png)
 
-Open http://localhost:1313/. The card on the home page is a style playground, the Presets section shows each preset on a
-page of its own, and the theme generator tries presets, schemes, fonts and backgrounds live and writes the settings. The trip map needs a MapTiler key (see [Trip maps](#trip-maps));
-without one it shows a note in its place.
+## What's in it
 
-## Use it for your site
+- **Six presets** for how the site is drawn (fieldnotes, minimal, editorial, cinematic, brutalist, terminal) and
+  **fourteen colour schemes**, each light and dark, any with any. Light-only and dark-only sites too.
+- **Trip maps** from a GeoJSON route on MapTiler's topographic map, in light and dark.
+- **Photo and video galleries** from a folder, opening in a swipeable viewer
+  ([dialog-lightbox](https://github.com/maxfettinger/dialog-lightbox)).
+- **A home page** with your photo, a greeting, your profiles and a card for anything you like.
+- **Maths** with MathJax, **code** in your scheme's colours with a copy button, responsive images with captions.
+- **Your own presets, schemes, CSS and hooks**, without forking the theme.
+- Search-engine data (JSON-LD, Open Graph) that matches what visitors see, and contrast that passes WCAG AA.
 
-You need Hugo 0.158 or newer.
+## Quick start
 
 ```sh
-hugo new site my-site
-cd my-site
-git init
-git submodule add https://github.com/maxfettinger/fieldnotes themes/fieldnotes
+hugo new project my-site && cd my-site
+hugo mod init github.com/you/my-site
 ```
 
-Then in `hugo.toml`:
+Add the theme and the Markdown settings it needs to `hugo.toml`:
 
 ```toml
-theme = "fieldnotes"
+[module]
+  [[module.imports]]
+    path = "github.com/maxfettinger/fieldnotes"
 
-# Two Markdown settings the theme needs but can't set itself
 [markup.highlight]
-  noClasses = false          # code colours as CSS classes, so the colour scheme can colour them
+  noClasses = false
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
 [markup.goldmark.extensions.passthrough]
-  enable = true              # maths reaches MathJax untouched
+  enable = true
   [markup.goldmark.extensions.passthrough.delimiters]
     block = [['\[', '\]'], ['$$', '$$']]
     inline = [['\(', '\)']]
 ```
 
-`exampleSite/hugo.toml` lists every setting with a comment. The sections below explain them.
-
-## The home page
-
-The home page is `content/_index.md`. Its text is the intro; the front matter adds the rest:
-
-```yaml
----
-title: "Jane Doe"
-greeting: "Hi, I'm Jane,"
-photo: "images/photo.jpg"        # in assets/, or next to _index.md; an SVG works too
-photoAlt: "Jane hiking in front of glaciers"
-displayCard: "display-card-content.html"
----
-a PhD student in numerical analysis, and a cyclist in the summer.
+```sh
+hugo mod get github.com/maxfettinger/fieldnotes@latest
+hugo server
 ```
 
-Below the intro the home page lists the pages of `params.mainSections` as cards, newest first.
+Requires Hugo 0.158 or newer (extended). [Create your site](https://fieldnotes.maxfettinger.com/docs/guide/getting-started/create-your-site/)
+walks through every step, including adding the theme as a Git submodule instead.
 
-The **display card** is a card with your own HTML, not a link: a "now" note, a quote, a canvas with a script. Write
-the HTML in `layouts/_partials/display-card-content.html` (any name, as long as `displayCard` names it).
+## This repository
 
-**Social icons** sit under the intro. The name picks a [Feather icon](https://feathericons.com/):
-
-```toml
-[params]
-  socialIcons = [
-    { name = "github", url = "https://github.com/jane" },
-    { name = "email", url = "mailto:jane@example.org" },
-  ]
-```
-
-Available: github, gitlab, linkedin, instagram, twitter (or x), facebook, youtube, twitch, codepen, codesandbox,
-dribbble, figma, framer, slack, trello, mail (or email), rss, globe (or website), link, phone, book-open (or scholar),
-file-text (or cv). Put `socialIcons` above any `[params.something]` table: in TOML a key after a table header belongs
-to that table.
-
-## Look and feel
-
-The look has two parts, chosen independently: a **preset** (how the site is drawn: fonts, background, corners,
-cards, decoration) and a **colour scheme** (its colours, in a light and a dark version). The example site shows every preset on a page
-of its own, and its theme generator tries them all live and writes the settings.
-
-```toml
-[params.style]
-  preset = "terminal"     # fieldnotes, minimal, editorial, cinematic, brutalist, terminal
-  scheme = "catppuccin"   # optional, else the preset's own
-```
-
-| Preset | How it's drawn | Its scheme |
-|---|---|---|
-| `fieldnotes` | PT Serif on graph paper; cards taped onto the page, photos and maps as taped prints | fieldnotes |
-| `minimal` | Inter, thin borders, no background pattern, no shadows, no motion | ink |
-| `editorial` | Playfair Display headings over Source Serif text, a large masthead, articles in two columns between rules, drop caps | newsprint |
-| `cinematic` | Inter Tight in light weights, hairline rules instead of boxes, square corners, taller galleries | studio |
-| `brutalist` | IBM Plex Mono throughout, thick borders, hard offset shadows, square corners | ink |
-| `terminal` | Geist and JetBrains Mono, a dot grid, stepped corners, Markdown-style headings and a blinking cursor | terminal |
-
-Colour schemes, the theme's own first, then popular editor themes: fieldnotes, pencil, ink, newsprint, studio, forest,
-ocean, terminal, nord, gruvbox, everforest, rose-pine, catppuccin, tokyo-night. Each has a light and a dark version, with all text at
-least 4.5:1 on page and cards; where an original scheme's light colours fall short, they're slightly darker here.
-
-A page can have its own look in its front matter, for example a photo story in `cinematic`:
-
-```yaml
-style:
-  preset: cinematic
-```
-
-**Your own presets and schemes.** They're plugins: a CSS file and a small data file each, in the same folders as the
-theme's. Hugo looks in your site first, so a new name adds one and a theme name replaces it. Only the preset and
-schemes a page uses go into its stylesheet.
-
-| File | What it holds |
+| Folder | What it is |
 |---|---|
-| `assets/css/schemes/<id>.css` | `:root[data-scheme="<id>"] { --color-bg: …; … }` for light mode and `:root[data-scheme="<id>"][data-theme="dark"] { … }` |
-| `data/fieldnotes/schemes/<id>.toml` | `name`, `weight` (its place in lists), `description` |
-| `assets/css/presets/<id>.css` | `:root[data-preset="<id>"] { --font-body: …; --radius-m: …; … }` and rules like `[data-preset="<id>"] .card { … }` |
-| `data/fieldnotes/presets/<id>.toml` | `name`, `weight`, `description`, its default `scheme`, and the Google Fonts it loads (`fonts = ["Inter:wght@400;700"]`) |
-
-The easiest start is the example site's theme generator: it downloads the preset you're looking at as a copy under a
-name of your own. The custom properties a preset can set are in the theme's `assets/css/tokens.css` and `theme.css`;
-`assets/css/main.css` explains the cascade layers that keep a preset's rules above the theme's.
-
-**Light and dark mode.**
-
-```toml
-[params.mode]
-  default = "auto"   # "light", "dark", or "auto" (the visitor's system setting)
-  toggle = true      # the switch in the header; with it, the visitor's choice wins
-```
-
-A light-only site: `default = "light"` and `toggle = false`. Dark only: `"dark"` and `false`.
-
-**Fonts.** Any family on [Google Fonts](https://fonts.google.com/) by name:
-
-```toml
-[params.fonts]
-  body = "Source Serif 4"
-  heading = "Inter"            # optional, else the body font
-  mono = "IBM Plex Mono"       # optional, else the system's monospace
-```
-
-The theme loads the body font in regular, bold and both italics, the heading font in bold and the mono font in
-regular. If a font lacks one of these, or you want other weights, set `url` to the whole Google Fonts link.
-`google = false` loads nothing, for fonts you host yourself. Good to know: with Google Fonts, every visit contacts
-Google's servers, which in the EU can count as sharing visitors' data.
-
-**Colours.** Each colour has a job, and you can change any of them per mode:
-
-```toml
-[params.colors.light]
-  accent = "#0b6e4f"
-[params.colors.dark]
-  accent = "#5fd3a8"
-```
-
-| Name | What it colours |
-|---|---|
-| `bg` | the page |
-| `surface` | cards, code blocks, the map before it loads |
-| `text` | body text |
-| `primary` | headings, links, keywords in code |
-| `secondary` | dates, summaries, captions, comments in code |
-| `tertiary` | small controls, the gallery's scroll bar |
-| `accent` | link underlines, hovers, focus rings, the current menu item, strings in code, the photo viewer's labels, map routes |
-| `border` | card and code borders |
-| `pattern` | the background's lines or dots |
-
-**Background.** Instead of the preset's: per mode `"grid"` (graph paper), `"dots"`, `"none"`, or an image in
-`assets/`. An SVG tile repeats across the page at its own size, or at `size`:
-
-```toml
-[params.background]
-  light = "images/tile.svg"   # assets/images/tile.svg
-  dark = "dots"
-  size = "120px"
-```
-
-A page can have its own background in its front matter, with the same names:
-
-```yaml
-style:
-  background:
-    light: images/tile.svg
-    dark: dots
-```
-
-**Your own CSS.** Create `assets/css/custom.css`. The theme imports it last, in its own cascade layer, so your rules
-win whatever their selectors. Every size and colour is a custom property you can set there, for example
-`:root { --width-content: 40rem; }`. The theme's `assets/css/tokens.css` and `theme.css` list them.
-
-**Hooks.** Files of your own that the theme picks up. It has empty versions of the first two, and your site's file
-wins when both exist:
-
-| File in your site | What it does |
-|---|---|
-| `layouts/_partials/hooks/head-end.html` | HTML at the end of every page's `<head>`: analytics, a font, an early script |
-| `layouts/_partials/hooks/body-end.html` | HTML at the end of every page's `<body>`: a script, a notice |
-| `assets/css/custom.css` | your CSS, loaded last (above) |
-| the partial named by `displayCard` | the home page's card (above) |
-
-The example site's style playground uses all four; `exampleSite/layouts/` shows how.
-
-**Favicon.** Put your icon in `static/` and name it:
-
-```toml
-[params.favicon]
-  svg = "favicon.svg"
-  ico = "favicon.ico"                 # optional: old browsers, crawlers asking for /favicon.ico
-  appleTouch = "apple-touch-icon.png"  # optional: a 180 × 180 PNG for iPhone home screens
-```
-
-## Writing
-
-Posts are Markdown files in a section (`content/posts/`). The front matter's `summary` shows on the card;
-`math: true` turns on MathJax for that page (or `params.math = true` for the whole site).
-
-A **link card** is a project that lives elsewhere, like its documentation or repository. The card links there, and
-there's no page for it on your site:
-
-```yaml
----
-title: "My Library"
-summary: "A small library for something."
-params:
-  link: https://github.com/jane/my-library
-build:
-  render: never
----
-```
-
-## Galleries
-
-Make a folder next to the page's `index.md` and drop photos in. The page becomes a "page bundle":
-
-```text
-content/trips/sweden/
-├── index.md
-├── photos.yaml        (optional)
-└── lakes/
-    ├── 01-tent.jpg
-    ├── 02-sunset.jpg
-    ├── 03-swim.mp4
-    └── 03-swim.jpg    (the video's poster)
-```
-
-```md
-{{< gallery "lakes" >}}
-```
-
-Without an argument the folder is called `gallery`. The photos show in the order of their file names. JPEG, PNG, WebP
-and AVIF work; HEIC from an iPhone doesn't, so export as JPEG. A click opens the viewer
-([dialog-lightbox](https://github.com/maxfettinger/dialog-lightbox), loaded from jsDelivr).
-
-`photos.yaml` next to the folder adds alt text, a caption and a place per file. The caption and place show in the
-viewer. Hugo warns about photos without alt text:
-
-```yaml
-01-tent.jpg:
-  alt: A small tent on a lakeshore at dusk
-  caption: Our first night by the lake
-  place: Lake Siljan, Sweden
-```
-
-Add `build: { publishResources: false }` to the page's front matter, so Hugo publishes only the smaller photos the
-gallery uses, not your originals.
-
-**Check your photos for location data before you commit them.** Photos from a phone carry their GPS position, and on
-GitHub your repository is usually public. Hugo removes metadata from the sizes it makes, but not from the originals
-in your repository. The easiest way: export from your photo app as JPEG with location turned off (in Apple Photos:
-File → Export, untick "Location Information").
-
-## Trip maps
-
-```md
-{{< trip-map geojson="route.geojson" caption="Eight days on foot" >}}
-```
-
-`geojson` is a file next to the page, in `assets/` or in `static/`. Any tool that exports GeoJSON works (most GPX
-tools do). Lines, points and areas use their own colours if the file has them (`stroke`, `stroke-width`,
-`marker-color`, `fill`), otherwise the colour scheme's accent. A click on a line or point shows its `name` and
-`description`, in the page's colours. The map follows the page's light and dark mode: `params.map.style` (default
-`topo-v4`) in light mode, `params.map.styleDark` (default `topo-v4-dark`) in dark mode, and it switches when the
-visitor uses the toggle. `style` and `styleDark` on the shortcode pick other [MapTiler maps](https://www.maptiler.com/maps/),
-like `style="outdoor-v4" styleDark="outdoor-v4-dark"`.
-
-### The MapTiler key
-
-The map needs a free key from MapTiler. The theme reads it from the environment variable `HUGO_MAPTILER_KEY` when
-Hugo builds the site, so it never goes into your repository.
-
-1. Create an account at [MapTiler](https://cloud.maptiler.com/) and copy your key.
-2. In MapTiler, under the key's settings, allow only your site's address (`jane.github.io`, or your domain) and
-   `localhost`. The key ends up in your published pages, as with every map on the web, and this restriction makes it
-   useless anywhere else.
-3. Locally: `HUGO_MAPTILER_KEY=yourkey hugo server`. Or put `export HUGO_MAPTILER_KEY=yourkey` in a `.env` file,
-   add `.env` to `.gitignore`, and run `source .env` before `hugo server`.
-4. On GitHub: in your repository, Settings → Secrets and variables → Actions → New repository secret, named
-   `MAPTILER_KEY`. The workflow below passes it to Hugo.
-
-The free plan is for non-commercial use and covers 5,000 map loads a month. Without a key, Hugo warns and the map's
-place shows a note on how to add one.
-
-## Publishing on GitHub Pages
-
-Save this as `.github/workflows/pages.yml`, then in your repository's settings choose Pages → Source: GitHub Actions.
-
-```yaml
-name: Pages
-on:
-  push:
-    branches: [main]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: true
-      - uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: "0.167.0"
-      - run: hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
-        env:
-          HUGO_MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
-      - uses: actions/deploy-pages@v4
-```
+| the root | the theme |
+| `exampleSite/` | the [demo](https://fieldnotes.maxfettinger.com/): `hugo server --source exampleSite` |
+| `docs/` | the [documentation](https://fieldnotes.maxfettinger.com/docs/), built with [Vitrine](https://github.com/maxfettinger/vitrine): `cd docs && hugo server` |
 
 ## Credits
 
-- Icons: [Feather](https://feathericons.com/) by Cole Bemis (MIT, `assets/icons/LICENSE`)
-- Photo viewer: [dialog-lightbox](https://github.com/maxfettinger/dialog-lightbox) (MIT), from jsDelivr
-- Maps: [MapTiler SDK JS](https://docs.maptiler.com/sdk-js/), from MapTiler's CDN
-- Default font: [PT Serif](https://fonts.google.com/specimen/PT+Serif) (OFL), from Google Fonts
-- CSS reset after [Josh Comeau](https://www.joshwcomeau.com/css/custom-css-reset/) and
-  [Andy Bell](https://piccalil.li/blog/a-more-modern-css-reset/) (CC BY); fluid type and space computed the
-  [Utopia](https://utopia.fyi/) way
-- Maths: [MathJax](https://www.mathjax.org/), from jsDelivr
-- Example site: the photos are gradients and stick figures drawn by a script
+Icons from [Feather](https://feathericons.com/) (MIT). Photo viewer: [dialog-lightbox](https://github.com/maxfettinger/dialog-lightbox)
+(MIT). Maps: [MapTiler](https://www.maptiler.com/). Maths: [MathJax](https://www.mathjax.org/). Type and space scale
+computed the [Utopia](https://utopia.fyi/) way; CSS reset after Josh Comeau and Andy Bell. The demo's photos are
+gradients and stick figures drawn by a script.
 
 ## Licence
 
-MIT, see `LICENSE`.
+MIT.
