@@ -3,12 +3,12 @@
        iPhone home screens) are optional. sizes="32x32" keeps Chrome from preferring the ICO over the SVG. */ -}}
 {{- with site.Params.favicon }}
   {{- with .ico }}
-<link rel="icon" href="{{ . | relURL }}" sizes="32x32">
+<link rel="icon" href="{{ strings.TrimPrefix "/" . | relURL }}" sizes="32x32">
   {{- end }}
   {{- with .svg }}
-<link rel="icon" href="{{ . | relURL }}" type="image/svg+xml">
+<link rel="icon" href="{{ strings.TrimPrefix "/" . | relURL }}" type="image/svg+xml">
   {{- end }}
   {{- with .appleTouch }}
-<link rel="apple-touch-icon" href="{{ . | relURL }}">
+<link rel="apple-touch-icon" href="{{ strings.TrimPrefix "/" . | relURL }}">
   {{- end }}
 {{- end }}

@@ -34,7 +34,7 @@
     --width-content: 45rem;          /* 720px: the column of text, about 85 characters a line (measured);
                                         45–75 is the usual guide for reading, so no wider */
     --width-wide: 64rem;             /* 1024px: the header, and photos and the map (.breakout) */
-    --gutter: var(--space-s-m);      /* between the window's edge and the content */
+    --gutter: clamp(1.25rem, 0.9432rem + 1.3636vw, 2rem);  /* 20 → 32px: between the window's edge and the content */
 
     /* Fonts: params.fonts sets --font-body, --font-heading and --font-mono (head/style.html) */
     --font-body: "PT Serif", Georgia, serif;

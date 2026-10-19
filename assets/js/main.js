@@ -2,3 +2,4 @@
 // a new feature gets its own module here. Page-specific scripts (gallery.js, trip-map.js) load only where needed.
 import "./theme.js";
 import "./top-link.js";
+import "./code-copy.js";

@@ -16,3 +16,44 @@
     line-height: 1.5;
     overflow-x: auto;
 }
+
+/* The copy button (assets/js/code-copy.js): in the block's top-right corner, shown on hover and keyboard focus, and
+   always on touch screens, where nothing hovers */
+.highlight {
+    position: relative;
+}
+
+.code-copy {
+    position: absolute;
+    inset-block-start: var(--space-3xs);
+    inset-inline-end: var(--space-3xs);
+    padding: 0.2em 0.6em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-s);
+    background: var(--color-surface);
+    color: var(--color-secondary);
+    font: var(--step--2) / 1.4 var(--font-mono);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.highlight:focus-within .code-copy,
+.code-copy:focus-visible {
+    opacity: 1;
+}
+
+@media (hover: hover) {
+    .highlight:hover .code-copy {
+        opacity: 1;
+    }
+
+    .code-copy:hover {
+        color: var(--color-text);
+    }
+}
+
+@media (hover: none) {
+    .code-copy {
+        opacity: 1;
+    }
+}

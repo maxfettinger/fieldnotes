@@ -17,10 +17,13 @@
     margin: 0;
 }
 
-/* Text keeps its size when a phone turns to landscape, without blocking zoom */
+/* Text keeps its size when a phone turns to landscape, without blocking zoom; room for the scrollbar on every page,
+   so the header doesn't shift between short and long pages; no grey flash where a tap lands on iOS */
 html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Links to an anchor scroll smoothly and stop a little above it */

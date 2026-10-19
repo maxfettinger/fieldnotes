@@ -1,12 +1,26 @@
-{{- /* Markdown links, after the render hook in the Hugo docs. External ones (http or https to another host) open
-       in a new tab, with rel="noopener" and, for screen readers, the words "opens in a new tab". */ -}}
+{{- /* Markdown links: Hugo's embedded link hook (a link to a page or a page's file, like [About](/about/) or
+       [the GPX](route.gpx), becomes that page's or file's address, so it works under any base path), plus:
+       - an address from the site's root that isn't a page or file of the content (a file in static/) gets the base path
+       - a link to another site opens in a new tab, with the words "opens in a new tab" for screen readers */ -}}
 {{- $u := urls.Parse .Destination -}}
-{{- $external := and (in (slice "http" "https") $u.Scheme) (ne $u.Host (urls.Parse site.BaseURL).Host) -}}
-<a href="{{ .Destination | safeURL }}"
-  {{- with .Title }} title="{{ . }}"{{ end -}}
-  {{- if $external }} target="_blank" rel="noopener"{{ end -}}
->
-  {{- with .Text }}{{ . }}{{ end -}}
+{{- $href := $u.String -}}
+{{- $external := and $u.IsAbs (in (slice "http" "https") $u.Scheme) (ne $u.Host (urls.Parse site.BaseURL).Host) -}}
+{{- if strings.HasPrefix $href "#" -}}
+  {{- $href = printf "%s#%s" .PageInner.RelPermalink $u.Fragment -}}
+{{- else if and $href (not $u.IsAbs) -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path -}}
+  {{- with and $path (or (.PageInner.GetPage $path) (.PageInner.Resources.Get $path) (resources.Get $path)) -}}
+    {{- $href = .RelPermalink -}}
+    {{- with $u.RawQuery }}{{ $href = printf "%s?%s" $href . }}{{ end -}}
+    {{- with $u.Fragment }}{{ $href = printf "%s#%s" $href . }}{{ end -}}
+  {{- else -}}
+    {{- if and (strings.HasPrefix $href "/") (not (strings.HasPrefix $href "//")) -}}
+      {{- $href = strings.TrimPrefix "/" $href | relURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<a href="{{ $href }}" {{- with .Title }} title="{{ . }}"{{ end }} {{- if $external }} target="_blank" rel="noopener"{{ end }}>
+  {{- .Text -}}
   {{- if $external }}<span class="visually-hidden"> (opens in a new tab)</span>{{ end -}}
 </a>
-{{- /* chomp trailing newline */ -}}
+{{- /**/ -}}

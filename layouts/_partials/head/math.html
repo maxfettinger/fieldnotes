@@ -28,8 +28,8 @@
         };
         MathJax.startup.promise.then(() => {
           fit();
-          const prose = document.querySelector('.prose');
-          if (prose) new ResizeObserver(fit).observe(prose);
+          const main = document.querySelector('main');
+          if (main) new ResizeObserver(fit).observe(main);
         });
       }
     }
