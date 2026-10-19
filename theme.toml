@@ -1,11 +1,11 @@
 name = "Fieldnotes"
 license = "MIT"
 licenselink = "https://github.com/maxfettinger/fieldnotes/blob/main/LICENSE"
-description = "A theme for a personal site: posts and notes, trips with maps and photo galleries, maths and code, in six presets and fourteen colour schemes, light and dark."
+description = "A theme for a personal site: posts and notes, trips with maps and photo galleries, maths and code, in six presets and fourteen colour schemes."
 homepage = "https://github.com/maxfettinger/fieldnotes"
 demosite = "https://fieldnotes.maxfettinger.com/"
 tags = ["blog", "personal", "portfolio", "travel", "photography", "gallery", "maps", "math", "dark mode", "light", "minimal", "responsive", "accessible"]
-features = ["six presets: how the site is drawn", "fourteen colour schemes, light and dark", "light-only, dark-only or both", "trip maps from GeoJSON (MapTiler)", "photo and video galleries with a swipe viewer", "MathJax", "code with copy buttons", "responsive images", "presets and schemes as plugins", "hooks and custom CSS", "SEO: JSON-LD and Open Graph", "Google Fonts"]
+features = ["six presets: how the site is drawn", "fourteen colour schemes", "light-only, dark-only or both", "trip maps from GeoJSON (MapTiler)", "photo and video galleries with a swipe viewer", "MathJax", "code with copy buttons", "responsive images", "presets and schemes as plugins", "hooks and custom CSS", "SEO: JSON-LD and Open Graph", "Google Fonts"]
 min_version = "0.158.0"
 
 [author]

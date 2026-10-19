@@ -22,14 +22,14 @@ PT Serif on graph paper. Cards are cut-outs stuck onto the page with a strip of 
 other one the other way; your photo, the trip maps and photos in a text are white prints taped at their corners. In
 dark mode: a green blackboard with chalk. The default. Its scheme: **fieldnotes**.
 
-![The fieldnotes preset: taped cards on graph paper](fieldnotes.jpg)
+![The fieldnotes preset in light and dark mode: taped cards on graph paper](fieldnotes.jpg)
 
 ### minimal
 
 Inter, thin borders, no background pattern, no shadows, no movement: calm, like a documentation site. Cards darken
 their border when hovered instead of lifting. Its scheme: **ink**.
 
-![The minimal preset: plain cards with thin borders](minimal.jpg)
+![The minimal preset in light and dark mode: plain cards with thin borders](minimal.jpg)
 
 ### editorial
 
@@ -37,21 +37,21 @@ A newspaper. Playfair Display headlines over Source Serif text, the site's name 
 posts in two columns between rules on wide screens, dates in small capitals, a drop cap at the start of a post. Its
 scheme: **newsprint**.
 
-![The editorial preset: a masthead and posts in two columns](editorial.jpg)
+![The editorial preset in light and dark mode: a masthead and posts in two columns](editorial.jpg)
 
 ### cinematic
 
 For sites about photographs. Inter Tight in light weights, hairlines instead of boxes, square corners, no shadows,
 labels in spaced capitals, and taller galleries. Its scheme: **studio**.
 
-![The cinematic preset: thin type and hairlines](cinematic.jpg)
+![The cinematic preset in light and dark mode: thin type and hairlines](cinematic.jpg)
 
 ### brutalist
 
 IBM Plex Mono throughout, thick borders and hard shadows in the text colour, square corners. Cards jump towards their
 shadow when hovered. Its scheme: **ink**.
 
-![The brutalist preset: monospace type, thick borders and hard shadows](brutalist.jpg)
+![The brutalist preset in light and dark mode: monospace type, thick borders and hard shadows](brutalist.jpg)
 
 ### terminal
 
@@ -59,7 +59,7 @@ Geist for text and JetBrains Mono for everything that names things, a field of d
 corners, headings marked like Markdown (`##`), post titles as a prompt (`>`), and a blinking cursor after the site's
 name. Its scheme: **terminal**.
 
-![The terminal preset: a dot grid, stepped corners and a blinking cursor](terminal.jpg)
+![The terminal preset in light and dark mode: a dot grid, stepped corners and a blinking cursor](terminal.jpg)
 
 ## A page of its own
 

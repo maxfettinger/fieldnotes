@@ -2,7 +2,7 @@
 title: Fieldnotes
 description: "Fieldnotes is a Hugo theme for personal sites: posts and notes, trips with maps and photo galleries, maths and code, in six presets and fourteen colour schemes."
 lead: A Hugo theme for a personal site. Posts and notes, trips with maps and photo galleries, maths and code, drawn in six presets with fourteen colour schemes.
-facts: ["Hugo 0.158 or newer", "6 presets", "14 colour schemes", "Trip maps", "Photo galleries", "Light and dark", "MIT licence"]
+facts: ["Hugo 0.158 or newer", "6 presets", "14 colour schemes", "Trip maps", "Photo galleries", "MIT licence"]
 install: hugo mod get github.com/maxfettinger/fieldnotes
 actions:
   - { label: Get started, url: guide/getting-started/ }
@@ -10,7 +10,7 @@ actions:
   - { label: GitHub, url: "https://github.com/maxfettinger/fieldnotes" }
 ---
 
-![The Fieldnotes demo: a home page on graph paper with taped cards, a trip map and a gallery, in light and dark mode](screenshot.png)
+![The Fieldnotes demo: a home page on graph paper with taped cards, a trip map and the photo viewer](screenshot.png)
 
 ## What it's for
 

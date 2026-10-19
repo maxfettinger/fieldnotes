@@ -2,19 +2,22 @@
 
 **A Hugo theme for a personal site: posts and notes, trips with maps and photo galleries, maths and code.**
 
-Graph paper and taped cards by day, a chalk blackboard by night, or one of five other looks. Write Markdown; Hugo
-turns it into a fast site with no server, no database and no build step of its own.
+Graph paper and taped cards, or one of five other looks. Write Markdown; Hugo turns it into a fast site with no
+server, no database and no build step of its own.
 
 [**Demo**](https://fieldnotes.maxfettinger.com/) · [**Docs**](https://fieldnotes.maxfettinger.com/docs/) ·
 [Getting started](https://fieldnotes.maxfettinger.com/docs/guide/getting-started/)
 
-![Fieldnotes: a home page on graph paper with a taped photo and cards, a trip map in dark mode, and the photo viewer on a phone](images/screenshot.png)
+![Fieldnotes: a home page on graph paper with a taped photo and a card, a trip page with a topographic map of the route, and the photo viewer on a phone](images/readme.jpg)
 
 ## What's in it
 
 - **Six presets** for how the site is drawn (fieldnotes, minimal, editorial, cinematic, brutalist, terminal) and
-  **fourteen colour schemes**, each light and dark, any with any. Light-only and dark-only sites too.
-- **Trip maps** from a GeoJSON route on MapTiler's topographic map, in light and dark.
+  **fourteen colour schemes**, any with any.
+
+  ![The six presets: fieldnotes, minimal, editorial, cinematic, brutalist and terminal, each a home page](images/presets.jpg)
+
+- **Trip maps** from a GeoJSON route on MapTiler's topographic map.
 - **Photo and video galleries** from a folder, opening in a swipeable viewer
   ([dialog-lightbox](https://github.com/maxfettinger/dialog-lightbox)).
 - **A home page** with your photo, a greeting, your profiles and a card for anything you like.
@@ -66,9 +69,7 @@ walks through every step, including adding the theme as a Git submodule instead.
 ## Credits
 
 Icons from [Feather](https://feathericons.com/) (MIT). Photo viewer: [dialog-lightbox](https://github.com/maxfettinger/dialog-lightbox)
-(MIT). Maps: [MapTiler](https://www.maptiler.com/). Maths: [MathJax](https://www.mathjax.org/). Type and space scale
-computed the [Utopia](https://utopia.fyi/) way; CSS reset after Josh Comeau and Andy Bell. The demo's photos are
-gradients and stick figures drawn by a script.
+(MIT). Maps: [MapTiler](https://www.maptiler.com/). Maths: [MathJax](https://www.mathjax.org/).
 
 ## Licence
 
